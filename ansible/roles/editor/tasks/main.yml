@@ -1,0 +1,13 @@
+---
+- name: symlink vimrc
+  file:
+    src: "~/git/base/.vimrc"
+    dest: "~/.vimrc"
+    state: link
+
+- name: symlink vim files
+  file:
+    src: "~/git/base/.vim"
+    dest: "~/.vim"
+    state: link
+

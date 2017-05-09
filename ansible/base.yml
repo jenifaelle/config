@@ -1,0 +1,5 @@
+---
+- name: "Base config"
+- hosts: localhost
+- roles:
+  - editor
