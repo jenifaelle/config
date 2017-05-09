@@ -1,7 +1,7 @@
 ---
 - name: symlink vimrc
   file:
-    src: ".vimrc"
+    src: "{{role_path}}/files/vimrc"
     dest: "~/.vimrc"
     state: link
 
@@ -12,7 +12,12 @@
 
 - name: symlink vim files
   file:
-    src: "plug.vim"
+    src: "{{role_path}}/files/plug.vim"
     dest: "~/.vim/autoload/plug.vim"
     state: link
 
+- name: global gitignore
+  file:
+    src: "~/git/config/.gitignore"
+    dest: "~/.gitignore_global"
+    state: link
