@@ -1,0 +1,10 @@
+---
+- file:
+    src: "{{role_path}}/files/zshrc"
+    dest: "~/.zshrc"
+    state: link
+
+- file:
+    src: "{{role_path}}/files/zsh_aliases"
+    dest: "~/.zsh_aliases"
+    state: link

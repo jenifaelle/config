@@ -1,0 +1,69 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt extendedglob notify
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/alexandre/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+#
+autoload -U colors && colors
+setopt prompt_subst
+PROMPT='%{$fg[magenta]%}%n@%{$fg[yellow]%}%m%{$fg[green]%}[%~]:%{$reset_color%}%% '
+RPROMPT="%{$fg[green]%}%*%{$reset_color%}"
+
+# Aliases
+if [ -f ~/.zsh_aliases ]; then
+		. ~/.zsh_aliases
+fi
+
+# Vi mode
+bindkey -v
+bindkey -s '\e.' "..\n"
+
+# Start Xorg on tty1
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
+
+sh $HOME/git/base/solarized.sh
+
+# Var env
+export SCRIPTS_PATH=$HOME/git/base/scripts
+export BROWSER="firefox"
+export EDITOR=nvim
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+
+# Java
+export ECLIPSE_HOME=/usr/lib/eclipse
+export CLASSPATH=$HOME/.m2/repository:/usr/share/clojure
+export junit=org.junit.runner.JUnitCore
+export MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre
+
+# Path shenanigans
+export GOROOT=/usr/lib/go
+export GOPATH=$HOME/git/go
+export GOBIN=$HOME/git/go/bin
+export PATH=$PATH:/usr/games:$GOPATH/bin:/opt/java/bin:$SCRIPTS_PATH
+export PATH=$PATH:$HOME/.gem/ruby/2.2.0/bin
+export PATH=$PATH:$HOME/.bin/
+export PATH=$PATH:/opt/Druide/Antidote9/Application/Bin64
+export PATH=$PATH:$HOME/.gem/ruby/2.3.0/bin
+export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:$GOPATH/bin
+export PATH=$HOME/anaconda3/bin:$PATH
+
+# Nose/Rednose
+export NOSE_REDNOSE=1
+export NOSE_REDNOSE_COLOR=force
+
+# rust racer: requiert rust-src
+export RUST_SRC_PATH=/usr/src/rust/src
+
+PATH="/home/alexandre/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/alexandre/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/alexandre/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/alexandre/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/alexandre/perl5"; export PERL_MM_OPT;
