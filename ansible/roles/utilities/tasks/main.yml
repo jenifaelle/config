@@ -1,10 +1,12 @@
 ---
-- file:
+- name: symlink zshrc
+  file:
     src: "{{role_path}}/files/zshrc"
     dest: "~/.zshrc"
     state: link
 
-- file:
+- name: symlink zsh_aliases
+  file:
     src: "{{role_path}}/files/zsh_aliases"
     dest: "~/.zsh_aliases"
     state: link
