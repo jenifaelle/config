@@ -1,13 +1,18 @@
 ---
 - name: symlink vimrc
   file:
-    src: "~/git/base/.vimrc"
+    src: ".vimrc"
     dest: "~/.vimrc"
     state: link
 
+- name: create vim/autoload
+  file:
+    dest: "~/.vim/autoload"
+    state: directory
+
 - name: symlink vim files
   file:
-    src: "~/git/base/.vim"
-    dest: "~/.vim"
+    src: "plug.vim"
+    dest: "~/.vim/autoload/plug.vim"
     state: link
 
