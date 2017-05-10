@@ -11,6 +11,23 @@
     dest: "~/.zsh_aliases"
     state: link
 
+- name: create fish config dif
+  file:
+    dest: "~/.config/fish"
+    state: directory
+
+- name: symlink fish config
+  file:
+    src: "{{role_path}}/files/config.fish"
+    dest: "~/.config/fish/config.fish"
+    state: link
+
+- name: symlink fish powershell config
+  file:
+    src: "{{role_path}}/files/powerline-shell.py"
+    dest: "~/.config/fish/powerline-shell.py"
+    state: link
+
 - name: symlink gitconfig
   file:
     src: "{{role_path}}/files/gitconfig"
