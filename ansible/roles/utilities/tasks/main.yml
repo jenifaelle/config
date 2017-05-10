@@ -1,4 +1,6 @@
 ---
+- include: dependencies.yml
+
 - name: symlink zshrc
   file:
     src: "{{role_path}}/files/zshrc"
@@ -34,14 +36,14 @@
     dest: "~/.gitconfig"
     state: link
 
-- name: symlink xresources
-  file:
-    src: "{{role_path}}/files/Xresources"
-    dest: "~/.Xresources"
-    state: link
-
 - name: symlink tmux.conf
   file:
     src: "{{role_path}}/files/tmux.conf"
     dest: "~/.tmux.conf"
+    state: link
+
+- name: symlink xresources
+  file:
+    src: "{{role_path}}/files/Xresources"
+    dest: "~/.Xresources"
     state: link

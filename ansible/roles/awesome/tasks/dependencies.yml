@@ -1,0 +1,5 @@
+---
+- name: install awesome dependencies
+  pacman:
+    name: "awesome"
+    state: present

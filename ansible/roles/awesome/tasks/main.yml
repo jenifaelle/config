@@ -1,4 +1,6 @@
 ---
+- include: dependencies.yml
+
 - name: create awesome config dir
   file:
     dest: "{{awesome_config}}"

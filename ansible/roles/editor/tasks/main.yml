@@ -1,4 +1,6 @@
 ---
+- include: dependencies.yml
+
 - name: symlink vimrc
   file:
     src: "{{role_path}}/files/vimrc"
