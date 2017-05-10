@@ -1,0 +1,14 @@
+[user]
+	name = agingrasc
+	email = alexandre.gingras-courchesne.1@ulaval.ca
+[push]
+	default = current
+[core]
+	excludesfile = /home/alexandre/.gitignore_global
+	autocrlf = input
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[status]
+	showUntrackedFiles = no
