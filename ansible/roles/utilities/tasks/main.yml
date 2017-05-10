@@ -22,3 +22,9 @@
     src: "{{role_path}}/files/Xresources"
     dest: "~/.Xresources"
     state: link
+
+- name: symlink tmux.conf
+  file:
+    src: "{{role_path}}/files/tmux.conf"
+    dest: "~/.tmux.conf"
+    state: link
