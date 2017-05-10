@@ -1,11 +1,22 @@
 ---
 - name: create awesome config dir
   file:
-    dest: "~/.config/awesome"
+    dest: "{{awesome_config}}"
     state: directory
 
 - name: symlink awesome base config
   file:
     src: "{{role_path}}/files/rc.lua"
-    dest: ~/.config/awesome/rc.lua"
+    dest: "{{awesome_config}}/rc.lua"
+    state: link
+
+- name: create awesome theme dir
+  file:
+    dest: "{{awesome_theme}}"
+    state: directory
+
+- name: symlink awesome theme config
+  file:
+    src: "{{role_path}}/files/theme.lua"
+    dest: "{{awesome_theme}}/theme.lua"
     state: link

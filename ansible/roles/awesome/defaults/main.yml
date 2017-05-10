@@ -1,0 +1,2 @@
+awesome_config: "~/.config/awesome"
+awesome_theme: "{{awesome_config}}/themes/default"
