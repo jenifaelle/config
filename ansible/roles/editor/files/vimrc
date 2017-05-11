@@ -15,6 +15,12 @@ Plug 'vim-ctrlspace/vim-ctrlspace'
 "Darcula theme
 Plug 'blueshirts/darcula'
 
+"Fugitive
+Plug 'tpope/vim-fugitive'
+
+"Gitgutter
+Plug 'airblade/vim-gitgutter'
+
 "Sudo Edit
 Plug 'chrisbra/SudoEdit.vim'
 
@@ -67,7 +73,8 @@ nnoremap <leader><leader>s :%s/\s$//g<cr>
 "autocommand
 augroup vimrc
     au!
-    au BufNewFile,BufRead *.yml setf ansible.yml
+    "get rid of trailling white space on write
+    au BufWritePre * :%s/\s$//ge
 augroup end
 
 "theme
