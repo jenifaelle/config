@@ -33,7 +33,7 @@ sh $HOME/git/base/solarized.sh
 # Var env
 export SCRIPTS_PATH=$HOME/git/base/scripts
 export BROWSER="firefox"
-export EDITOR=nvim
+export EDITOR=vim
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 
 # Java

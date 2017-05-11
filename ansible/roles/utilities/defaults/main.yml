@@ -3,3 +3,4 @@ deps:
   - zsh
   - fish
   - xorg-xinit
+  - ripgrep
