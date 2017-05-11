@@ -64,6 +64,12 @@ noremap <leader>ev :e $MYVIMRC<cr>
 noremap <leader>rv :source $MYVIMRC<cr>
 nnoremap <leader><leader>s :%s/\s$//g<cr>
 
+"autocommand
+augroup vimrc
+    au!
+    au BufNewFile,BufRead *.yml setf ansible.yml
+augroup end
+
 "theme
 set background=dark
 colorscheme darcula
@@ -74,3 +80,4 @@ let g:airline_powerline_fonts = 1
 "ALE
 nnoremap <c-j> :ALENext<cr>
 nnoremap <c-k> :ALEPrevious<cr>
+
