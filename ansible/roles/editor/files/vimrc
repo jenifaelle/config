@@ -69,13 +69,14 @@ set ffs=unix,dos,mac
 let mapleader = ","
 noremap <leader>ev :e $MYVIMRC<cr>
 noremap <leader>rv :source $MYVIMRC<cr>
-nnoremap <leader><leader>s :%s/\s$//g<cr>
+nnoremap <leader><leader>s :%s/\s+$//ge \| noh <cr>
 
 "autocommand
 augroup vimrc
     au!
-    "get rid of trailling white space on write
-    au BufWritePre * :%s/\s$//ge
+    "get rid of trailfing white space on write
+    au BufWritePre * :%s/\s*$//ge | exec 'normal ``' | noh
+    au BufRead *.yml :setf ansible
 augroup end
 
 "theme
