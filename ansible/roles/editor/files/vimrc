@@ -15,6 +15,9 @@ Plug 'vim-ctrlspace/vim-ctrlspace'
 "Darcula theme
 Plug 'blueshirts/darcula'
 
+"easy align
+Plug 'junegunn/vim-easy-align'
+
 "Fugitive
 Plug 'tpope/vim-fugitive'
 
@@ -75,7 +78,7 @@ nnoremap <leader><leader>s :%s/\s+$//ge \| noh <cr>
 augroup vimrc
     au!
     "get rid of trailfing white space on write
-    au BufWritePre * :%s/\s*$//ge | exec 'normal ``' | noh
+    au BufWritePre * :%s/\s*$//e | noh | exec 'normal ``zz'
     au BufRead *.yml :setf ansible
 augroup end
 
@@ -90,3 +93,6 @@ let g:airline_powerline_fonts = 1
 nnoremap <c-j> :ALENext<cr>
 nnoremap <c-k> :ALEPrevious<cr>
 
+"easy align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
