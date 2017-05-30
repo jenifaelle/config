@@ -47,3 +47,9 @@
     src: "{{role_path}}/files/Xresources"
     dest: "~/.Xresources"
     state: link
+
+- name: symlink pylintrc
+  file:
+    src: "{{role_path}}/files/pylintrc"
+    dest: "~/.pylintrc"
+    state: link
