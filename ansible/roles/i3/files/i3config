@@ -142,8 +142,8 @@ bindcode 122 exec "pactl set-sink-volume 0 -5%"
 bindcode 123 exec "pactl set-sink-volume 0 +5%"
 
 # brightness binding (asus e403s)
-bindcode 232 exec "backlight-down"
-bindcode 233 exec "backlight-up"
+bindcode 232 exec "sudo backlight-down"
+bindcode 233 exec "sudo backlight-up"
 
 
 # resize window (you can also use the mouse for that)
