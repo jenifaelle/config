@@ -14,3 +14,4 @@ deps:
   - pulseaudio-bluetooth
   - pulseaudio-equalizer
   - keepassx2
+  - feh
