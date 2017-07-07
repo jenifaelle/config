@@ -1,5 +1,9 @@
 ---
 - name: install awesome dependencies
   pacman:
-    name: "awesome"
+    name: "{{item}}"
     state: present
+  become: true
+  with_items:
+    - awesome
+    - dmenu

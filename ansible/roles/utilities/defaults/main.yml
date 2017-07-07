@@ -4,3 +4,13 @@ deps:
   - fish
   - xorg-xinit
   - ripgrep
+  - rxvt-unicode
+  - arandr
+  - htop
+  - dmenu
+  - pavucontrol
+  - pulseaudio
+  - pulseaudio-alsa
+  - pulseaudio-bluetooth
+  - pulseaudio-equalizer
+  - keepassx2
