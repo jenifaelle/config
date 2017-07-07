@@ -136,6 +136,15 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+# audio binding
+bindcode 121 exec "pactl set-sink-mute 0 toggle"
+bindcode 122 exec "pactl set-sink-volume 0 -5%"
+bindcode 123 exec "pactl set-sink-volume 0 +5%"
+
+# brightness binding (asus e403s)
+bindcode 232 exec "echo $(expr $(cat /sys/class/backlight/intel_backlight/actual_brightness) - 100) > /sys/class/backlight/intel_backlight/brightness"
+bindcode 233 exec "echo $(expr $(cat /sys/class/backlight/intel_backlight/actual_brightness) + 100) > /sys/class/backlight/intel_backlight/brightness"
+
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
