@@ -14,3 +14,13 @@
     src: "{{role_path}}/files/i3config"
     dest: "~/.config/i3/config"
     state: link
+
+- name: copy backlight script
+  copy:
+    src: "{{item}}"
+    dest: "/usr/local/bin/{{item}}"
+    mode: 0777
+  become: true
+  with_items:
+    - backlight-down
+    - backlight-up
