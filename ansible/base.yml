@@ -1,6 +1,7 @@
 ---
 - name: "Base config"
   hosts: localhost
+  become: true
   pre_tasks:
     - name: update system
       pacman:
