@@ -26,9 +26,9 @@ font pango:noto 12
 
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
-set $up h
+set $up k
 set $down j
-set $left k
+set $left h
 set $right l
 set $mod Mod4
 
@@ -73,10 +73,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-# bindsym $mod+h split h
+bindsym $mod+semicolon split h
 
 # split in vertical orientation
-# bindsym $mod+v split v
+bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
