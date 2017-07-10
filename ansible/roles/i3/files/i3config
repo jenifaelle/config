@@ -145,6 +145,12 @@ bindcode 123 exec "pactl set-sink-volume 0 +5%"
 bindcode 232 exec "sudo backlight-down"
 bindcode 233 exec "sudo backlight-up"
 
+# lock screen
+bindsym $mod+Control+l exec "xlock -mode blank"
+
+# keyboard
+bindsym $mod+Shift+f exec "setxkbmap ca"
+bindsym $mod+Shift+u exec "setxkbmap us"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
