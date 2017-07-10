@@ -4,9 +4,3 @@
     name: xorg
     state: present
   become: true
-
-- name: copy xinitrc to home
-  file:
-    src: "{{role_path}}/files/xinitrc"
-    dest: "~/.xinitrc"
-    state: link
