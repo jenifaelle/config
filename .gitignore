@@ -375,3 +375,5 @@ Session.vim
 tags
 
 # End of https://www.gitignore.io/api/vim,c++,java,linux,emacs,python,ansible,haskell,clojure,intellij,jetbrains
+
+*.cs_files

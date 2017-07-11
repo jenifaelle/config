@@ -1,0 +1,27 @@
+#read X Resources
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+
+sh /home/alexandre/.screenlayout/default.sh
+
+VBoxClient-all
+
+setxkbmap -layout us
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+
+#start de trayer
+trayer --edge top --align left --SetDockType true --SetPartialStrut true --expand true --widthtype pixel --width 80 --transparent false --tint 0x1c1c1c --height 8 &
+
+#various little setting
+xset s off
+xset s noblank
+xset -dpms
+xsetroot -cursor_name left_ptr -solid midnightblue
+
+#set wallpaper
+feh --bg-max ~/images/wallpaper/default.jpg
+
+#automount helper
+#udiskie --tray --use-udisks2 &
+
+#properly start xmonad, must be the last command, startx live and die with it
+exec xmonad

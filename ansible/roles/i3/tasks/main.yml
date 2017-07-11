@@ -3,17 +3,23 @@
   pacman:
     name: i3
     state: present
+  become: true
+
+- name: Ensure ~/.config/i3 exists
+  file:
+    path: "~/.config/i3"
+    state: directory
 
 - name: installing dmenu
   pacman:
     name: dmenu
     state: present
+  become: true
 
 - name: copy i3 config
-  file:
-    src: "{{role_path}}/files/i3config"
+  template:
+    src: "i3config.j2"
     dest: "~/.config/i3/config"
-    state: link
 
 - name: copy backlight script
   copy:
@@ -24,3 +30,4 @@
   with_items:
     - backlight-down
     - backlight-up
+  when: laptop
