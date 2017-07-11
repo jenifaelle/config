@@ -24,6 +24,9 @@ Plug 'tpope/vim-fugitive'
 "Gitgutter
 Plug 'airblade/vim-gitgutter'
 
+"Jinja
+Plug 'lepture/vim-jinja'
+
 "Sudo Edit
 Plug 'chrisbra/SudoEdit.vim'
 
