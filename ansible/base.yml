@@ -7,9 +7,13 @@
         update_cache: yes
         upgrade: yes
       become: true
+    - name: create std config dir
+      file:
+        path: "~/.config"
+        state: directory
 
   roles:
   - editor
   - utilities
-  - awesome
-
+  - xorg
+  - i3

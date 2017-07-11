@@ -1,0 +1,6 @@
+---
+- name: installations xorg
+  pacman:
+    name: xorg
+    state: present
+  become: true

@@ -1,0 +1,14 @@
+#read X Resources
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+
+sh ~/.screenlayout/default.sh
+
+setxkbmap -layout us
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+
+#various little setting
+xset s off
+xset s noblank
+xset -dpms
+
+exec awesome
