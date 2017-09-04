@@ -1,0 +1,17 @@
+#read X Resources
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+
+setxkbmap -layout us
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+
+#various little setting
+xset s off
+xset s noblank
+xset -dpms
+xsetroot -cursor_name left_ptr -solid midnightblue
+
+#set wallpaper
+feh --bg-max ~/Pictures/wallpaper/zeal_kingdom.jpg
+
+#properly start xmonad, must be the last command, startx live and die with it
+exec i3
