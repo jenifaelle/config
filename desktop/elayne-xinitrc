@@ -11,4 +11,6 @@ xset s off
 xset s noblank
 xset -dpms
 
-exec awesome
+feh --bg-center ~/Pictures/wallpaper/summer_wallpaper.jpg
+
+exec i3
