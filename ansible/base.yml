@@ -2,11 +2,6 @@
 - name: "Base config"
   hosts: localhost
   pre_tasks:
-    - name: update system
-      pacman:
-        update_cache: yes
-        upgrade: yes
-      become: true
     - name: create std config dir
       file:
         path: "~/.config"

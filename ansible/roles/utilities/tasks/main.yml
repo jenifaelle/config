@@ -53,3 +53,15 @@
     src: "{{role_path}}/files/pylintrc"
     dest: "~/.pylintrc"
     state: link
+
+- name: symlink script volume
+  file:
+    src: "{{role_path}}/files/{{item}}"
+    dest: "/usr/local/bin/{{item}}"
+    state: link
+  with_items:
+    - "toggle-mute"
+    - "volume-down"
+    - "volume-up"
+  become: yes
+
