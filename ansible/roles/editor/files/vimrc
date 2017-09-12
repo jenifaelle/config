@@ -32,6 +32,9 @@ Plug 'chrisbra/SudoEdit.vim'
 
 Plug 'jremmen/vim-ripgrep'
 
+"Good color scheme
+Plug 'jnurmine/Zenburn'
+
 "Better status line
 Plug 'vim-airline/vim-airline'
 call plug#end()
@@ -99,3 +102,6 @@ nnoremap <c-k> :ALEPrevious<cr>
 "easy align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+"Completor
+let g:completor_python_binary = '/usr/bin/python3'

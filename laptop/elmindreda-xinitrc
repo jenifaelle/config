@@ -13,5 +13,7 @@ xsetroot -cursor_name left_ptr -solid midnightblue
 #set wallpaper
 feh --bg-max ~/Pictures/wallpaper/zeal_kingdom.jpg
 
+wicd-client -t &
+
 #properly start xmonad, must be the last command, startx live and die with it
 exec i3
