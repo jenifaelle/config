@@ -18,3 +18,4 @@ deps:
   - gtk3
   - tree
   - borg
+  - cronie

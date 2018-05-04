@@ -1,11 +1,14 @@
 #!/bin/bash
-repo_path="/mnt/jenifael"
+backup_path="/opt/backup"
+repo_path="$backup_path/jenifael"
 current_date=$(date '+%Y-%m-%d-%H%M')
 uuid="07af5634-144a-446f-a4e9-aba2cd71a9db"
 
-mount UUID=$uuid /mnt
+mkdir $backup_path
+mount UUID=$uuid $backup_path
 
 cd /home/jenifael
 borg create "$repo_path::$current_date" ./Documents ./Pictures ./Music
+chown jenifael: -R $repo_path
 
-umount /mnt
+umount $backup_path
