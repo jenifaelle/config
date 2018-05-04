@@ -60,8 +60,8 @@ URxvt.color15: S_base3
 !! URxvt settings
 URxvt.background: S_base03
 URxvt.foreground: S_base0
-!!URxvt.font: xft:Noto Mono:size=14:antialias=true
-URxvt.font: xft:Droid Sans Mono for Powerline:size=12:antialias=true
+URxvt.font: xft:Noto Mono:size=14:antialias=true
+!!URxvt.font: xft:Droid Sans Mono for Powerline:size=12:antialias=true
 URxvt.scrollBar: false
 
 !! extensions

@@ -15,4 +15,4 @@ deps:
   - pulseaudio-equalizer
   - keepassx2
   - feh
-  - gtk3-print-backends
+  - gtk3
