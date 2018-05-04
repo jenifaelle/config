@@ -1,0 +1,7 @@
+---
+- name: activation backup
+  cron:
+    state: present
+    job: "~/scripts/backup"
+    minute: 5
+  when: backup
