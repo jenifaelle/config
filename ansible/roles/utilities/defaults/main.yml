@@ -16,3 +16,5 @@ deps:
   - keepassx2
   - feh
   - gtk3
+  - tree
+  - borg

@@ -1,0 +1,11 @@
+#!/bin/bash
+repo_path="/mnt/jenifael"
+current_date=$(date '+%Y-%m-%d-%H%M')
+uuid="07af5634-144a-446f-a4e9-aba2cd71a9db"
+
+mount UUID=$uuid /mnt
+
+cd /home/jenifael
+borg create "$repo_path::$current_date" ./Documents ./Pictures ./Music
+
+umount /mnt

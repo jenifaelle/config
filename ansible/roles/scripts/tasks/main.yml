@@ -1,0 +1,12 @@
+---
+- name: create scripts directory
+  file:
+    path: "~/scripts"
+    state: directory
+
+- name: symlink backup
+  file:
+    src: "{{role_path}}/files/backup"
+    dest: "~/scripts/backup"
+    state: link
+    mode: 0700
