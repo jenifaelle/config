@@ -28,7 +28,7 @@ bindkey -s '\e.' "..\n"
 # Start Xorg on tty1
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
-sh $HOME/git/base/solarized.sh
+#sh $HOME/git/base/solarized.sh
 
 # Var env
 export SCRIPTS_PATH=$HOME/git/base/scripts
