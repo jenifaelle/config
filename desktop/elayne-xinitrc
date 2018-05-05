@@ -11,6 +11,7 @@ xset s off
 xset s noblank
 xset -dpms
 
-feh --bg-center ~/Pictures/wallpaper/summer_wallpaper.jpg
+feh --bg-fill ~/Pictures/wallpaper/chrono-trigger-ensemble.png
 
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec i3
