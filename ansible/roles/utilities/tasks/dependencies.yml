@@ -1,7 +1,6 @@
 ---
 - name: installing utilities dependencies
   pacman:
-    name: "{{item}}"
+    name: "{{deps}}"
     state: present
-  with_items: "{{deps}}"
   become: true
