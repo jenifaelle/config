@@ -30,6 +30,7 @@ Plug 'lepture/vim-jinja'
 "Sudo Edit
 Plug 'chrisbra/SudoEdit.vim'
 
+"ripgrep
 Plug 'jremmen/vim-ripgrep'
 
 "Good color scheme
