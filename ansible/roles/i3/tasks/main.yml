@@ -5,6 +5,12 @@
     state: present
   become: true
 
+- name: install i3status
+  pacman:
+    name: i3status
+    state: present
+  become: true
+
 - name: Ensure ~/.config/i3 exists
   file:
     path: "~/.config/i3"
