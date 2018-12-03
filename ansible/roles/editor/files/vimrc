@@ -33,6 +33,9 @@ Plug 'chrisbra/SudoEdit.vim'
 "ripgrep
 Plug 'jremmen/vim-ripgrep'
 
+"rust
+Plug 'rust-lang/rust.vim'
+
 "Good color scheme
 Plug 'jnurmine/Zenburn'
 
@@ -99,6 +102,7 @@ let g:airline_powerline_fonts = 1
 "ALE
 nnoremap <c-j> :ALENext<cr>
 nnoremap <c-k> :ALEPrevious<cr>
+let g:ale_linters = {'rust': ['rls']}
 
 "easy align
 xmap ga <Plug>(EasyAlign)

@@ -4,12 +4,3 @@
     name: xorg
     state: present
   become: true
-
-- name: xorg keyboard setting
-  copy:
-    src: "{{role_path}}/files/00-keyboard.conf"
-    dest: "/etc/X11/xorg.conf.d/00-keyboard.conf"
-    owner: root
-    group: root
-    mode: 0644
-  become: true
