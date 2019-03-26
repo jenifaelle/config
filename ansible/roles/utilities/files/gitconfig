@@ -1,10 +1,10 @@
 [user]
-	name = jenifael gingras-courchesne
+	name = Jenifael Gingras
 	email = jenifael.gingras@gmail.com
 [push]
 	default = current
 [core]
-	excludesfile = /home/alexandre/.gitignore_global
+	excludesfile = /home/jenifael/.gitignore_global
 	autocrlf = input
 [diff]
 	tool = vimdiff
