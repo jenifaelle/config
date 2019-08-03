@@ -1,5 +1,8 @@
 call plug#begin('~/.vim/pluged')
 
+"async exec
+Plug 'Shougo/vimproc.vim', {'do': 'make'}
+
 "Ansible/Yaml
 Plug 'chase/vim-ansible-yaml'
 
@@ -9,11 +12,14 @@ Plug 'w0rp/ale'
 "Better completion
 Plug 'maralla/completor.vim'
 
-"Ctrl Space
-Plug 'vim-ctrlspace/vim-ctrlspace'
-
 "Darcula theme
 Plug 'blueshirts/darcula'
+
+"Debugger
+Plug 'idanarye/vim-vebugger'
+
+"Dispatch
+Plug 'tpope/vim-dispatch'
 
 "easy align
 Plug 'junegunn/vim-easy-align'
@@ -21,8 +27,14 @@ Plug 'junegunn/vim-easy-align'
 "Fugitive
 Plug 'tpope/vim-fugitive'
 
+"Fuzzy finder
+Plug 'junegunn/fzf.vim'
+
 "Gitgutter
 Plug 'airblade/vim-gitgutter'
+
+"Green
+Plug 'janko/vim-test'
 
 "Jinja
 Plug 'lepture/vim-jinja'
@@ -35,6 +47,19 @@ Plug 'jremmen/vim-ripgrep'
 
 "rust
 Plug 'rust-lang/rust.vim'
+
+"Toml
+Plug 'cespare/vim-toml'
+
+"tcomment
+Plug 'tomtom/tcomment_vim'
+
+"snippet
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+"Venv
+Plug 'plytophogy/vim-virtualenv'
 
 "Good color scheme
 Plug 'jnurmine/Zenburn'
@@ -65,8 +90,8 @@ set expandtab
 set smarttab
 set autoindent
 set smartindent
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 
 "search options
 set ignorecase
@@ -110,3 +135,21 @@ nmap ga <Plug>(EasyAlign)
 
 "Completor
 let g:completor_python_binary = '/usr/bin/python3'
+
+"Fzf
+nnoremap <C-e> :History<cr>
+nnoremap <C-p> :Files<cr>
+
+"Ultisnip
+let g:UltiSnipExpandTrigger="<tab>"
+
+"Python
+au FileType python setlocal shiftwidth=2 softtabstop=2 expandtab
+
+" TComment
+noremap <c-m> :TComment<cr>
+noremap <c-_> :TComment<cr>
+
+" Vebugger
+noremap <S-F9> :VBGstartPDB<cr>
+noremap <S-F8> :VBGtoggleBreakpointThisLine<cr>

@@ -13,9 +13,7 @@ deps:
   - pulseaudio-alsa
   - pulseaudio-bluetooth
   - pulseaudio-equalizer
-  - keepassx2
   - feh
   - gtk3
   - tree
   - borg
-  - cronie
