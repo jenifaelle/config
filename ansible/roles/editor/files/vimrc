@@ -9,14 +9,8 @@ Plug 'chase/vim-ansible-yaml'
 "ALE
 Plug 'w0rp/ale'
 
-"Better completion
-Plug 'maralla/completor.vim'
-
 "Darcula theme
 Plug 'blueshirts/darcula'
-
-"Debugger
-Plug 'idanarye/vim-vebugger'
 
 "Dispatch
 Plug 'tpope/vim-dispatch'
@@ -36,14 +30,20 @@ Plug 'airblade/vim-gitgutter'
 "Green
 Plug 'janko/vim-test'
 
+"Jedi
+Plug 'davidhalter/jedi-vim'
+
 "Jinja
 Plug 'lepture/vim-jinja'
+
+"Pair
+Plug 'jiangmiao/auto-pairs'
 
 "Sudo Edit
 Plug 'chrisbra/SudoEdit.vim'
 
-"ripgrep
-Plug 'jremmen/vim-ripgrep'
+"rope
+Plug 'python-rope/ropevim'
 
 "rust
 Plug 'rust-lang/rust.vim'
@@ -58,11 +58,8 @@ Plug 'tomtom/tcomment_vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-"Venv
-Plug 'plytophogy/vim-virtualenv'
-
-"Good color scheme
-Plug 'jnurmine/Zenburn'
+"YCM
+Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
 
 "Better status line
 Plug 'vim-airline/vim-airline'
@@ -90,8 +87,8 @@ set expandtab
 set smarttab
 set autoindent
 set smartindent
-set shiftwidth=2
-set tabstop=2
+set shiftwidth=4
+set tabstop=4
 
 "search options
 set ignorecase
@@ -105,7 +102,7 @@ set ffs=unix,dos,mac
 
 "mapping
 let mapleader = ","
-noremap <leader>ev :e $MYVIMRC<cr>
+noremap <leader>ev :e $HOME/.vimrc<cr>
 noremap <leader>rv :source $MYVIMRC<cr>
 nnoremap <leader><leader>s :%s/\s+$//ge \| noh <cr>
 
@@ -133,9 +130,6 @@ let g:ale_linters = {'rust': ['rls']}
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-"Completor
-let g:completor_python_binary = '/usr/bin/python3'
-
 "Fzf
 nnoremap <C-e> :History<cr>
 nnoremap <C-p> :Files<cr>
@@ -144,12 +138,30 @@ nnoremap <C-p> :Files<cr>
 let g:UltiSnipExpandTrigger="<tab>"
 
 "Python
-au FileType python setlocal shiftwidth=2 softtabstop=2 expandtab
+au FileType python setlocal shiftwidth=4 softtabstop=4 expandtab
 
-" TComment
+"TComment
 noremap <c-m> :TComment<cr>
-noremap <c-_> :TComment<cr>
 
-" Vebugger
-noremap <S-F9> :VBGstartPDB<cr>
-noremap <S-F8> :VBGtoggleBreakpointThisLine<cr>
+"Rope
+nnoremap <c-enter> :RopeAutoImport<cr>
+let g:ropevim_prefer_py3='1'
+let g:ropevim_autoimport_modules = ["os", "shutil", "math", "random", "datetime"]
+
+"Ale
+let g:ale_python_flake8_options = '--config .flake8'
+
+" jedi-vim {
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_on_dot = 0
+let g:jedi#popup_select_first = 0
+let g:jedi#completions_enabled = 0
+let g:jedi#completions_command = ""
+let g:jedi#show_call_signatures = "1"
+
+let g:jedi#goto_assignments_command = "<leader>pa"
+let g:jedi#goto_definitions_command = "<leader>pd"
+let g:jedi#documentation_command = "<leader>pk"
+let g:jedi#usages_command = "<leader>pu"
+let g:jedi#rename_command = "<leader>pr"
+" }
