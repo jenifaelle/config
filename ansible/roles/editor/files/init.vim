@@ -1,10 +1,15 @@
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 "Ansible/Yaml
 Plug 'chase/vim-ansible-yaml'
 
 "ALE
 Plug 'w0rp/ale'
+
+"Asyncomplete
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-buffer.vim'
+Plug 'prabirshrestha/asyncomplete-file.vim'
 
 "Darcula theme
 Plug 'blueshirts/darcula'
@@ -17,6 +22,9 @@ Plug 'junegunn/fzf.vim'
 
 "Gitgutter
 Plug 'airblade/vim-gitgutter'
+
+"Jedi
+Plug 'davidhalter/jedi-vim'
 
 "Jinja
 Plug 'lepture/vim-jinja'
@@ -57,7 +65,8 @@ set showcmd
 set wildmenu
 set backspace=eol,start,indent
 set laststatus=2
-set completeopt+=menuone,longest
+set completeopt=menuone,noinsert,noselect
+set nowrap
 
 "get rid of backup file
 set nobackup
@@ -137,3 +146,32 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 2
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
+
+"Asyncomplete
+let g:asyncomplete_auto_completeopt = 0
+imap <c-space> <Plug>(asyncomplete_force_refresh)<c-n><c-n>
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+            \ 'name': 'buffer',
+            \ 'whitelist': ['*'],
+            \ 'completor': function('asyncomplete#sources#buffer#completor'),
+            \ 'config': {
+            \   'max_buffer_size': 5000000,
+            \ },
+            \ }))
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+            \ 'name': 'file',
+            \ 'whitelist': ['*'],
+            \ 'priority': 20,
+            \ 'completor': function('asyncomplete#sources#file#completor')
+            \ }))
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#ale#get_source_options({
+            \ 'priority': 10,
+            \ }))
+
+"Jedi
+let g:jedi#auto_initialization = 0
+let g:jedi#auto_vim_configuration = 0
+call jedi#configure_call_signatures()
+let g:jedi#show_call_signatures = 1
+let g:jedi#show_call_signatures_delay = 200
+inoremap <c-s> <c-o>:call jedi#show_call_signatures()<cr>
