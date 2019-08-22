@@ -84,7 +84,7 @@ set ffs=unix,dos,mac
 
 "mapping
 let mapleader = ","
-noremap <leader>ev :e $HOME/.vimrc<cr>
+noremap <leader>ev :e $HOME/.config/nvim/init.vim<cr>
 noremap <leader>rv :source $MYVIMRC<cr>
 nnoremap <leader><leader>s :%s/\s+$//ge \| noh <cr>
 
@@ -124,7 +124,9 @@ nnoremap <c-enter> :RopeAutoImport<cr>
 let g:ropevim_prefer_py3='1'
 let g:ropevim_autoimport_modules = ["os", "shutil", "math", "random", "datetime", "curses", "re", "requests"]
 let g:ropevim_autoimport_underlineds = 1
-let ropevim_vim_completion=0
+let g:ropevim_vim_completion=0
+let g:ropevim_guess_project=1
+let g:ropevim_enable_autoimport=1
 
 "Taboo
 set sessionoptions+=tabpages,globals
