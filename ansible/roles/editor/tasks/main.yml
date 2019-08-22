@@ -1,21 +1,32 @@
 ---
 - include: dependencies.yml
 
-- name: symlink vimrc
+- name: create nvim config
   file:
-    src: "{{role_path}}/files/vimrc"
-    dest: "~/.vimrc"
-    state: link
+    dest: ~/.config/nvim
+    state: directory
 
 - name: create vim/autoload
   file:
-    dest: "~/.vim/autoload"
+    dest: "~/.config/nvim/autoload"
     state: directory
 
-- name: symlink vim files
+- name: symlink init.vim
+  file:
+    src: "{{role_path}}/files/init.vim"
+    dest: "~/.config/nvim/init.vim"
+    state: link
+
+- name: symlink ginit.vim
+  file:
+    src: "{{role_path}}/files/ginit.vim"
+    dest: "~/.config/nvim/ginit.vim"
+    state: link
+
+- name: symlink plug
   file:
     src: "{{role_path}}/files/plug.vim"
-    dest: "~/.vim/autoload/plug.vim"
+    dest: "~/.config/nvim/autoload/plug.vim"
     state: link
 
 - name: global gitignore

@@ -23,17 +23,7 @@
   become: true
 
 - name: copy i3 config
-  template:
-    src: "i3config.j2"
+  file:
+    src: "{{role_path}}/files/config"
     dest: "~/.config/i3/config"
-
-- name: copy backlight script
-  copy:
-    src: "{{item}}"
-    dest: "/usr/local/bin/{{item}}"
-    mode: 0777
-  become: true
-  with_items:
-    - backlight-down
-    - backlight-up
-  when: laptop
+    state: link

@@ -1,5 +1,5 @@
 ---
 - pacman:
-    name: vim
+    name: neovim-qt
     state: present
   become: true

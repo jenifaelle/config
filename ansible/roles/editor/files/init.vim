@@ -1,0 +1,137 @@
+call plug#begin('~/.vim/plugged')
+
+"Ansible/Yaml
+Plug 'chase/vim-ansible-yaml'
+
+"ALE
+Plug 'w0rp/ale'
+
+"Darcula theme
+Plug 'blueshirts/darcula'
+
+"Fugitive
+Plug 'tpope/vim-fugitive'
+
+"Fuzzy finder
+Plug 'junegunn/fzf.vim'
+
+"Gitgutter
+Plug 'airblade/vim-gitgutter'
+
+"Jinja
+Plug 'lepture/vim-jinja'
+
+"Pair
+Plug 'jiangmiao/auto-pairs'
+
+"Sudo Edit
+Plug 'chrisbra/SudoEdit.vim'
+
+"rope python project
+Plug 'python-rope/ropevim'
+
+"rust
+Plug 'rust-lang/rust.vim'
+
+"Taboo
+Plug 'gcmt/taboo.vim'
+
+"Toml
+Plug 'cespare/vim-toml'
+
+"tcomment
+Plug 'tomtom/tcomment_vim'
+
+"Better status line
+Plug 'vim-airline/vim-airline'
+call plug#end()
+
+syntax on
+filetype plugin indent on
+
+"general settings
+set sessionoptions-=options
+set number
+set hidden
+set showcmd
+set wildmenu
+set backspace=eol,start,indent
+set laststatus=2
+set completeopt+=menuone,longest
+
+"get rid of backup file
+set nobackup
+set nowb
+set noswapfile
+
+"indentation management
+set expandtab
+set smarttab
+set autoindent
+set smartindent
+set shiftwidth=4
+set tabstop=4
+
+"search options
+set ignorecase
+set smartcase
+set hlsearch
+set showmatch
+
+"make utf8 and unix the default
+set encoding=utf8
+set ffs=unix,dos,mac
+
+"mapping
+let mapleader = ","
+noremap <leader>ev :e $HOME/.vimrc<cr>
+noremap <leader>rv :source $MYVIMRC<cr>
+nnoremap <leader><leader>s :%s/\s+$//ge \| noh <cr>
+
+"autocommand
+augroup vimrc
+    au!
+    "get rid of trailfing white space on write
+    au BufWritePre * :%s/\s*$//e | noh | exec 'normal ``zz'
+    au BufRead *.yml :setf ansible
+augroup end
+
+"theme
+set background=dark
+colorscheme darcula
+
+"airline
+let g:airline_powerline_fonts = 1
+
+"ALE
+nnoremap <c-j> :ALENext<cr>
+nnoremap <c-k> :ALEPrevious<cr>
+let g:ale_linters = {'rust': ['rls'], 'python': ['pyls']}
+let g:ale_completion_enabled = 1
+let g:ale_fixers = ['black']
+nnoremap <a-c-l> :ALEFix<cr>
+nnoremap gd :ALEGoToDefinition<cr>
+
+"Fzf
+nnoremap <C-e> :History<cr>
+nnoremap <C-p> :Files<cr>
+
+"TComment
+noremap <c-m> :TComment<cr>
+
+"Rope
+nnoremap <c-enter> :RopeAutoImport<cr>
+let g:ropevim_prefer_py3='1'
+let g:ropevim_autoimport_modules = ["os", "shutil", "math", "random", "datetime", "curses", "re", "requests"]
+let g:ropevim_autoimport_underlineds = 1
+let ropevim_vim_completion=0
+
+"Taboo
+set sessionoptions+=tabpages,globals
+
+"Netrw
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 2
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
