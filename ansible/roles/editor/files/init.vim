@@ -10,9 +10,16 @@ Plug 'w0rp/ale'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-buffer.vim'
 Plug 'prabirshrestha/asyncomplete-file.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'tsufeki/asyncomplete-fuzzy-match', {'do': 'cargo build --release'}
 
 "Darcula theme
 Plug 'blueshirts/darcula'
+
+"Fireplace
+Plug 'tpope/vim-fireplace'
 
 "Fugitive
 Plug 'tpope/vim-fugitive'
@@ -35,6 +42,9 @@ Plug 'jiangmiao/auto-pairs'
 "Sudo Edit
 Plug 'chrisbra/SudoEdit.vim'
 
+"Rainbow parentheses
+Plug 'luochen1990/rainbow'
+
 "rope python project
 Plug 'python-rope/ropevim'
 
@@ -50,6 +60,12 @@ Plug 'cespare/vim-toml'
 "tcomment
 Plug 'tomtom/tcomment_vim'
 
+"YouCompleteMe
+" Plug 'ycm-core/YouCompleteMe'
+
+"Plug
+Plug 'junegunn/vim-plug'
+
 "Better status line
 Plug 'vim-airline/vim-airline'
 call plug#end()
@@ -58,6 +74,8 @@ syntax on
 filetype plugin indent on
 
 "general settings
+set completeopt=menuone,noinsert,noselect
+set formatoptions-=cro
 set sessionoptions-=options
 set number
 set hidden
@@ -100,8 +118,6 @@ nnoremap <leader><leader>s :%s/\s+$//ge \| noh <cr>
 "autocommand
 augroup vimrc
     au!
-    "get rid of trailfing white space on write
-    au BufWritePre * :%s/\s*$//e | noh | exec 'normal ``zz'
     au BufRead *.yml :setf ansible
 augroup end
 
@@ -116,9 +132,11 @@ let g:airline_powerline_fonts = 1
 nnoremap <c-j> :ALENext<cr>
 nnoremap <c-k> :ALEPrevious<cr>
 let g:ale_linters = {'rust': ['rls'], 'python': ['pyls']}
-let g:ale_completion_enabled = 1
-let g:ale_fixers = ['black']
+let g:ale_completion_enabled = 0
+let g:ale_fixers = {'python': ['black'], '*': ['remove_trailing_lines', 'trim_whitespace']}
+let g:ale_fix_on_save = 1
 nnoremap <a-c-l> :ALEFix<cr>
+nnoremap <s-l> :ALEFix<cr>
 nnoremap gd :ALEGoToDefinition<cr>
 
 "Fzf
@@ -147,9 +165,24 @@ let g:netrw_browse_split = 2
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
 
+"YouCompleteMe
+" let g:ycm_language_server = [{
+" \'name': 'python',
+" \'cmdline': ['pyls'],
+" \'filetypes': ['python'],
+" \},
+" \{
+" \'name': 'clojure',
+" \'cmdline': ['bash', '-c', '/usr/local/bin/clojure-lsp'],
+" \'filetypes': ['clojure'],
+" \}]
+" let g:ycm_filepath_completion_use_working_dir = 1
+" let g:ycm_use_ultisnips_completer = 0
+
 "Asyncomplete
-let g:asyncomplete_auto_completeopt = 0
+let g:asyncomplete_auto_completeopt = 1
 imap <c-space> <Plug>(asyncomplete_force_refresh)<c-n><c-n>
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
             \ 'name': 'buffer',
             \ 'whitelist': ['*'],
@@ -168,6 +201,23 @@ au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#source
             \ 'priority': 10,
             \ }))
 
+"Lsp
+if executable('pyls')
+    " pip install python-language-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
+if executable('clojure-lsp')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'clojure-lsp',
+        \ 'cmd': {server_info->['bash -c /usr/local/bin/clojure-lsp']},
+        \ 'whitelist': ['clojure'],
+        \ })
+endif
+
 "Jedi
 let g:jedi#auto_initialization = 0
 let g:jedi#auto_vim_configuration = 0
@@ -175,3 +225,6 @@ call jedi#configure_call_signatures()
 let g:jedi#show_call_signatures = 1
 let g:jedi#show_call_signatures_delay = 200
 inoremap <c-s> <c-o>:call jedi#show_call_signatures()<cr>
+
+"Something try desperately to make vim file auto comment new line...
+autocmd FileType vim setlocal formatoptions-=c formatoptions-=r formatoptions-=o
