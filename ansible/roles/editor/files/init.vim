@@ -33,9 +33,6 @@ Plug 'junegunn/fzf.vim'
 "Gitgutter
 Plug 'airblade/vim-gitgutter'
 
-"Jedi
-Plug 'davidhalter/jedi-vim'
-
 "Jinja
 Plug 'lepture/vim-jinja'
 
@@ -52,7 +49,7 @@ Plug 'chrisbra/SudoEdit.vim'
 Plug 'luochen1990/rainbow'
 
 "rope python project
-Plug 'python-rope/ropevim'
+" Plug 'python-rope/ropevim'
 
 "rust
 Plug 'rust-lang/rust.vim'
@@ -135,10 +132,10 @@ colorscheme darcula
 let g:airline_powerline_fonts = 1
 
 "ALE
-nnoremap <c-j> :ALENext<cr>
-nnoremap <c-k> :ALEPrevious<cr>
-let g:ale_linters = {'rust': ['rls'], 'python': ['pyls']}
-let g:ale_completion_enabled = 0
+" nnoremap <c-j> :ALENext<cr>
+" nnoremap <c-k> :ALEPrevious<cr>
+" let g:ale_linters = {'rust': ['rls'], 'python': ['pyls']}
+" let g:ale_completion_enabled = 0
 let g:ale_fixers = {'python': ['black'], '*': ['remove_trailing_lines', 'trim_whitespace']}
 let g:ale_fix_on_save = 1
 " nnoremap <a-c-l> :ALEFix<cr>
@@ -153,13 +150,13 @@ nnoremap <C-p> :Files<cr>
 noremap <c-m> :TComment<cr>
 
 "Rope
-nnoremap <c-enter> :RopeAutoImport<cr>
-let g:ropevim_prefer_py3='1'
-let g:ropevim_autoimport_modules = ["os", "shutil", "math", "random", "datetime", "curses", "re", "requests"]
-let g:ropevim_autoimport_underlineds = 1
-let g:ropevim_vim_completion=0
-let g:ropevim_guess_project=1
-let g:ropevim_enable_autoimport=1
+" nnoremap <c-enter> :RopeAutoImport<cr>
+" let g:ropevim_prefer_py3='1'
+" let g:ropevim_autoimport_modules = ["os", "shutil", "math", "random", "datetime", "curses", "re", "requests"]
+" let g:ropevim_autoimport_underlineds = 1
+" let g:ropevim_vim_completion=0
+" let g:ropevim_guess_project=1
+" let g:ropevim_enable_autoimport=1
 
 "Taboo
 set sessionoptions+=tabpages,globals
@@ -217,10 +214,10 @@ let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_virtual_text_enabled = 0
 let g:lsp_highlights_enabled = 0
-highlight link LspErrorHighlight Error
-highlight link LspWarningHighlight WarningMsg
-    " `LspErrorHighlight`, `LspWarningHighlight`, `LspInformationHighlight` and
-    " `LspHintHighlight` highlight groups.
+nnoremap <c-j> :LspNextError<cr>
+nnoremap <c-k> :LspPreviousError<cr>
+nnoremap gd :LspDefinition<cr>
+nnoremap <s-l> :LspDocumentFormat<cr>
 au User lsp_setup call lsp#register_server({
     \ 'name': 'pyls',
     \ 'cmd': {server_info->['pyls']},
@@ -231,14 +228,6 @@ au User lsp_setup call lsp#register_server({
     \ 'cmd': {server_info->['bash', '-c', '/usr/local/bin/clojure-lsp']},
     \ 'whitelist': ['clojure'],
     \ })
-
-"Jedi
-let g:jedi#auto_initialization = 0
-let g:jedi#auto_vim_configuration = 0
-call jedi#configure_call_signatures()
-" let g:jedi#show_call_signatures = 1
-let g:jedi#show_call_signatures_delay = 200
-" inoremap <c-s> <c-o>:call jedi#show_call_signatures()<cr>
 
 "Something try desperately to make vim file auto comment new line...
 autocmd FileType vim setlocal formatoptions-=c formatoptions-=r formatoptions-=o
