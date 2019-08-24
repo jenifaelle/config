@@ -15,6 +15,9 @@ Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'tsufeki/asyncomplete-fuzzy-match', {'do': 'cargo build --release'}
 
+"Clojure
+Plug 'guns/vim-clojure-static'
+
 "Darcula theme
 Plug 'blueshirts/darcula'
 
@@ -38,6 +41,9 @@ Plug 'lepture/vim-jinja'
 
 "Pair
 Plug 'jiangmiao/auto-pairs'
+
+"Paredit
+Plug 'vim-scripts/paredit.vim'
 
 "Sudo Edit
 Plug 'chrisbra/SudoEdit.vim'
@@ -135,9 +141,9 @@ let g:ale_linters = {'rust': ['rls'], 'python': ['pyls']}
 let g:ale_completion_enabled = 0
 let g:ale_fixers = {'python': ['black'], '*': ['remove_trailing_lines', 'trim_whitespace']}
 let g:ale_fix_on_save = 1
-nnoremap <a-c-l> :ALEFix<cr>
-nnoremap <s-l> :ALEFix<cr>
-nnoremap gd :ALEGoToDefinition<cr>
+" nnoremap <a-c-l> :ALEFix<cr>
+" nnoremap <s-l> :ALEFix<cr>
+" nnoremap gd :ALEGoToDefinition<cr>
 
 "Fzf
 nnoremap <C-e> :History<cr>
@@ -165,6 +171,9 @@ let g:netrw_browse_split = 2
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
 
+"Rainbow
+let g:rainbow_active = 1
+
 "YouCompleteMe
 " let g:ycm_language_server = [{
 " \'name': 'python',
@@ -183,8 +192,12 @@ let g:netrw_winsize = 25
 let g:asyncomplete_auto_completeopt = 1
 imap <c-space> <Plug>(asyncomplete_force_refresh)<c-n><c-n>
 inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+inoremap <expr> <C-y> pumvisible() ? asyncomplete#close_popup() : "\<C-y>"
+inoremap <expr> <C-e> pumvisible() ? asyncomplete#cancel_popup() : "\<C-e>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
             \ 'name': 'buffer',
+            \ 'priority': 100,
             \ 'whitelist': ['*'],
             \ 'completor': function('asyncomplete#sources#buffer#completor'),
             \ 'config': {
@@ -197,34 +210,35 @@ au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#source
             \ 'priority': 20,
             \ 'completor': function('asyncomplete#sources#file#completor')
             \ }))
-au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#ale#get_source_options({
-            \ 'priority': 10,
-            \ }))
 
 "Lsp
-if executable('pyls')
-    " pip install python-language-server
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ })
-endif
-if executable('clojure-lsp')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'clojure-lsp',
-        \ 'cmd': {server_info->['bash -c /usr/local/bin/clojure-lsp']},
-        \ 'whitelist': ['clojure'],
-        \ })
-endif
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_virtual_text_enabled = 0
+let g:lsp_highlights_enabled = 0
+highlight link LspErrorHighlight Error
+highlight link LspWarningHighlight WarningMsg
+    " `LspErrorHighlight`, `LspWarningHighlight`, `LspInformationHighlight` and
+    " `LspHintHighlight` highlight groups.
+au User lsp_setup call lsp#register_server({
+    \ 'name': 'pyls',
+    \ 'cmd': {server_info->['pyls']},
+    \ 'whitelist': ['python'],
+    \ })
+au User lsp_setup call lsp#register_server({
+    \ 'name': 'clojure-lsp',
+    \ 'cmd': {server_info->['bash', '-c', '/usr/local/bin/clojure-lsp']},
+    \ 'whitelist': ['clojure'],
+    \ })
 
 "Jedi
 let g:jedi#auto_initialization = 0
 let g:jedi#auto_vim_configuration = 0
 call jedi#configure_call_signatures()
-let g:jedi#show_call_signatures = 1
+" let g:jedi#show_call_signatures = 1
 let g:jedi#show_call_signatures_delay = 200
-inoremap <c-s> <c-o>:call jedi#show_call_signatures()<cr>
+" inoremap <c-s> <c-o>:call jedi#show_call_signatures()<cr>
 
 "Something try desperately to make vim file auto comment new line...
 autocmd FileType vim setlocal formatoptions-=c formatoptions-=r formatoptions-=o

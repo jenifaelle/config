@@ -17,6 +17,12 @@
     dest: "~/.config/nvim/init.vim"
     state: link
 
+- name: symlink vimrc
+  file:
+    src: "{{role_path}}/files/init.vim"
+    dest: "~/.vimrc"
+    state: link
+
 - name: symlink ginit.vim
   file:
     src: "{{role_path}}/files/ginit.vim"
