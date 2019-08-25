@@ -11,6 +11,12 @@
     state: present
   become: true
 
+- name: install xlock
+  pacman:
+    name: xlockmore
+    state: present
+  become: true
+
 - name: Ensure ~/.config/i3 exists
   file:
     path: "~/.config/i3"
