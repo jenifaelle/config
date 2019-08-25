@@ -137,8 +137,8 @@ bindsym XF86AudioLowerVolume exec "volume-down"
 bindsym XF86AudioRaiseVolume exec "volume-up"
 
 # brightness binding (asus e403s)
-bindsym XF86MonBrightnessUp exec "xrandr --output eDP-1 --brightness 0.7"
-bindsym XF86MonBrightnessDown exec "xrandr --output eDP-1 --brightness 0.25"
+bindsym XF86MonBrightnessUp exec "brightness --up"
+bindsym XF86MonBrightnessDown exec "brightness --down"
 
 # lock screen
 bindsym $mod+Control+l exec "xlock -mode blank"

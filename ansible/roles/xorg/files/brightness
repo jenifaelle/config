@@ -1,0 +1,77 @@
+#!/usr/bin/python
+import argparse
+import os
+import subprocess
+import sys
+
+
+def main(args):
+    display = args.display
+    print("Will set brightness for: {}".format(display))
+    brightness_level = 0.5  # sane default
+
+    if not (args.set or args.up or args.down or args.restore):
+        print("Must chose one of the execution mode: set | up | down | restore.")
+        return 1
+
+    config_file_path = os.path.join(os.environ.get('HOME'), '.config', 'brightness', 'config')
+    if args.set:
+        brightness_level = float(args.set)
+    elif os.path.exists(config_file_path):
+        with open(config_file_path, mode='r') as config_file:
+            raw_brightness_level = config_file.read().strip()
+            if raw_brightness_level:
+                brightness_level = float(raw_brightness_level)
+
+    if args.up:
+        brightness_level += 0.05
+    if args.down:
+        brightness_level -= 0.05
+
+    # sanitize result in interval [0.1, 0.9]
+    brightness_level = max(brightness_level, 0.1)
+    brightness_level = min(brightness_level, 0.9)
+    brightness_level = "{:.2f}".format(brightness_level)
+    print("Brightness level: {}".format(brightness_level))
+
+    command = map(str, ['xrandr', '--output', display, '--brightness', brightness_level])
+    status_code = subprocess.call(command)
+    if status_code != 0:
+        print("An error occured while running xrandr command: {}".format(' '.join(command)))
+        return status_code
+
+    print("Brightness adjusted. Updating config file.")
+
+    config_file_folder_path = os.path.dirname(config_file_path)
+    if not os.path.exists(config_file_folder_path):
+        print("Config folder does not exists. Creating it.")
+        os.mkdir(config_file_folder_path)
+
+    with open(config_file_path, 'w') as config_file:
+        config_file.write(brightness_level)
+    return 0
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Manipulate brightness level of a display. Wrap xrandr."
+    )
+    parser.add_argument(
+        "--display",
+        default='eDP-1',
+        help="Name of the display to pass to xrandr output switch. Default to eDP-1.",
+    )
+    quick_option_group = parser.add_mutually_exclusive_group()
+    quick_option_group.add_argument(
+        "--up", action="store_true", help="Set up brightness by 5%."
+    )
+    quick_option_group.add_argument(
+        "--down", action="store_true", help="Set down brightness by 5%."
+    )
+    quick_option_group.add_argument("--set", help="Set brightness to specified level.")
+    quick_option_group.add_argument(
+        "--restore",
+        action="store_true",
+        help="Restore previous brightness level from config file.",
+    )
+    sys.exit(main(parser.parse_args()))

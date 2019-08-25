@@ -4,3 +4,15 @@
     name: xorg
     state: present
   become: true
+
+- name: create brightness config folder
+  file:
+    name: "$HOME/.config/brightness"
+    state: directory
+
+- name: copy brightness script to /usr/local/bin
+  copy:
+    src: "{{role_path}}/files/brightness"
+    dest: "/usr/local/bin/brightness"
+    mode: "0555"
+  become: yes
