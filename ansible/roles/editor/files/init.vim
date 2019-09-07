@@ -36,9 +36,6 @@ Plug 'airblade/vim-gitgutter'
 "Jinja
 Plug 'lepture/vim-jinja'
 
-"Pair
-Plug 'jiangmiao/auto-pairs'
-
 "Paredit
 Plug 'vim-scripts/paredit.vim'
 
@@ -84,6 +81,7 @@ set number
 set hidden
 set showcmd
 set wildmenu
+set wildmode=longest,list
 set backspace=eol,start,indent
 set laststatus=2
 set completeopt=menuone,noinsert,noselect
@@ -136,11 +134,16 @@ let g:airline_powerline_fonts = 1
 " nnoremap <c-k> :ALEPrevious<cr>
 " let g:ale_linters = {'rust': ['rls'], 'python': ['pyls']}
 " let g:ale_completion_enabled = 0
-let g:ale_fixers = {'python': ['black'], '*': ['remove_trailing_lines', 'trim_whitespace']}
+let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace']}
 let g:ale_fix_on_save = 1
 " nnoremap <a-c-l> :ALEFix<cr>
 " nnoremap <s-l> :ALEFix<cr>
 " nnoremap gd :ALEGoToDefinition<cr>
+
+"Fireplace
+noremap <leader>cc :Eval
+noremap <leader>ce :Eval<cr>
+noremap <leader>cb :%Eval<cr>
 
 "Fzf
 nnoremap <C-e> :History<cr>
@@ -212,7 +215,7 @@ au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#source
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
-let g:lsp_virtual_text_enabled = 0
+let g:lsp_virtual_text_enabled = 1
 let g:lsp_highlights_enabled = 0
 nnoremap <c-j> :LspNextError<cr>
 nnoremap <c-k> :LspPreviousError<cr>
