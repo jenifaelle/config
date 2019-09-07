@@ -38,7 +38,6 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 
 # Java
 export ECLIPSE_HOME=/usr/lib/eclipse
-export CLASSPATH=$HOME/.m2/repository:/usr/share/clojure
 export junit=org.junit.runner.JUnitCore
 # export MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre
 
