@@ -17,3 +17,5 @@ deps:
   - gtk3
   - tree
   - borg
+  - fzf
+  - rsync
