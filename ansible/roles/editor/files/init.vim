@@ -120,6 +120,7 @@ nnoremap <leader><leader>s :%s/\s+$//ge \| noh <cr>
 augroup vimrc
     au!
     au BufRead *.yml :setf ansible
+    au BufRead Jenkinsfile :setf groovy
 augroup end
 
 "theme
