@@ -19,3 +19,6 @@ deps:
   - borg
   - fzf
   - rsync
+  - xkblayout-state
+  - python-xkbgroup
+  - xkb-switch

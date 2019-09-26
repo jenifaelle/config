@@ -11,6 +11,12 @@
     state: present
   become: true
 
+- name: install py3status
+  pacman:
+    name: py3status
+    state: present
+  become: true
+
 - name: install xlock
   pacman:
     name: xlockmore
@@ -20,6 +26,11 @@
 - name: Ensure ~/.config/i3 exists
   file:
     path: "~/.config/i3"
+    state: directory
+
+- name: Ensure ~/.config/i3status exists
+  file:
+    path: "~/.config/i3status"
     state: directory
 
 - name: installing dmenu
@@ -32,4 +43,10 @@
   file:
     src: "{{role_path}}/files/config"
     dest: "~/.config/i3/config"
+    state: link
+
+- name: copy i3status config
+  file:
+    src: "{{role_path}}/files/i3status-config"
+    dest: "~/.config/i3status/config"
     state: link
