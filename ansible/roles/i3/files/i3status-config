@@ -48,6 +48,7 @@ tztime Goa {
 }
 
 battery_level {
+    battery_id = "all"
     format = "B: {percent}%"
     threshold_full = 90
     color_good = "#00ff00"
