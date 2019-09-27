@@ -24,6 +24,12 @@
     dest: "~/.config/fish/config.fish"
     state: link
 
+- name: symlink fish functions folder
+  file:
+    src: "{{role_path}}/files/functions"
+    dest: "~/.config/fish/functions"
+    state: link
+
 - name: symlink fish powershell config
   file:
     src: "{{role_path}}/files/powerline-shell.py"
@@ -64,4 +70,3 @@
     - "volume-down"
     - "volume-up"
   become: yes
-
