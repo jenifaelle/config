@@ -4,3 +4,9 @@
     name: "{{deps}}"
     state: present
   become: true
+
+- name: installing aur utilities
+  aur:
+    use: makepkg
+    name: "{{aur_deps}}"
+    skip_installed: yes

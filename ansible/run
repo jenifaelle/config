@@ -1,2 +1,7 @@
 #!/bin/bash
+if [ ! -d "$HOME/.ansible/plugins/modules/aur" ]
+then
+    echo "Cloning aur module for ansible"
+    git clone https://github.com/kewlfft/ansible-aur.git ~/.ansible/plugins/modules/aur
+fi
 ansible-playbook base.yml --ask-become-pass

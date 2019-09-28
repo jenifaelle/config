@@ -57,6 +57,7 @@ battery_level {
 
 xkb_layouts {
     format = "{s}"
+    cache_timeout = 1
 }
 
 tztime local {

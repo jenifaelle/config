@@ -1,5 +1,6 @@
 ---
-- pacman:
+- name: Installing neovim
+  pacman:
     name: neovim-qt
     state: present
   become: true

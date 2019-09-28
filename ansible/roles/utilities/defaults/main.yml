@@ -1,4 +1,5 @@
 deps:
+  - firefox
   - tmux
   - zsh
   - fish
@@ -19,7 +20,10 @@ deps:
   - borg
   - fzf
   - rsync
+  - dnsutils
+
+aur_deps:
+  - yay
   - xkblayout-state
   - python-xkbgroup
   - xkb-switch
-  - dnsutils
