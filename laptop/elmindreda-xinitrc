@@ -1,7 +1,7 @@
 #read X Resources
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
-setxkbmap -layout us
+setxkbmap -layout us,ca -variant ,multi -option grp:ctrl_shift_toggle
 xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 
 #various little setting

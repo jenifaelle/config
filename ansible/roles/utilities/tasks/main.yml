@@ -1,6 +1,33 @@
 ---
 - include: dependencies.yml
 
+- name: create shares group
+  group:
+    name: shares
+    state: present
+  become: yes
+
+- name: create wheel group
+  group:
+    name: wheel
+    state: present
+  become: yes
+
+- name: create sudo group
+  group:
+    name: sudo
+    state: present
+  become: yes
+
+- name: create main user
+  user:
+    name: jenifael
+    groups: wheel,sudo,shares
+    append: yes
+    create_home: yes
+    state: present
+  become: yes
+
 - name: symlink zshrc
   file:
     src: "{{role_path}}/files/zshrc"
@@ -22,6 +49,12 @@
   file:
     src: "{{role_path}}/files/config.fish"
     dest: "~/.config/fish/config.fish"
+    state: link
+
+- name: symlink fish functions folder
+  file:
+    src: "{{role_path}}/files/functions"
+    dest: "~/.config/fish/functions"
     state: link
 
 - name: symlink fish powershell config
@@ -64,4 +97,3 @@
     - "volume-down"
     - "volume-up"
   become: yes
-

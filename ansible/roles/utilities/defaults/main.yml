@@ -17,3 +17,9 @@ deps:
   - gtk3
   - tree
   - borg
+  - fzf
+  - rsync
+  - xkblayout-state
+  - python-xkbgroup
+  - xkb-switch
+  - dnsutils
