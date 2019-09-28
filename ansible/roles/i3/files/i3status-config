@@ -3,14 +3,16 @@ general {
     interval = 5
 }
 
-order += "wireless wlp4s0"
+order += "wifi wlp4s0"
 order += "ethernet enp0s31f6"
 order += "ethernet ens8u1u2i5"
+order += "vpn_status"
 order += "disk /"
 order += "tztime Quebec"
 order += "tztime Limerick"
 order += "tztime Goa"
 order += "battery_level"
+order += "volume_status"
 order += "xkb_layouts"
 order += "tztime local"
 
@@ -18,9 +20,8 @@ disk "/" {
     format = "/: %free"
 }
 
-wireless wlp4s0 {
-    format_up = "W: %essid% (%quality)"
-    format_down = ""
+wifi wlp4s0 {
+    format = "W: {ssid} ({icon})|"
 }
 
 ethernet enp0s31f6 {
@@ -31,6 +32,10 @@ ethernet enp0s31f6 {
 ethernet ens8u1u2i5 {
     format_up = "E: UP"
     format_down = ""
+}
+
+vpn_status {
+    format = "VPN: {name}|"
 }
 
 tztime Quebec {
@@ -49,10 +54,14 @@ tztime Goa {
 
 battery_level {
     battery_id = "all"
-    format = "B: {percent}%"
+    format = "B: {icon} ({time_remaining})"
     threshold_full = 90
     color_good = "#00ff00"
     color_bad = "#ff0000"
+}
+
+volume_status {
+    cache_timeout = 1
 }
 
 xkb_layouts {

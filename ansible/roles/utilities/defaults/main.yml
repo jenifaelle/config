@@ -21,6 +21,13 @@ deps:
   - fzf
   - rsync
   - dnsutils
+  - python-pydbus
+  - zip
+  - unzip
+  - powerline-fonts
+  - acpi
+  - iw
+  - pamixer
 
 aur_deps:
   - yay
