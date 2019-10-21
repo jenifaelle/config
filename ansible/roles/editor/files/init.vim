@@ -4,7 +4,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'chase/vim-ansible-yaml'
 
 "ALE
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 
 "Asyncomplete
 Plug 'prabirshrestha/asyncomplete.vim'
@@ -226,6 +226,7 @@ au User lsp_setup call lsp#register_server({
     \ 'name': 'pyls',
     \ 'cmd': {server_info->['pyls']},
     \ 'whitelist': ['python'],
+    \ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:false}, 'pyls_mypy': {'enabled': v:true, 'live_mode': v:false}}}}
     \ })
 au User lsp_setup call lsp#register_server({
     \ 'name': 'clojure-lsp',
