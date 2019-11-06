@@ -36,6 +36,9 @@ Plug 'airblade/vim-gitgutter'
 "Jinja
 Plug 'lepture/vim-jinja'
 
+"Json
+Plug 'elzr/vim-json'
+
 "Paredit
 Plug 'vim-scripts/paredit.vim'
 

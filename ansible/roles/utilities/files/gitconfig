@@ -1,6 +1,6 @@
 [user]
-	name = Jenifael Gingras
-	email = jenifael.gingras@gmail.com
+	name = ginjeni1
+	email = jenifael.gingras-courchesne@optelgroup.com
 [push]
 	default = current
 [core]
@@ -17,3 +17,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[branch]
+	autosetupmerge = always
