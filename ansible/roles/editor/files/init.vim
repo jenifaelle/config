@@ -1,7 +1,10 @@
 call plug#begin('~/.config/nvim/plugged')
 
 "Ansible/Yaml
-Plug 'chase/vim-ansible-yaml'
+" Plug 'chase/vim-ansible-yaml'
+
+"Yaml
+Plug 'stephpy/vim-yaml'
 
 "ALE
 "Plug 'w0rp/ale'
@@ -63,8 +66,8 @@ Plug 'cespare/vim-toml'
 "tcomment
 Plug 'tomtom/tcomment_vim'
 
-"YouCompleteMe
-" Plug 'ycm-core/YouCompleteMe'
+"Unimpaired
+Plug 'tpope/vim-unimpaired'
 
 "Plug
 Plug 'junegunn/vim-plug'
@@ -124,6 +127,7 @@ augroup vimrc
     au!
     au BufRead *.yml :setf ansible
     au BufRead Jenkinsfile :setf groovy
+    autocmd BufWritePre *.py :%s/\s\+$//e
 augroup end
 
 "theme
@@ -221,8 +225,11 @@ let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_virtual_text_enabled = 1
 let g:lsp_highlights_enabled = 0
-nnoremap <c-j> :LspNextError<cr>
-nnoremap <c-k> :LspPreviousError<cr>
+nnoremap <leader>lne :LspNextError<cr>
+nnoremap <leader>lpe :LspPreviousError<cr>
+nnoremap <leader>lh :LspHover<cr>
+nnoremap <leader>ls :LspStatus<cr>
+nnoremap <leader>lr :LspReferences<cr>
 nnoremap gd :LspDefinition<cr>
 nnoremap <s-l> :LspDocumentFormat<cr>
 au User lsp_setup call lsp#register_server({
