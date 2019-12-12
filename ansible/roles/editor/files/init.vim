@@ -45,6 +45,9 @@ Plug 'elzr/vim-json'
 "Paredit
 Plug 'vim-scripts/paredit.vim'
 
+"Powershell
+Plug 'PProvost/vim-ps1'
+
 "Sudo Edit
 Plug 'chrisbra/SudoEdit.vim'
 
@@ -228,7 +231,9 @@ let g:lsp_highlights_enabled = 0
 nnoremap <leader>lne :LspNextError<cr>
 nnoremap <leader>lpe :LspPreviousError<cr>
 nnoremap <leader>lh :LspHover<cr>
-nnoremap <leader>ls :LspStatus<cr>
+inoremap <c-h> <c-o>:LspHover<cr>
+nnoremap <leader>lss :LspStatus<cr>
+nnoremap <leader>lsd :LspDocumentDiagnostic<cr>
 nnoremap <leader>lr :LspReferences<cr>
 nnoremap gd :LspDefinition<cr>
 nnoremap <s-l> :LspDocumentFormat<cr>
