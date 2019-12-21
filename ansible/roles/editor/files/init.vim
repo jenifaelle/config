@@ -18,6 +18,15 @@ Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'tsufeki/asyncomplete-fuzzy-match', {'do': 'cargo build --release'}
 
+"Bash LSP
+Plug 'lgranie/vim-lsp-bash'
+
+"Commentary
+Plug 'tpope/vim-commentary'
+
+"Common Lisp
+Plug 'l04m33/vlime', {'rtp': 'vim'}
+
 "Clojure
 Plug 'guns/vim-clojure-static'
 
@@ -55,7 +64,7 @@ Plug 'chrisbra/SudoEdit.vim'
 Plug 'luochen1990/rainbow'
 
 "rope python project
-" Plug 'python-rope/ropevim'
+Plug 'python-rope/ropevim'
 
 "rust
 Plug 'rust-lang/rust.vim'
@@ -65,9 +74,6 @@ Plug 'gcmt/taboo.vim'
 
 "Toml
 Plug 'cespare/vim-toml'
-
-"tcomment
-Plug 'tomtom/tcomment_vim'
 
 "Unimpaired
 Plug 'tpope/vim-unimpaired'
@@ -140,36 +146,25 @@ colorscheme darcula
 "airline
 let g:airline_powerline_fonts = 1
 
-"ALE
-" nnoremap <c-j> :ALENext<cr>
-" nnoremap <c-k> :ALEPrevious<cr>
-" let g:ale_linters = {'rust': ['rls'], 'python': ['pyls']}
-" let g:ale_completion_enabled = 0
-let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace']}
-let g:ale_fix_on_save = 1
-" nnoremap <a-c-l> :ALEFix<cr>
-" nnoremap <s-l> :ALEFix<cr>
-" nnoremap gd :ALEGoToDefinition<cr>
+"Commentary
+nnoremap <c-,> :Commentary<cr>
 
 "Fireplace
-noremap <leader>cc :Eval
-noremap <leader>ce :Eval<cr>
-noremap <leader>cb :%Eval<cr>
+" noremap <leader>cc :Eval
+" noremap <leader>ce :Eval<cr>
+" noremap <leader>cb :%Eval<cr>
 
 "Fzf
 nnoremap <C-e> :History<cr>
 nnoremap <C-p> :Files<cr>
 
-"TComment
-noremap <c-m> :TComment<cr>
-
 "Rope
-" nnoremap <c-enter> :RopeAutoImport<cr>
-" let g:ropevim_prefer_py3='1'
+nnoremap <c-enter> :RopeAutoImport<cr>
+let g:ropevim_prefer_py3='1'
 " let g:ropevim_autoimport_modules = ["os", "shutil", "math", "random", "datetime", "curses", "re", "requests"]
 " let g:ropevim_autoimport_underlineds = 1
-" let g:ropevim_vim_completion=0
-" let g:ropevim_guess_project=1
+let g:ropevim_vim_completion=0
+let g:ropevim_guess_project=1
 " let g:ropevim_enable_autoimport=1
 
 "Taboo
@@ -185,20 +180,6 @@ let g:netrw_winsize = 25
 "Rainbow
 let g:rainbow_active = 1
 
-"YouCompleteMe
-" let g:ycm_language_server = [{
-" \'name': 'python',
-" \'cmdline': ['pyls'],
-" \'filetypes': ['python'],
-" \},
-" \{
-" \'name': 'clojure',
-" \'cmdline': ['bash', '-c', '/usr/local/bin/clojure-lsp'],
-" \'filetypes': ['clojure'],
-" \}]
-" let g:ycm_filepath_completion_use_working_dir = 1
-" let g:ycm_use_ultisnips_completer = 0
-
 "Asyncomplete
 let g:asyncomplete_auto_completeopt = 1
 imap <c-space> <Plug>(asyncomplete_force_refresh)<c-n><c-n>
@@ -210,6 +191,7 @@ au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#source
             \ 'name': 'buffer',
             \ 'priority': 100,
             \ 'whitelist': ['*'],
+            \ 'blacklist': ['lisp', 'cl'],
             \ 'completor': function('asyncomplete#sources#buffer#completor'),
             \ 'config': {
             \   'max_buffer_size': 5000000,
@@ -218,16 +200,18 @@ au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#source
 au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
             \ 'name': 'file',
             \ 'whitelist': ['*'],
+            \ 'blacklist': ['lisp', 'cl'],
             \ 'priority': 20,
             \ 'completor': function('asyncomplete#sources#file#completor')
             \ }))
-
 "Lsp
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_virtual_text_enabled = 1
 let g:lsp_highlights_enabled = 0
+let g:lsp_log_verbose = 0
+let g:lsp_log_file = expand('/home/jenifael/lsp.log')
 nnoremap <leader>lne :LspNextError<cr>
 nnoremap <leader>lpe :LspPreviousError<cr>
 nnoremap <leader>lh :LspHover<cr>
