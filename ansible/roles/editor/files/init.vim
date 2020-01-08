@@ -6,9 +6,6 @@ call plug#begin('~/.config/nvim/plugged')
 "Yaml
 Plug 'stephpy/vim-yaml'
 
-"ALE
-"Plug 'w0rp/ale'
-
 "Asyncomplete
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-buffer.vim'
@@ -40,7 +37,7 @@ Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-fugitive'
 
 "Fuzzy finder
-Plug 'junegunn/fzf.vim'
+Plug 'https://gitlab.com/jenifael.gingras/fzf.vim'
 
 "Gitgutter
 Plug 'airblade/vim-gitgutter'

@@ -13,7 +13,7 @@ order += "tztime Limerick"
 order += "tztime Goa"
 order += "battery_level"
 order += "volume_status"
-order += "xkb_layouts"
+order += "xkb_input"
 order += "tztime local"
 
 disk "/" {
@@ -64,9 +64,8 @@ volume_status {
     cache_timeout = 1
 }
 
-xkb_layouts {
-    format = "{s}"
-    cache_timeout = 1
+xkb_input {
+    switcher = "xkblayout-state"
 }
 
 tztime local {
