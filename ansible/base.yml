@@ -10,6 +10,4 @@
   roles:
     - editor
     - utilities
-    - xorg
-    - i3
-    - scripts
+    - sway
