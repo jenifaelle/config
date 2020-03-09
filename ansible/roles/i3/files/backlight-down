@@ -1,4 +1,0 @@
-#!/bin/bash
-# Works for Asus E403S
-# Lower screen backlight
-echo $(expr $(cat /sys/class/backlight/intel_backlight/actual_brightness) - 100) > /sys/class/backlight/intel_backlight/brightness

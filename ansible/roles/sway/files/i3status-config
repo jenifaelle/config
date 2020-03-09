@@ -1,0 +1,75 @@
+general {
+    colors = true
+    interval = 5
+}
+
+order += "wifi wlp4s0"
+order += "ethernet enp0s31f6"
+order += "ethernet ens8u1u2i5"
+order += "vpn_status"
+order += "disk /"
+order += "tztime Quebec"
+order += "tztime Limerick"
+order += "tztime Goa"
+order += "battery_level"
+order += "volume_status"
+order += "xkb_input"
+order += "tztime local"
+
+disk "/" {
+    format = "/: %free"
+}
+
+wifi wlp4s0 {
+    format = "W: {ssid} ({icon})|"
+}
+
+ethernet enp0s31f6 {
+    format_up = "E: UP"
+    format_down = ""
+}
+
+ethernet ens8u1u2i5 {
+    format_up = "E: UP"
+    format_down = ""
+}
+
+vpn_status {
+    format = "VPN: {name}|"
+}
+
+tztime Quebec {
+    format = "%H:%M:%S (Québec)"
+}
+
+tztime Limerick {
+    format = "%H:%M:%S (Limerick)"
+    timezone = "Europe/Dublin"
+}
+
+tztime Goa {
+    format = "%H:%M:%S (Goa)"
+    timezone = "Asia/Kolkata"
+}
+
+battery_level {
+    battery_id = "all"
+    format = "B: {icon} ({time_remaining})"
+    threshold_full = 90
+    color_good = "#00ff00"
+    color_bad = "#ff0000"
+}
+
+volume_status {
+    cache_timeout = 1
+}
+
+xkb_input {
+    switcher = "swaymsg"
+    inputs = [{"identifier": "*keyboard*", "type": "keyb*"}]
+    format_input = "{s}"
+}
+
+tztime local {
+    format = "%d %b %Y"
+}

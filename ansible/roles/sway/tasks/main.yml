@@ -1,0 +1,64 @@
+---
+- name: installing sway
+  pacman:
+    name: sway
+    state: present
+  become: true
+
+- name: installing swaylock
+  pacman:
+    name: swaylock
+    state: present
+  become: true
+
+- name: installing grim
+  pacman:
+    name: grim
+    state: present
+  become: true
+
+- name: installing wl-clipboard
+  pacman:
+    name: wl-clipboard
+    state: present
+  become: true
+
+- name: install i3status
+  pacman:
+    name: i3status
+    state: present
+  become: true
+
+- name: install py3status
+  pacman:
+    name: py3status
+    state: present
+  become: true
+
+- name: Ensure ~/.config/sway exists
+  file:
+    path: "~/.config/sway"
+    state: directory
+
+- name: Ensure ~/.config/i3status exists
+  file:
+    path: "~/.config/i3status"
+    state: directory
+
+- name: installing dmenu
+  pacman:
+    name: dmenu
+    state: present
+  become: true
+
+- name: copy i3 config
+  file:
+    src: "{{role_path}}/files/config"
+    dest: "~/.config/sway/config"
+    state: link
+
+- name: copy i3status config
+  file:
+    src: "{{role_path}}/files/i3status-config"
+    dest: "~/.config/i3status/config"
+    state: link
