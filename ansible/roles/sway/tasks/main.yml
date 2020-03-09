@@ -23,6 +23,12 @@
     state: present
   become: true
 
+- name: installing brightnessctl
+  pacman:
+    name: brightnessctl
+    state: present
+  become: true
+
 - name: install i3status
   pacman:
     name: i3status
@@ -63,7 +69,7 @@
     dest: "~/.config/i3status/config"
     state: link
 
-- name: copy Xdefaults 
+- name: copy Xdefaults
   file:
     src: "{{role_path}}/files/Xdefaults"
     dest: "~/.Xdefaults"
