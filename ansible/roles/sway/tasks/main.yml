@@ -51,9 +51,9 @@
     path: "~/.config/i3status"
     state: directory
 
-- name: installing dmenu
+- name: installing bemenu
   pacman:
-    name: dmenu
+    name: bemenu
     state: present
   become: true
 
