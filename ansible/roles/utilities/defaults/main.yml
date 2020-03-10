@@ -34,3 +34,4 @@ aur_deps:
   - xkblayout-state
   - python-xkbgroup
   - xkb-switch
+  - wdisplays-git
