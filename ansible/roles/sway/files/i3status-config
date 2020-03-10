@@ -3,9 +3,7 @@ general {
     interval = 5
 }
 
-order += "wifi wlp4s0"
 order += "ethernet enp0s31f6"
-order += "ethernet ens8u1u2i5"
 order += "vpn_status"
 order += "disk /"
 order += "tztime Quebec"
@@ -20,16 +18,7 @@ disk "/" {
     format = "/: %free"
 }
 
-wifi wlp4s0 {
-    format = "W: {ssid} ({icon})|"
-}
-
 ethernet enp0s31f6 {
-    format_up = "E: UP"
-    format_down = ""
-}
-
-ethernet ens8u1u2i5 {
     format_up = "E: UP"
     format_down = ""
 }
@@ -61,6 +50,7 @@ battery_level {
 }
 
 volume_status {
+    command = "pactl"
     cache_timeout = 1
 }
 
