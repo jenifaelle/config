@@ -3,6 +3,9 @@ call plug#begin('~/.config/nvim/plugged')
 "Ansible/Yaml
 " Plug 'chase/vim-ansible-yaml'
 
+"Auto pair
+Plug 'jiangmiao/auto-pairs'
+
 "Yaml
 Plug 'stephpy/vim-yaml'
 
@@ -38,6 +41,7 @@ Plug 'tpope/vim-fugitive'
 
 "Fuzzy finder
 Plug 'https://gitlab.com/jenifael.gingras/fzf.vim'
+" Plug 'junegunn/fzf.vim'
 
 "Gitgutter
 Plug 'airblade/vim-gitgutter'
@@ -61,7 +65,7 @@ Plug 'chrisbra/SudoEdit.vim'
 Plug 'luochen1990/rainbow'
 
 "rope python project
-Plug 'python-rope/ropevim'
+" Plug 'python-rope/ropevim'
 
 "rust
 Plug 'rust-lang/rust.vim'
@@ -144,7 +148,8 @@ colorscheme darcula
 let g:airline_powerline_fonts = 1
 
 "Commentary
-nnoremap <c-,> :Commentary<cr>
+nnoremap <c-m> :Commentary<cr>
+vnoremap <c-m> :Commentary<cr>
 
 "Fireplace
 " noremap <leader>cc :Eval
@@ -229,6 +234,19 @@ au User lsp_setup call lsp#register_server({
     \ 'cmd': {server_info->['bash', '-c', '/usr/local/bin/clojure-lsp']},
     \ 'whitelist': ['clojure'],
     \ })
+au User lsp_setup call lsp#register_server({
+    \ 'name': 'rls',
+    \ 'cmd': {server_info->['bash', '-c', '/usr/bin/rls']},
+    \ 'whitelist': ['rust'],
+    \ })
+au User lsp_setup call lsp#register_server({
+    \ 'name': 'jsonls',
+    \ 'cmd': {server_info->['vscode-json-languageserver']},
+    \ 'whitelist': ['json'],
+    \ })
 
 "Something try desperately to make vim file auto comment new line...
 autocmd FileType vim setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+"Autopairs
+let g:AutoPairsCenterLine = 0

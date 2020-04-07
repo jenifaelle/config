@@ -43,11 +43,8 @@ URxvt.color15: #fdf6e3
 URxvt.background: #002b36
 URxvt.foreground: #839496
 !!URxvt.font: xft:Noto Mono:size=14:antialias=true
-URxvt.font: xft:Droid Sans Mono for Powerline:size=14:antialias=true
+URxvt.font: xft:Droid Sans Mono for Powerline:size=16:antialias=true
 URxvt.scrollBar: false
-
-!! extensions
-URxvt.perl-ext-common: selection-to-clipboard,default,matcher,resize-font,clipboard
 
 !! url clickable
 URxvt.url-launcher: /usr/bin/firefox
