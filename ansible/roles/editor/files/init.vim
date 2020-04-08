@@ -39,9 +39,8 @@ Plug 'tpope/vim-fireplace'
 "Fugitive
 Plug 'tpope/vim-fugitive'
 
-"Fuzzy finder
+"Fzf
 Plug 'https://gitlab.com/jenifael.gingras/fzf.vim'
-" Plug 'junegunn/fzf.vim'
 
 "Gitgutter
 Plug 'airblade/vim-gitgutter'
@@ -63,6 +62,9 @@ Plug 'chrisbra/SudoEdit.vim'
 
 "Rainbow parentheses
 Plug 'luochen1990/rainbow'
+
+"Ripgrep
+Plug 'jremmen/vim-ripgrep'
 
 "rope python project
 " Plug 'python-rope/ropevim'
@@ -157,8 +159,8 @@ vnoremap <c-m> :Commentary<cr>
 " noremap <leader>cb :%Eval<cr>
 
 "Fzf
-nnoremap <C-e> :History<cr>
 nnoremap <C-p> :Files<cr>
+nnoremap <C-e> :History<cr>
 
 "Rope
 nnoremap <c-enter> :RopeAutoImport<cr>
@@ -184,7 +186,7 @@ let g:rainbow_active = 1
 
 "Asyncomplete
 let g:asyncomplete_auto_completeopt = 1
-imap <c-space> <Plug>(asyncomplete_force_refresh)<c-n><c-n>
+" imap <c-space> <Plug>(asyncomplete_force_refresh)<c-n><c-n>
 inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 inoremap <expr> <C-y> pumvisible() ? asyncomplete#close_popup() : "\<C-y>"
 inoremap <expr> <C-e> pumvisible() ? asyncomplete#cancel_popup() : "\<C-e>"
@@ -217,10 +219,12 @@ let g:lsp_log_file = expand('/home/jenifael/lsp.log')
 nnoremap <leader>lne :LspNextError<cr>
 nnoremap <leader>lpe :LspPreviousError<cr>
 nnoremap <leader>lh :LspHover<cr>
-inoremap <c-h> <c-o>:LspHover<cr>
+nnoremap <c-h> :LspHover<cr>
+inoremap <c-l> <c-o>:LspSignatureHelp<cr>
 nnoremap <leader>lss :LspStatus<cr>
 nnoremap <leader>lsd :LspDocumentDiagnostic<cr>
 nnoremap <leader>lr :LspReferences<cr>
+nnoremap <leader>lpd :LspPeekDefinition<cr>
 nnoremap gd :LspDefinition<cr>
 nnoremap <s-l> :LspDocumentFormat<cr>
 au User lsp_setup call lsp#register_server({
