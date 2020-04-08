@@ -43,6 +43,7 @@ Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-fugitive'
 
 "Fzf
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'https://gitlab.com/jenifael.gingras/fzf.vim'
 
 "Gitgutter
@@ -65,9 +66,6 @@ Plug 'chrisbra/SudoEdit.vim'
 
 "Rainbow parentheses
 Plug 'luochen1990/rainbow'
-
-"Ripgrep
-Plug 'jremmen/vim-ripgrep'
 
 "rope python project
 " Plug 'python-rope/ropevim'
