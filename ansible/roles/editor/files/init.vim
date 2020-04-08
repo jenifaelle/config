@@ -18,6 +18,9 @@ Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'tsufeki/asyncomplete-fuzzy-match', {'do': 'cargo build --release'}
 
+"CoC
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 "Bash LSP
 Plug 'lgranie/vim-lsp-bash'
 
@@ -184,9 +187,9 @@ let g:netrw_winsize = 25
 "Rainbow
 let g:rainbow_active = 1
 
-"Asyncomplete
+" Asyncomplete
 let g:asyncomplete_auto_completeopt = 1
-" imap <c-space> <Plug>(asyncomplete_force_refresh)<c-n><c-n>
+imap <c-space> <Plug>(asyncomplete_force_refresh)
 inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 inoremap <expr> <C-y> pumvisible() ? asyncomplete#close_popup() : "\<C-y>"
 inoremap <expr> <C-e> pumvisible() ? asyncomplete#cancel_popup() : "\<C-e>"
@@ -254,3 +257,39 @@ autocmd FileType vim setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 "Autopairs
 let g:AutoPairsCenterLine = 0
+
+""""""""""
+"CoC
+
+""Error navigation
+"nnoremap <leader>lpe <Plug>(coc-diagnostic-prev)
+"nnoremap <leader>lne <Plug>(coc-diagnostic-next)
+
+""Definition navigation
+"nnoremap gd <Plug>(coc-definition)
+"nnoremap gr <Plug>(coc-references)
+
+""Reformat
+"nnoremap <leader>lh Plug(coc-format)
+
+""Completion
+"inoremap <silent><expr> <TAB>
+"      \ pumvisible() ? "\<C-n>" :
+"      \ <SID>check_back_space() ? "\<TAB>" :
+"      \ coc#refresh()
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+"function! s:check_back_space() abort
+"  let col = col('.') - 1
+"  return !col || getline('.')[col - 1]  =~# '\s'
+"endfunction
+
+"" Use <c-space> to trigger completion.
+"inoremap <silent><expr> <c-space> coc#refresh()
+
+"" Use <cr> to confirm completion
+"if exists('*complete_info')
+"  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+"else
+"  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+"endif
