@@ -1,28 +1,13 @@
 call plug#begin('~/.config/nvim/plugged')
 
-"Ansible/Yaml
-" Plug 'chase/vim-ansible-yaml'
-
 "Auto pair
 Plug 'jiangmiao/auto-pairs'
 
 "Yaml
 Plug 'stephpy/vim-yaml'
 
-"Asyncomplete
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-buffer.vim'
-Plug 'prabirshrestha/asyncomplete-file.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'tsufeki/asyncomplete-fuzzy-match', {'do': 'cargo build --release'}
-
 "CoC
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-"Bash LSP
-Plug 'lgranie/vim-lsp-bash'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "Commentary
 Plug 'tpope/vim-commentary'
@@ -55,6 +40,9 @@ Plug 'lepture/vim-jinja'
 "Json
 Plug 'elzr/vim-json'
 
+"Neovim Lsp
+Plug 'neovim/nvim-lsp'
+
 "Paredit
 Plug 'vim-scripts/paredit.vim'
 
@@ -66,9 +54,6 @@ Plug 'chrisbra/SudoEdit.vim'
 
 "Rainbow parentheses
 Plug 'luochen1990/rainbow'
-
-"rope python project
-" Plug 'python-rope/ropevim'
 
 "rust
 Plug 'rust-lang/rust.vim'
@@ -105,6 +90,8 @@ set backspace=eol,start,indent
 set laststatus=2
 set completeopt=menuone,noinsert,noselect
 set nowrap
+
+nnoremap <silent> <c-s> <cmd>let @/ = ""<cr>
 
 "get rid of backup file
 set nobackup
@@ -154,23 +141,9 @@ let g:airline_powerline_fonts = 1
 nnoremap <c-m> :Commentary<cr>
 vnoremap <c-m> :Commentary<cr>
 
-"Fireplace
-" noremap <leader>cc :Eval
-" noremap <leader>ce :Eval<cr>
-" noremap <leader>cb :%Eval<cr>
-
 "Fzf
 nnoremap <C-p> :Files<cr>
 nnoremap <C-e> :History<cr>
-
-"Rope
-nnoremap <c-enter> :RopeAutoImport<cr>
-let g:ropevim_prefer_py3='1'
-" let g:ropevim_autoimport_modules = ["os", "shutil", "math", "random", "datetime", "curses", "re", "requests"]
-" let g:ropevim_autoimport_underlineds = 1
-let g:ropevim_vim_completion=0
-let g:ropevim_guess_project=1
-" let g:ropevim_enable_autoimport=1
 
 "Taboo
 set sessionoptions+=tabpages,globals
@@ -185,71 +158,6 @@ let g:netrw_winsize = 25
 "Rainbow
 let g:rainbow_active = 1
 
-" Asyncomplete
-let g:asyncomplete_auto_completeopt = 1
-imap <c-space> <Plug>(asyncomplete_force_refresh)
-inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
-inoremap <expr> <C-y> pumvisible() ? asyncomplete#close_popup() : "\<C-y>"
-inoremap <expr> <C-e> pumvisible() ? asyncomplete#cancel_popup() : "\<C-e>"
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-            \ 'name': 'buffer',
-            \ 'priority': 100,
-            \ 'whitelist': ['*'],
-            \ 'blacklist': ['lisp', 'cl'],
-            \ 'completor': function('asyncomplete#sources#buffer#completor'),
-            \ 'config': {
-            \   'max_buffer_size': 5000000,
-            \ },
-            \ }))
-au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
-            \ 'name': 'file',
-            \ 'whitelist': ['*'],
-            \ 'blacklist': ['lisp', 'cl'],
-            \ 'priority': 20,
-            \ 'completor': function('asyncomplete#sources#file#completor')
-            \ }))
-"Lsp
-let g:lsp_diagnostics_enabled = 1
-let g:lsp_signs_enabled = 1
-let g:lsp_diagnostics_echo_cursor = 1
-let g:lsp_virtual_text_enabled = 1
-let g:lsp_highlights_enabled = 0
-let g:lsp_log_verbose = 0
-let g:lsp_log_file = expand('/home/jenifael/lsp.log')
-nnoremap <leader>lne :LspNextError<cr>
-nnoremap <leader>lpe :LspPreviousError<cr>
-nnoremap <leader>lh :LspHover<cr>
-nnoremap <c-h> :LspHover<cr>
-inoremap <c-l> <c-o>:LspSignatureHelp<cr>
-nnoremap <leader>lss :LspStatus<cr>
-nnoremap <leader>lsd :LspDocumentDiagnostic<cr>
-nnoremap <leader>lr :LspReferences<cr>
-nnoremap <leader>lpd :LspPeekDefinition<cr>
-nnoremap gd :LspDefinition<cr>
-nnoremap <s-l> :LspDocumentFormat<cr>
-au User lsp_setup call lsp#register_server({
-    \ 'name': 'pyls',
-    \ 'cmd': {server_info->['pyls']},
-    \ 'whitelist': ['python'],
-    \ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:false}, 'pyls_mypy': {'enabled': v:true, 'live_mode': v:false}}}}
-    \ })
-au User lsp_setup call lsp#register_server({
-    \ 'name': 'clojure-lsp',
-    \ 'cmd': {server_info->['bash', '-c', '/usr/local/bin/clojure-lsp']},
-    \ 'whitelist': ['clojure'],
-    \ })
-au User lsp_setup call lsp#register_server({
-    \ 'name': 'rls',
-    \ 'cmd': {server_info->['bash', '-c', '/usr/bin/rls']},
-    \ 'whitelist': ['rust'],
-    \ })
-au User lsp_setup call lsp#register_server({
-    \ 'name': 'jsonls',
-    \ 'cmd': {server_info->['vscode-json-languageserver']},
-    \ 'whitelist': ['json'],
-    \ })
-
 "Something try desperately to make vim file auto comment new line...
 autocmd FileType vim setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
@@ -258,36 +166,79 @@ let g:AutoPairsCenterLine = 0
 
 """"""""""
 "CoC
+"completion
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-""Error navigation
-"nnoremap <leader>lpe <Plug>(coc-diagnostic-prev)
-"nnoremap <leader>lne <Plug>(coc-diagnostic-next)
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-""Definition navigation
-"nnoremap gd <Plug>(coc-definition)
-"nnoremap gr <Plug>(coc-references)
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
 
-""Reformat
-"nnoremap <leader>lh Plug(coc-format)
+" Use <cr> to confirm completion
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 
-""Completion
-"inoremap <silent><expr> <TAB>
-"      \ pumvisible() ? "\<C-n>" :
-"      \ <SID>check_back_space() ? "\<TAB>" :
-"      \ coc#refresh()
-"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+""""""""""
+"Neovim LSP
 
-"function! s:check_back_space() abort
-"  let col = col('.') - 1
-"  return !col || getline('.')[col - 1]  =~# '\s'
-"endfunction
+"pyls
+lua << EOF
+local nvim_lsp = require'nvim_lsp'
+nvim_lsp.pyls.setup{
+    root_dir = nvim_lsp.util.root_pattern('.git');
+    settings = {
+        pyls = {
+            configurationSources = "flake8";
+            plugins = {
+                pyflakes = {
+                    enabled = false;
+                };
+                yapf = {
+                    enabled = false;
+                }
+            }
+        }
+    }
+}
+EOF
 
-"" Use <c-space> to trigger completion.
-"inoremap <silent><expr> <c-space> coc#refresh()
+"Utilities
+nnoremap <leader>lss <cmd>lua print(vim.inspect(vim.lsp.buf_get_clients()))<CR>
+nnoremap <leader>lsr <cmd>lua vim.lsp.stop_all_clients()<CR>
+nnoremap <leader>lsc <cmd>verbose set omnifunc?<CR>
+nnoremap <leader>lsd <cmd>lua vim.lsp.util.buf_clear_diagnostics(0)<CR>
 
-"" Use <cr> to confirm completion
-"if exists('*complete_info')
-"  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-"else
-"  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-"endif
+"Declaration, definition, implementation, references
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> <leader>lsp <cmd>lua vim.lsp.buf.peek_definition()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR><cmd>cwindow 5<CR>
+nnoremap <silent> gR    <cmd>lua vim.lsp.util.buf_clear_references()<CR>
+
+"Hover, signature, formatting
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+inoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <s-l> <cmd>lua vim.lsp.buf.formatting()<CR>
+" nnoremap <silent> <s-l> <cmd>lua vim.lsp.buf.formatting()<CR><cmd>lua vim.lsp.util.trim_empty_lines()<CR>
+
+"Previous|Next Error (quickfix)
+nnoremap <silent> [g <cmd>cprevious<CR>
+nnoremap <silent> ]g <cmd>cnext<CR>
+
+"Trigger completions
+inoremap <c-space> <c-x><c-o>
+
+"Load the omnifunc for completions
+autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
