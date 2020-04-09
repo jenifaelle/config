@@ -64,6 +64,9 @@ Plug 'gcmt/taboo.vim'
 "Toml
 Plug 'cespare/vim-toml'
 
+"Vimspector (DAP)
+Plug 'puremourning/vimspector'
+
 "Unimpaired
 Plug 'tpope/vim-unimpaired'
 
@@ -242,3 +245,26 @@ inoremap <c-space> <c-x><c-o>
 
 "Load the omnifunc for completions
 autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
+
+""""""""""
+"Vimspector
+command! DebugRun :execute "normal \<Plug>VimspectorContinue"
+nmap <leader>dr <cmd>DebugRun<cr>
+
+command! DebugStop :execute "normal \<Plug>VimspectorStop"
+command! DebugRestart :execute "normal \<Plug>VimspectorRestart"
+command! DebugPause :execute "normal \<Plug>VimspectorPause"
+
+command! DebugBreakpoint :execute "normal \<Plug>VimspectorToggleBreakpoint"
+nmap <leader>db <cmd>DebugBreakpoint<cr>
+
+command! DebugStepOver :execute "normal \<Plug>VimspectorStepOver"
+nmap <leader>ds <cmd>DebugStepOver<cr>
+
+command! DebugStepInto :execute "normal \<Plug>VimspectorStepInto"
+nmap <leader>do <cmd>DebugStepInto<cr>
+command! DebugStepOut :execute "normal \<Plug>VimspectorStepOut"
+nmap <leader>do <cmd>DebugStepOut<cr>
+
+" command! DebugReset <cmd>VimspectorReset<cr>
+" nmap <leader>dd <cmd>DebugReset<cr>
