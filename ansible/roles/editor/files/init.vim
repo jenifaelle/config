@@ -194,8 +194,8 @@ endif
 """"""""""
 "Neovim LSP
 
-"pyls
 lua << EOF
+--pyls
 local nvim_lsp = require'nvim_lsp'
 nvim_lsp.pyls.setup{
     root_dir = nvim_lsp.util.root_pattern('.git');
@@ -213,7 +213,24 @@ nvim_lsp.pyls.setup{
         }
     }
 }
+
+--rust analyzer
+nvim_lsp.rust_analyzer.setup{}
+
+--bash ls
+nvim_lsp.bashls.setup{}
+
+--dockerls
+nvim_lsp.dockerls.setup{}
+
+--go lsp
+nvim_lsp.gopls.setup{}
+
+--jsonls
+nvim_lsp.jsonls.setup{}
+
 EOF
+
 
 "Utilities
 nnoremap <leader>lss <cmd>lua print(vim.inspect(vim.lsp.buf_get_clients()))<CR>
@@ -245,24 +262,37 @@ inoremap <c-space> <c-x><c-o>
 
 "Load the omnifunc for completions
 autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
+autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
+autocmd Filetype sh setlocal omnifunc=v:lua.vim.lsp.omnifunc
+autocmd Filetype dockerfile setlocal omnifunc=v:lua.vim.lsp.omnifunc
+autocmd Filetype go setlocal omnifunc=v:lua.vim.lsp.omnifunc
+autocmd Filetype json setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 """"""""""
 "Vimspector
+nmap <F9> <Plug>VimspectorContinue
+nmap <F5> <Plug>VimspectorContinue
 command! DebugRun :execute "normal \<Plug>VimspectorContinue"
 nmap <leader>dr <cmd>DebugRun<cr>
 
+nmap <S-F2> <Plug>VimspectorStop
 command! DebugStop :execute "normal \<Plug>VimspectorStop"
 command! DebugRestart :execute "normal \<Plug>VimspectorRestart"
 command! DebugPause :execute "normal \<Plug>VimspectorPause"
 
+nmap <C-F8> <Plug>VimspectorToggleBreakpoint
 command! DebugBreakpoint :execute "normal \<Plug>VimspectorToggleBreakpoint"
 nmap <leader>db <cmd>DebugBreakpoint<cr>
 
+nmap <F8> <Plug>VimspectorStepOver
 command! DebugStepOver :execute "normal \<Plug>VimspectorStepOver"
 nmap <leader>ds <cmd>DebugStepOver<cr>
 
+nmap <F7> <Plug>VimspectorStepInto
 command! DebugStepInto :execute "normal \<Plug>VimspectorStepInto"
 nmap <leader>do <cmd>DebugStepInto<cr>
+
+nmap <S-F8> <Plug>VimspectorStepOut
 command! DebugStepOut :execute "normal \<Plug>VimspectorStepOut"
 nmap <leader>do <cmd>DebugStepOut<cr>
 

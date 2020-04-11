@@ -37,13 +37,13 @@ URxvt.color14: #93a1a1
 URxvt.color7: #eee8d5
 URxvt.color15: #fdf6e3
 
-*faceName: xft:Noto Mono:size=16:antialias=true
+*faceName: xft:Noto Mono:size=12:antialias=true
 
 !! URxvt settings
 URxvt.background: #002b36
 URxvt.foreground: #839496
 !!URxvt.font: xft:Noto Mono:size=14:antialias=true
-URxvt.font: xft:Droid Sans Mono for Powerline:size=16:antialias=true
+URxvt.font: xft:Droid Sans Mono for Powerline:size=12:antialias=true
 URxvt.scrollBar: false
 
 !! url clickable
@@ -61,4 +61,4 @@ URxvt.colorUL: #87afd7
 
 !! cursor
 Xcursor.theme: Adwaita
-Xcursor.size: 16
+Xcursor.size: 14
