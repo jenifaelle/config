@@ -1,5 +1,4 @@
 call plug#begin('~/.config/nvim/plugged')
-
 "Auto pair
 Plug 'jiangmiao/auto-pairs'
 
@@ -229,6 +228,8 @@ nvim_lsp.gopls.setup{}
 --jsonls
 nvim_lsp.jsonls.setup{}
 
+--vimls
+nvim_lsp.vimls.setup{}
 EOF
 
 
@@ -267,6 +268,7 @@ autocmd Filetype sh setlocal omnifunc=v:lua.vim.lsp.omnifunc
 autocmd Filetype dockerfile setlocal omnifunc=v:lua.vim.lsp.omnifunc
 autocmd Filetype go setlocal omnifunc=v:lua.vim.lsp.omnifunc
 autocmd Filetype json setlocal omnifunc=v:lua.vim.lsp.omnifunc
+autocmd Filetype vim setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 """"""""""
 "Vimspector
