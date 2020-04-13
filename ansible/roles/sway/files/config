@@ -36,7 +36,7 @@ set $mod Mod4
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt -e fish
+bindsym $mod+Return exec alacritty -e fish
 
 # kill focused window
 bindsym $mod+Shift+c kill
@@ -181,3 +181,4 @@ bar {
     status_command py3status --wm sway
 }
 
+# xwayland disable

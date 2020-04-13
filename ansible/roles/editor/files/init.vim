@@ -230,12 +230,15 @@ nvim_lsp.jsonls.setup{}
 
 --vimls
 nvim_lsp.vimls.setup{}
+
+--lua
+nvim_lsp.sumneko_lua.setup{}
 EOF
 
 
 "Utilities
 nnoremap <leader>lss <cmd>lua print(vim.inspect(vim.lsp.buf_get_clients()))<CR>
-nnoremap <leader>lsr <cmd>lua vim.lsp.stop_all_clients()<CR>
+nnoremap <leader>lsr <cmd>lua vim.lsp.stop_client(lsp.get_active_clients())<CR>
 nnoremap <leader>lsc <cmd>verbose set omnifunc?<CR>
 nnoremap <leader>lsd <cmd>lua vim.lsp.util.buf_clear_diagnostics(0)<CR>
 
@@ -269,6 +272,7 @@ autocmd Filetype dockerfile setlocal omnifunc=v:lua.vim.lsp.omnifunc
 autocmd Filetype go setlocal omnifunc=v:lua.vim.lsp.omnifunc
 autocmd Filetype json setlocal omnifunc=v:lua.vim.lsp.omnifunc
 autocmd Filetype vim setlocal omnifunc=v:lua.vim.lsp.omnifunc
+autocmd Filetype lua setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 """"""""""
 "Vimspector
