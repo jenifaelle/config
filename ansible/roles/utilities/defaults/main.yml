@@ -1,18 +1,13 @@
 deps:
+  - alacritty
   - firefox
   - tmux
-  - zsh
   - fish
-  - xorg-xinit
   - ripgrep
-  - rxvt-unicode
-  - arandr
   - htop
-  - dmenu
   - pavucontrol
   - pulseaudio
   - pulseaudio-alsa
-  - pulseaudio-bluetooth
   - pulseaudio-equalizer
   - feh
   - gtk3
@@ -20,7 +15,7 @@ deps:
   - borg
   - fzf
   - rsync
-  - dnsutils
+  - ldns
   - python-pydbus
   - zip
   - unzip
@@ -31,7 +26,5 @@ deps:
 
 aur_deps:
   - yay
-  - xkblayout-state
-  - python-xkbgroup
-  - xkb-switch
   - wdisplays-git
+  - pulseaudio-modules-bt-git
