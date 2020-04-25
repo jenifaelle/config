@@ -6,7 +6,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'stephpy/vim-yaml'
 
 "CoC
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "Commentary
 Plug 'tpope/vim-commentary'
@@ -19,6 +19,9 @@ Plug 'guns/vim-clojure-static'
 
 "Darcula theme
 Plug 'blueshirts/darcula'
+
+"Deoplete
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 "Fireplace
 Plug 'tpope/vim-fireplace'
@@ -169,26 +172,26 @@ let g:AutoPairsCenterLine = 0
 """"""""""
 "CoC
 "completion
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+" " Use <c-space> to trigger completion.
+" inoremap <silent><expr> <c-space> coc#refresh()
 
-" Use <cr> to confirm completion
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
+" " Use <cr> to confirm completion
+" if exists('*complete_info')
+"   inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+" else
+"   imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" endif
 
 """"""""""
 "Neovim LSP
@@ -265,14 +268,16 @@ nnoremap <silent> ]g <cmd>cnext<CR>
 inoremap <c-space> <c-x><c-o>
 
 "Load the omnifunc for completions
-autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
-autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
-autocmd Filetype sh setlocal omnifunc=v:lua.vim.lsp.omnifunc
-autocmd Filetype dockerfile setlocal omnifunc=v:lua.vim.lsp.omnifunc
-autocmd Filetype go setlocal omnifunc=v:lua.vim.lsp.omnifunc
-autocmd Filetype json setlocal omnifunc=v:lua.vim.lsp.omnifunc
-autocmd Filetype vim setlocal omnifunc=v:lua.vim.lsp.omnifunc
-autocmd Filetype lua setlocal omnifunc=v:lua.vim.lsp.omnifunc
+augroup lspomni
+    autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    autocmd Filetype sh setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    autocmd Filetype dockerfile setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    autocmd Filetype go setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    autocmd Filetype json setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    autocmd Filetype vim setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    autocmd Filetype lua setlocal omnifunc=v:lua.vim.lsp.omnifunc
+augroup end
 
 """"""""""
 "Vimspector
@@ -304,3 +309,12 @@ nmap <leader>do <cmd>DebugStepOut<cr>
 
 " command! DebugReset <cmd>VimspectorReset<cr>
 " nmap <leader>dd <cmd>DebugReset<cr>
+
+
+""""""""""
+"Deoplete
+let g:deoplete#enable_at_startup = 1
+set completeopt=noinsert,menuone,noselect
+" call deoplete#custom#option('omni_patterns', {
+"             \ 'python': ['[^. *\t]\.\w*']
+"             \})
