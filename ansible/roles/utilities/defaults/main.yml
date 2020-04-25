@@ -27,4 +27,4 @@ deps:
 aur_deps:
   - yay
   - wdisplays-git
-  - pulseaudio-modules-bt-git
+  - pulseaudio-modules-bt
