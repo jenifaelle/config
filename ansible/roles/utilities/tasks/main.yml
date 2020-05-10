@@ -108,3 +108,10 @@
     src: "{{role_path}}/files/alacritty.yml"
     dest: "~/.config/alacritty/alacritty.yml"
     state: link
+
+- name: symlink connect sennheiser
+  file:
+    src: "{{role_path}}/files/connect-sennheiser"
+    dest: "/usr/local/bin/connect-sennheiser"
+    state: link
+  become: yes

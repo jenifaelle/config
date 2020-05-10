@@ -1,7 +1,4 @@
 call plug#begin('~/.config/nvim/plugged')
-"Auto pair
-Plug 'jiangmiao/auto-pairs'
-
 "Yaml
 Plug 'stephpy/vim-yaml'
 

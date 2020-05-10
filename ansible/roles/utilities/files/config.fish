@@ -7,6 +7,7 @@ set -x OPTELBRIDGE_DEPLOYER_GENERAL_PATH "/mnt/general/"
 set -x GITLAB_TOKEN "SBT2qisBwHkzwXarZBDS"
 set -x DJANGO_SETTINGS_MODULE optel_osm_application.settings.dev
 set -x _JAVA_AWT_WM_NONREPARENTING 1
+set -x TERM screen-256color
 
 status --is-interactive; and source (pyenv init -|psub)
 status --is-interactive; and source (pyenv virtualenv-init -|psub)

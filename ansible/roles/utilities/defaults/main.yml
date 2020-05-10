@@ -1,6 +1,5 @@
 deps:
   - alacritty
-  - firefox
   - tmux
   - fish
   - ripgrep
@@ -23,8 +22,11 @@ deps:
   - acpi
   - iw
   - pamixer
+  - playerctl
+  - lollypop
 
 aur_deps:
   - yay
   - wdisplays-git
-  - pulseaudio-modules-bt
+  - pulseaudio-modules-bt-git
+  - fedora-firefox-wayland-bin

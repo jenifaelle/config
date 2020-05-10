@@ -1,0 +1,20 @@
+#!/usr/bin/bash
+
+coproc bluetoothctl
+echo -e 'no\n' >&${COPROC[1]}
+sleep 1
+echo "Connecting"
+echo -e 'connect 00:1B:66:B9:DD:E4\n' >&${COPROC[1]}
+sleep 10
+echo "Enabling A2DP"
+echo -e 'no\n' >&${COPROC[1]}
+sleep 1
+echo -e 'yes\n' >&${COPROC[1]}
+sleep 6
+echo "Finalizing"
+echo -e 'no\n' >&${COPROC[1]}
+sleep 1
+echo -e 'yes\n' >&${COPROC[1]}
+sleep 1
+echo -e 'exit\n' >&${COPROC[1]}
+echo "Exit"
