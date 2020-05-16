@@ -24,9 +24,12 @@ deps:
   - pamixer
   - playerctl
   - lollypop
+  - tldr
+  - gnome
 
 aur_deps:
   - yay
   - wdisplays-git
-  - pulseaudio-modules-bt-git
+  - pulseaudio-modules-bt
+  - libldac
   - fedora-firefox-wayland-bin
