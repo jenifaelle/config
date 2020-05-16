@@ -1,6 +1,6 @@
 ---
 - name: Installing neovim
-  pacman:
-    name: neovim-qt
-    state: present
-  become: true
+  aur:
+    use: makepkg
+    name: neovim-git
+    skip_installed: yes

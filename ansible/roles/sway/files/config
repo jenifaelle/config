@@ -36,13 +36,11 @@ set $mod Mod4
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty -e fish
 
 # kill focused window
 bindsym $mod+Shift+c kill
 
-# start dmenu (a program launcher)
-# bindsym $mod+p exec dmenu_run
 bindsym $mod+p exec bemenu-run
 
 # change focus
@@ -126,8 +124,18 @@ bindsym $mod+Shift+q exit
 
 # audio binding
 bindsym XF86AudioMute exec "toggle-mute"
+bindsym Control+KP_9 exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 bindsym XF86AudioLowerVolume exec "volume-down"
+bindsym Control+KP_2 exec "pactl set-sink-volume @DEFAULT_SINK@ -0.5"
 bindsym XF86AudioRaiseVolume exec "volume-up"
+bindsym Control+KP_8 exec "pactl set-sink-volume @DEFAULT_SINK@ +0.5"
+bindsym XF86AudioPlay exec "playerctl -a play-pause"
+bindsym Control+KP_5 exec "playerctl -a play-pause"
+bindsym Control+KP_4 exec "playerctl -a previous"
+bindsym Control+KP_6 exec "playerctl -a next"
+
+# connect difficult to connecto sennheiser
+bindsym Control+KP_7 exec "connect-sennheiser"
 
 # brightness binding (asus e403s)
 bindsym XF86MonBrightnessUp exec "sudo brightnessctl s +2%"
@@ -165,7 +173,7 @@ mode "resize" {
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bindsym $mod+b bar mode toggle
-bindsym --release Print exec grim - | wl-copy
+bindsym --release Print exec grim -g \"$(slurp)" - | wl-copy
 
 # new_window none
 default_border none
@@ -186,3 +194,4 @@ bar {
     status_command py3status --wm sway
 }
 
+# xwayland disable

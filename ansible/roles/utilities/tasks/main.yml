@@ -97,3 +97,21 @@
     - "volume-down"
     - "volume-up"
   become: yes
+
+- name: create alacritty config dif
+  file:
+    dest: "~/.config/alacritty"
+    state: directory
+
+- name: symlink alacritty config
+  file:
+    src: "{{role_path}}/files/alacritty.yml"
+    dest: "~/.config/alacritty/alacritty.yml"
+    state: link
+
+- name: symlink connect sennheiser
+  file:
+    src: "{{role_path}}/files/connect-sennheiser"
+    dest: "/usr/local/bin/connect-sennheiser"
+    state: link
+  become: yes

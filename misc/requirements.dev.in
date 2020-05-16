@@ -1,0 +1,12 @@
+neovim
+ipython>=5,<6
+ipdb
+pudb
+jedi
+python-language-server
+pyls-black; python_version >= "3.6"
+pyls-mypy; python_version >= "3.5"
+more-itertools<5
+pyflakes
+pycodestyle
+/home/jenifael/src/vendorized/trollius; python_version <= "2.7"

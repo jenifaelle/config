@@ -1,0 +1,20 @@
+{
+    "configurations": {
+        "python - attach ptvsd": {
+            "adapter": {
+                "name": "ptvsd",
+                "port": 8090
+            },
+            "configuration": {
+                "name": "attach",
+                "type": "ptvsd",
+                "request": "attach",
+                "debugOptions":  [
+                    "RedirectOutput",
+                    "UnixClient",
+                    "ShowReturnValue"
+                ]
+            }
+        }
+    }
+}
