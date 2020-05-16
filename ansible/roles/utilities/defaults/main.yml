@@ -26,6 +26,7 @@ deps:
   - lollypop
   - tldr
   - gnome
+  - gnome-tweaks
 
 aur_deps:
   - yay
