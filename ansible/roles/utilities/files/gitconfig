@@ -19,3 +19,5 @@
 	required = true
 [branch]
 	autosetupmerge = always
+[pull]
+	rebase = false
