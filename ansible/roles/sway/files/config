@@ -194,4 +194,4 @@ bar {
     status_command py3status --wm sway
 }
 
-# xwayland disable
+exec dunst&

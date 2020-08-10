@@ -27,6 +27,7 @@ deps:
   - tldr
   - gnome
   - gnome-tweaks
+  - keepassxc
 
 aur_deps:
   - yay

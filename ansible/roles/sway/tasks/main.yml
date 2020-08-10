@@ -17,6 +17,12 @@
     state: present
   become: true
 
+- name: installing slurp
+  pacman:
+    name: slurp
+    state: present
+  become: true
+
 - name: installing wl-clipboard
   pacman:
     name: wl-clipboard
