@@ -1,10 +1,6 @@
-[user]
-	name = ginjeni1
-	email = jenifael.gingras-courchesne@optelgroup.com
 [push]
 	default = current
 [core]
-	excludesfile = /home/jenifael/.gitignore_global
 	autocrlf = input
 [diff]
 	tool = vimdiff
