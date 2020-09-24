@@ -9,7 +9,6 @@ order += "disk /"
 order += "tztime Quebec"
 order += "tztime Limerick"
 order += "tztime Goa"
-order += "battery_level"
 order += "volume_status"
 order += "xkb_input"
 order += "tztime local"
@@ -39,14 +38,6 @@ tztime Limerick {
 tztime Goa {
     format = "%H:%M:%S (Goa)"
     timezone = "Asia/Kolkata"
-}
-
-battery_level {
-    battery_id = "all"
-    format = "B: {icon} ({time_remaining})"
-    threshold_full = 90
-    color_good = "#00ff00"
-    color_bad = "#ff0000"
 }
 
 volume_status {

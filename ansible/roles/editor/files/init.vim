@@ -57,6 +57,9 @@ Plug 'luochen1990/rainbow'
 "rust
 Plug 'rust-lang/rust.vim'
 
+"scratch
+Plug 'mtth/scratch.vim'
+
 "Taboo
 Plug 'gcmt/taboo.vim'
 
@@ -65,6 +68,9 @@ Plug 'cespare/vim-toml'
 
 "Vimspector (DAP)
 Plug 'puremourning/vimspector'
+
+"UUID
+Plug 'kburdett/vim-nuuid'
 
 "Unimpaired
 Plug 'tpope/vim-unimpaired'
@@ -129,7 +135,6 @@ augroup vimrc
     au!
     au BufRead *.yml :setf ansible
     au BufRead Jenkinsfile :setf groovy
-    autocmd BufWritePre *.py :%s/\s\+$//e
 augroup end
 
 "theme

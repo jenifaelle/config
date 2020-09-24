@@ -35,3 +35,4 @@ aur_deps:
   - pulseaudio-modules-bt
   - libldac
   - fedora-firefox-wayland-bin
+  - noisetorch-bin
