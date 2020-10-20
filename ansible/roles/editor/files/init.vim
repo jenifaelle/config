@@ -40,7 +40,7 @@ Plug 'lepture/vim-jinja'
 Plug 'elzr/vim-json'
 
 "Neovim Lsp
-Plug 'neovim/nvim-lsp'
+Plug 'neovim/nvim-lspconfig'
 
 "Paredit
 Plug 'vim-scripts/paredit.vim'
@@ -205,7 +205,6 @@ nvim_lsp.pyls.setup{
     root_dir = nvim_lsp.util.root_pattern('.git');
     settings = {
         pyls = {
-            configurationSources = "flake8";
             plugins = {
                 pyflakes = {
                     enabled = false;
@@ -238,12 +237,27 @@ nvim_lsp.vimls.setup{}
 
 --lua
 nvim_lsp.sumneko_lua.setup{}
+
+--yamlls
+require'nvim_lsp'.yamlls.setup{
+    settings = {
+        yaml = {
+            schemas = {
+                ['/home/jenifael/src/work/micropackages/_schemas/app_config.schema.json'] = "/*_config.yml",
+            };
+            schemaStore = {
+                enable = false
+            }
+        }
+    }
+}
 EOF
 
 
 "Utilities
 nnoremap <leader>lss <cmd>lua print(vim.inspect(vim.lsp.buf_get_clients()))<CR>
-nnoremap <leader>lsr <cmd>lua vim.lsp.stop_client(lsp.get_active_clients())<CR>
+nnoremap <leader>lsa <cmd>lua print(vim.inspect(vim.lsp.get_active_clients()))<CR>
+nnoremap <leader>lsr <cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>
 nnoremap <leader>lsc <cmd>verbose set omnifunc?<CR>
 nnoremap <leader>lsd <cmd>lua vim.lsp.util.buf_clear_diagnostics(0)<CR>
 
@@ -279,6 +293,7 @@ augroup lspomni
     autocmd Filetype json setlocal omnifunc=v:lua.vim.lsp.omnifunc
     autocmd Filetype vim setlocal omnifunc=v:lua.vim.lsp.omnifunc
     autocmd Filetype lua setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    autocmd Filetype yaml setlocal omnifunc=v:lua.vim.lsp.omnifunc
 augroup end
 
 """"""""""
