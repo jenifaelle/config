@@ -1,4 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
+"Tabnine
+Plug 'aca/completion-tabnine', { 'do': './install.sh' }
+
 "Auto pair
 Plug 'jiangmiao/auto-pairs'
 
@@ -22,7 +25,7 @@ Plug 'blueshirts/darcula'
 
 "Deoplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+" Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 
 "Diagnostic
 Plug 'nvim-lua/diagnostic-nvim'
@@ -252,29 +255,35 @@ nnoremap <silent> ]g <cmd>PrevDiagnosticCycle<CR>
 inoremap <c-space> <c-x><c-o>
 
 "Load the omnifunc for completions
-" augroup lspomni
-"     autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
-"     autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
-"     autocmd Filetype sh setlocal omnifunc=v:lua.vim.lsp.omnifunc
-"     autocmd Filetype dockerfile setlocal omnifunc=v:lua.vim.lsp.omnifunc
-"     autocmd Filetype go setlocal omnifunc=v:lua.vim.lsp.omnifunc
-"     autocmd Filetype json setlocal omnifunc=v:lua.vim.lsp.omnifunc
-"     autocmd Filetype vim setlocal omnifunc=v:lua.vim.lsp.omnifunc
-"     autocmd Filetype lua setlocal omnifunc=v:lua.vim.lsp.omnifunc
-" augroup end
+augroup lspomni
+    autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    autocmd Filetype sh setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    autocmd Filetype dockerfile setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    autocmd Filetype go setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    autocmd Filetype json setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    autocmd Filetype vim setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    autocmd Filetype lua setlocal omnifunc=v:lua.vim.lsp.omnifunc
+augroup end
 
 "Completion configuration
-" lua << EOF
-" local on_attach_vim = function(client)
-"   require'completion'.on_attach(client)
-"   require'diagnostic'.on_attach(client)
-" end
-" require'nvim_lsp'.pyls.setup{on_attach=on_attach_vim}
-" EOF
-" set shortmess+=c
-" let g:completion_sorting = "none"
-" let g:completion_matching_strategy_list = ['fuzzy']
-" let g:completion_chain_complete_list
+lua << EOF
+local on_attach_vim = function(client)
+  require'completion'.on_attach(client)
+  require'diagnostic'.on_attach(client)
+end
+require'nvim_lsp'.pyls.setup{on_attach=on_attach_vim}
+EOF
+set shortmess+=c
+let g:completion_sorting = "none"
+let g:completion_matching_strategy_list = ['fuzzy', 'all']
+let g:completion_chain_complete_list = [
+            \{'complete_items': ['tabnine', 'lsp', 'snippet']},
+            \{'mode': '<c-p>'},
+            \{'mode': '<c-n>'}
+\]
+let g:completion_tabnine_priority = 1
+let g:completion_tabnine_sort_by_details = 1
 
 """"""""""
 "Vimspector
@@ -310,12 +319,12 @@ nmap <leader>do <cmd>DebugStepOut<cr>
 
 """"""""""
 "Deoplete
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 " set completeopt=noinsert,menuone,noselect
 " call deoplete#custom#option('omni_patterns', {
 "             \ 'python': ['[^. *\t]\.\w*']
 "             \})
-call deoplete#custom#var('tabnine', {
-            \ 'line_limit': 500,
-            \ 'max_num_results': 20,
-            \})
+" call deoplete#custom#var('tabnine', {
+"             \ 'line_limit': 500,
+"             \ 'max_num_results': 20,
+"             \})
