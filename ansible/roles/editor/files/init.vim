@@ -1,9 +1,12 @@
 call plug#begin('~/.config/nvim/plugged')
+"Auto pair
+Plug 'jiangmiao/auto-pairs'
+
 "Yaml
 Plug 'stephpy/vim-yaml'
 
-"CoC
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Completion
+Plug 'nvim-lua/completion-nvim'
 
 "Commentary
 Plug 'tpope/vim-commentary'
@@ -19,6 +22,10 @@ Plug 'blueshirts/darcula'
 
 "Deoplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+
+"Diagnostic
+Plug 'nvim-lua/diagnostic-nvim'
 
 "Fireplace
 Plug 'tpope/vim-fireplace'
@@ -86,7 +93,6 @@ syntax on
 filetype plugin indent on
 
 "general settings
-set completeopt=menuone,noinsert,noselect
 set formatoptions-=cro
 set sessionoptions-=options
 set number
@@ -172,30 +178,6 @@ autocmd FileType vim setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 let g:AutoPairsCenterLine = 0
 
 """"""""""
-"CoC
-"completion
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-" function! s:check_back_space() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
-
-" " Use <c-space> to trigger completion.
-" inoremap <silent><expr> <c-space> coc#refresh()
-
-" " Use <cr> to confirm completion
-" if exists('*complete_info')
-"   inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-" else
-"   imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" endif
-
-""""""""""
 "Neovim LSP
 
 lua << EOF
@@ -263,23 +245,36 @@ nnoremap <silent> <s-l> <cmd>lua vim.lsp.buf.formatting()<CR>
 " nnoremap <silent> <s-l> <cmd>lua vim.lsp.buf.formatting()<CR><cmd>lua vim.lsp.util.trim_empty_lines()<CR>
 
 "Previous|Next Error (quickfix)
-nnoremap <silent> [g <cmd>cprevious<CR>
-nnoremap <silent> ]g <cmd>cnext<CR>
+nnoremap <silent> [g <cmd>NextDiagnosticCycle<CR>
+nnoremap <silent> ]g <cmd>PrevDiagnosticCycle<CR>
 
 "Trigger completions
 inoremap <c-space> <c-x><c-o>
 
 "Load the omnifunc for completions
-augroup lspomni
-    autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
-    autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
-    autocmd Filetype sh setlocal omnifunc=v:lua.vim.lsp.omnifunc
-    autocmd Filetype dockerfile setlocal omnifunc=v:lua.vim.lsp.omnifunc
-    autocmd Filetype go setlocal omnifunc=v:lua.vim.lsp.omnifunc
-    autocmd Filetype json setlocal omnifunc=v:lua.vim.lsp.omnifunc
-    autocmd Filetype vim setlocal omnifunc=v:lua.vim.lsp.omnifunc
-    autocmd Filetype lua setlocal omnifunc=v:lua.vim.lsp.omnifunc
-augroup end
+" augroup lspomni
+"     autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
+"     autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
+"     autocmd Filetype sh setlocal omnifunc=v:lua.vim.lsp.omnifunc
+"     autocmd Filetype dockerfile setlocal omnifunc=v:lua.vim.lsp.omnifunc
+"     autocmd Filetype go setlocal omnifunc=v:lua.vim.lsp.omnifunc
+"     autocmd Filetype json setlocal omnifunc=v:lua.vim.lsp.omnifunc
+"     autocmd Filetype vim setlocal omnifunc=v:lua.vim.lsp.omnifunc
+"     autocmd Filetype lua setlocal omnifunc=v:lua.vim.lsp.omnifunc
+" augroup end
+
+"Completion configuration
+" lua << EOF
+" local on_attach_vim = function(client)
+"   require'completion'.on_attach(client)
+"   require'diagnostic'.on_attach(client)
+" end
+" require'nvim_lsp'.pyls.setup{on_attach=on_attach_vim}
+" EOF
+" set shortmess+=c
+" let g:completion_sorting = "none"
+" let g:completion_matching_strategy_list = ['fuzzy']
+" let g:completion_chain_complete_list
 
 """"""""""
 "Vimspector
@@ -316,7 +311,11 @@ nmap <leader>do <cmd>DebugStepOut<cr>
 """"""""""
 "Deoplete
 let g:deoplete#enable_at_startup = 1
-set completeopt=noinsert,menuone,noselect
+" set completeopt=noinsert,menuone,noselect
 " call deoplete#custom#option('omni_patterns', {
 "             \ 'python': ['[^. *\t]\.\w*']
 "             \})
+call deoplete#custom#var('tabnine', {
+            \ 'line_limit': 500,
+            \ 'max_num_results': 20,
+            \})
