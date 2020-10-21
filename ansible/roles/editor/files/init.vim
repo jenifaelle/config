@@ -5,6 +5,9 @@ Plug 'aca/completion-tabnine', { 'do': './install.sh' }
 "Auto pair
 Plug 'jiangmiao/auto-pairs'
 
+"Surround
+Plug 'tpope/vim-surround'
+
 "Yaml
 Plug 'stephpy/vim-yaml'
 
