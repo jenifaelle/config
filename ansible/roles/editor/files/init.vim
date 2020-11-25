@@ -188,7 +188,7 @@ let g:AutoPairsCenterLine = 0
 
 lua << EOF
 --pyls
-local nvim_lsp = require'nvim_lsp'
+local nvim_lsp = require'lspconfig'
 nvim_lsp.pyls.setup{
     root_dir = nvim_lsp.util.root_pattern('.git');
     settings = {
@@ -227,7 +227,7 @@ nvim_lsp.vimls.setup{}
 nvim_lsp.sumneko_lua.setup{}
 
 --yamlls
-require'nvim_lsp'.yamlls.setup{
+require'lspconfig'.yamlls.setup{
     settings = {
         yaml = {
             schemas = {
@@ -290,7 +290,7 @@ local on_attach_vim = function(client)
   require'completion'.on_attach(client)
   require'diagnostic'.on_attach(client)
 end
-require'nvim_lsp'.pyls.setup{on_attach=on_attach_vim}
+require'lspconfig'.pyls.setup{on_attach=on_attach_vim}
 EOF
 set shortmess+=c
 let g:completion_sorting = "none"
