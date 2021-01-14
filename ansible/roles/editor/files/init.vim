@@ -31,7 +31,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 
 "Diagnostic
-Plug 'nvim-lua/diagnostic-nvim'
+" Plug 'nvim-lua/diagnostic-nvim'
 
 "Fireplace
 Plug 'tpope/vim-fireplace'
@@ -220,9 +220,6 @@ nvim_lsp.gopls.setup{}
 --jsonls
 nvim_lsp.jsonls.setup{}
 
---vimls
-nvim_lsp.vimls.setup{}
-
 --lua
 nvim_lsp.sumneko_lua.setup{}
 
@@ -247,7 +244,7 @@ nnoremap <leader>lss <cmd>lua print(vim.inspect(vim.lsp.buf_get_clients()))<CR>
 nnoremap <leader>lsa <cmd>lua print(vim.inspect(vim.lsp.get_active_clients()))<CR>
 nnoremap <leader>lsr <cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>
 nnoremap <leader>lsc <cmd>verbose set omnifunc?<CR>
-nnoremap <leader>lsd <cmd>lua vim.lsp.util.buf_clear_diagnostics(0)<CR>
+nnoremap <leader>lsd <cmd>lua vim.lsp.diagnostic.clear<CR>
 
 "Declaration, definition, implementation, references
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
@@ -262,11 +259,11 @@ nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 inoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <s-l> <cmd>lua vim.lsp.buf.formatting()<CR>
-" nnoremap <silent> <s-l> <cmd>lua vim.lsp.buf.formatting()<CR><cmd>lua vim.lsp.util.trim_empty_lines()<CR>
+nnoremap <silent> <s-l> <cmd>lua vim.lsp.buf.formatting()<CR><cmd>lua vim.lsp.util.trim_empty_lines()<CR>
 
 "Previous|Next Error (quickfix)
-nnoremap <silent> [g <cmd>NextDiagnosticCycle<CR>
-nnoremap <silent> ]g <cmd>PrevDiagnosticCycle<CR>
+nnoremap <silent> ]g <cmd>vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> [g <cmd>vim.lsp.diagnostic.goto_next()<CR>
 
 "Trigger completions
 inoremap <c-space> <c-x><c-o>
@@ -279,29 +276,29 @@ augroup lspomni
     autocmd Filetype dockerfile setlocal omnifunc=v:lua.vim.lsp.omnifunc
     autocmd Filetype go setlocal omnifunc=v:lua.vim.lsp.omnifunc
     autocmd Filetype json setlocal omnifunc=v:lua.vim.lsp.omnifunc
-    autocmd Filetype vim setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    " autocmd Filetype vim setlocal omnifunc=v:lua.vim.lsp.omnifunc
     autocmd Filetype lua setlocal omnifunc=v:lua.vim.lsp.omnifunc
     autocmd Filetype yaml setlocal omnifunc=v:lua.vim.lsp.omnifunc
 augroup end
 
 "Completion configuration
-lua << EOF
-local on_attach_vim = function(client)
-  require'completion'.on_attach(client)
-  require'diagnostic'.on_attach(client)
-end
-require'lspconfig'.pyls.setup{on_attach=on_attach_vim}
-EOF
-set shortmess+=c
-let g:completion_sorting = "none"
-let g:completion_matching_strategy_list = ['fuzzy', 'all']
-let g:completion_chain_complete_list = [
-            \{'complete_items': ['tabnine', 'lsp', 'snippet']},
-            \{'mode': '<c-p>'},
-            \{'mode': '<c-n>'}
-\]
-let g:completion_tabnine_priority = 1
-let g:completion_tabnine_sort_by_details = 1
+" lua << EOF
+" local on_attach_vim = function(client)
+"   require'completion'.on_attach(client)
+"   require'diagnostic'.on_attach(client)
+" end
+" require'lspconfig'.pyls.setup{on_attach=on_attach_vim}
+" EOF
+" set shortmess+=c
+" let g:completion_sorting = "none"
+" let g:completion_matching_strategy_list = ['fuzzy', 'all']
+" let g:completion_chain_complete_list = [
+"             \{'complete_items': ['tabnine', 'lsp', 'snippet']},
+"             \{'mode': '<c-p>'},
+"             \{'mode': '<c-n>'}
+" \]
+" let g:completion_tabnine_priority = 1
+" let g:completion_tabnine_sort_by_details = 1
 
 """"""""""
 "Vimspector
