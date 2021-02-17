@@ -54,6 +54,7 @@ Plug 'elzr/vim-json'
 
 "Neovim Lsp
 Plug 'neovim/nvim-lspconfig'
+" Plug 'anott03/nvim-lspinstall'
 
 "Paredit
 Plug 'vim-scripts/paredit.vim'
@@ -189,21 +190,7 @@ let g:AutoPairsCenterLine = 0
 lua << EOF
 --pyls
 local nvim_lsp = require'lspconfig'
-nvim_lsp.pyls.setup{
-    root_dir = nvim_lsp.util.root_pattern('.git');
-    settings = {
-        pyls = {
-            plugins = {
-                pyflakes = {
-                    enabled = false;
-                };
-                yapf = {
-                    enabled = false;
-                }
-            }
-        }
-    }
-}
+nvim_lsp.pyls.setup{}
 
 --rust analyzer
 nvim_lsp.rust_analyzer.setup{}
@@ -244,7 +231,7 @@ nnoremap <leader>lss <cmd>lua print(vim.inspect(vim.lsp.buf_get_clients()))<CR>
 nnoremap <leader>lsa <cmd>lua print(vim.inspect(vim.lsp.get_active_clients()))<CR>
 nnoremap <leader>lsr <cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>
 nnoremap <leader>lsc <cmd>verbose set omnifunc?<CR>
-nnoremap <leader>lsd <cmd>lua vim.lsp.diagnostic.clear<CR>
+nnoremap <leader>lsd <cmd>lua vim.lsp.diagnostic.clear(vim.api.nvim_eval("bufnr('%')"))<CR>
 
 "Declaration, definition, implementation, references
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
@@ -258,8 +245,8 @@ nnoremap <silent> gR    <cmd>lua vim.lsp.util.buf_clear_references()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 inoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+" nnoremap <silent> <s-l> <cmd>lua vim.lsp.buf.formatting()<CR>
 nnoremap <silent> <s-l> <cmd>lua vim.lsp.buf.formatting()<CR>
-nnoremap <silent> <s-l> <cmd>lua vim.lsp.buf.formatting()<CR><cmd>lua vim.lsp.util.trim_empty_lines()<CR>
 
 "Previous|Next Error (quickfix)
 nnoremap <silent> ]g <cmd>vim.lsp.diagnostic.goto_prev()<CR>
