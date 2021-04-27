@@ -80,3 +80,19 @@
     src: "{{role_path}}/files/Xdefaults"
     dest: "~/.Xdefaults"
     state: link
+
+- name: Ensure ~/.config/xdg-desktop-portal-wlr exists
+  ansible.builtin.file:
+    path: "~/.config/xdg-desktop-portal-wlr"
+    state: directory
+
+- name: Ensure ~/.config/xdg-desktop-portal-wlr/config exists
+  ansible.builtin.file:
+    path: "~/.config/xdg-desktop-portal-wlr/config"
+    state: directory
+
+- name: Symlink xdpw config
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/xdg-desktop-portal-wlr"
+    dest: "~/.config/xdg-desktop-portal-wlr/config/config.ini"
+    state: link

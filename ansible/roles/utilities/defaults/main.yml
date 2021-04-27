@@ -28,11 +28,20 @@ deps:
   - gnome
   - gnome-tweaks
   - keepassxc
+  - firefox
+  - pulseaudio-bluetooth
+  - mako
+  - libpipewire02
+  - pipewire
+  - pipewire-alsa
+  - pipewire-media-session
+  - xdg-desktop-portal
+  - xdg-desktop-portal-wlr
 
 aur_deps:
   - yay
   - wdisplays-git
-  - pulseaudio-modules-bt
+  # - pulseaudio-modules-bt
   - libldac
-  - fedora-firefox-wayland-bin
-  - noisetorch-bin
+  # - fedora-firefox-wayland-bin
+  # - noisetorch-bin

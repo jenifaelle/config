@@ -1,0 +1,4 @@
+[screencast]
+output_name=DP-3
+chooser_type=simple
+chooser_cmd="slurp -f %o -o"

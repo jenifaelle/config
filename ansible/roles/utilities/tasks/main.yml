@@ -115,3 +115,10 @@
     dest: "/usr/local/bin/connect-sennheiser"
     state: link
   become: yes
+
+- name: Symlink screencast script (fix xdg-desktop-portal issues with screencasting)
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/screencast"
+    dest: /usr/local/bin/screencast
+    state: link
+  become: yes
