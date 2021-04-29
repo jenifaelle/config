@@ -1,0 +1,28 @@
+---
+- name: Install openssh
+  community.general.pacman:
+    name: openssh
+
+- name: Ensure user systemd directory exists
+  ansible.builtin.file:
+    path: "~/.config/systemd"
+    state: directory
+
+- name: Ensure user systemd subfolder directory exists
+  ansible.builtin.file:
+    path: "~/.config/systemd/user"
+    state: directory
+
+- name: Symlink ssh agent service unit
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/ssh-agent.service"
+    dest: "~/.config/systemd/user/ssh-agent.service"
+    state: link
+
+- name: Reload and enable openssh agent service
+  ansible.builtin.systemd:
+    name: ssh-agent.service
+    scope: user
+    daemon_reload: yes
+    enabled: yes
+    state: started

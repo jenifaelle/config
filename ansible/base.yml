@@ -9,5 +9,6 @@
 
   roles:
     - editor
+    - ssh
     - utilities
     - sway
