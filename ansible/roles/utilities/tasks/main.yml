@@ -122,3 +122,14 @@
     dest: /usr/local/bin/screencast
     state: link
   become: yes
+
+- name: Ensure ~/.config/ptpython exists
+  ansible.builtin.file:
+    path: "~/.config/ptpython"
+    state: directory
+
+- name: Symlink ptpython config
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/ptpython.py"
+    dest: "~/.config/ptpython/config.py"
+    state: link
