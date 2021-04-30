@@ -68,6 +68,8 @@ Plug 'chrisbra/SudoEdit.vim'
 "Rainbow parentheses
 Plug 'luochen1990/rainbow'
 
+"Repl integration
+Plug 'hkupty/iron.nvim'
 "rust
 Plug 'rust-lang/rust.vim'
 
@@ -330,3 +332,7 @@ nmap <leader>do <cmd>DebugStepOut<cr>
 "             \ 'line_limit': 500,
 "             \ 'max_num_results': 20,
 "             \})
+
+""""""
+" REPL
+luafile $HOME/.config/nvim/plugins.lua
