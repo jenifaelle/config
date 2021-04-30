@@ -40,3 +40,9 @@
     src: "~/git/config/.gitignore"
     dest: "~/.gitignore_global"
     state: link
+
+- name: Symlink nvim lua config
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/plugins.lua"
+    dest: "~/.config/nvim/plugins.lua"
+    state: link

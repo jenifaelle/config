@@ -142,6 +142,7 @@ set ffs=unix,dos,mac
 "mapping
 let mapleader = ","
 noremap <leader>ev :e $HOME/.config/nvim/init.vim<cr>
+noremap <leader>el :e $HOME/.config/nvim/plugins.lua<cr>
 noremap <leader>rv :source $MYVIMRC<cr>
 nnoremap <leader><leader>s :%s/\s+$//ge \| noh <cr>
 
