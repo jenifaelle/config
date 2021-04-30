@@ -102,6 +102,7 @@ syntax on
 filetype plugin indent on
 
 "general settings
+luafile $HOME/.config/nvim/plugins.lua
 set formatoptions-=cro
 set sessionoptions-=options
 set number
@@ -115,6 +116,7 @@ set completeopt=menuone,noinsert,noselect
 set nowrap
 
 nnoremap <silent> <c-s> <cmd>let @/ = ""<cr>
+set splitright
 
 "get rid of backup file
 set nobackup
@@ -189,44 +191,6 @@ let g:AutoPairsCenterLine = 0
 
 """"""""""
 "Neovim LSP
-
-lua << EOF
---pyls
-local nvim_lsp = require'lspconfig'
-nvim_lsp.pyls.setup{}
-
---rust analyzer
-nvim_lsp.rust_analyzer.setup{}
-
---bash ls
-nvim_lsp.bashls.setup{}
-
---dockerls
-nvim_lsp.dockerls.setup{}
-
---go lsp
-nvim_lsp.gopls.setup{}
-
---jsonls
-nvim_lsp.jsonls.setup{}
-
---lua
-nvim_lsp.sumneko_lua.setup{}
-
---yamlls
-require'lspconfig'.yamlls.setup{
-    settings = {
-        yaml = {
-            schemas = {
-                ['/home/jenifael/src/work/micropackages/_schemas/app_config.schema.json'] = "/*_config.yml",
-            };
-            schemaStore = {
-                enable = false
-            }
-        }
-    }
-}
-EOF
 
 
 "Utilities
@@ -336,4 +300,11 @@ nmap <leader>do <cmd>DebugStepOut<cr>
 
 """"""
 " REPL
-luafile $HOME/.config/nvim/plugins.lua
+let g:iron_map_defaults = 0
+let g:iron_map_extended = 0
+nmap <leader>rr :IronRepl<cr>
+nmap <leader>rf :IronFocus<cr>
+nmap <leader>rs <Plug>(iron-send-line)
+nmap <leader>rm <Plug>(iron-send-motion)
+nmap <leader>rl <Plug>(iron-clear)
+vmap <leader>rs <Plug>(iron-visual-send)
