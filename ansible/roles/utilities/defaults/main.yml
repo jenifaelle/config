@@ -37,6 +37,7 @@ deps:
   - pipewire-media-session
   - xdg-desktop-portal
   - xdg-desktop-portal-wlr
+  - cronie
 
 aur_deps:
   - yay

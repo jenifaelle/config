@@ -33,6 +33,9 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Diagnostic
 " Plug 'nvim-lua/diagnostic-nvim'
 
+"Fennel
+Plug 'bakpakin/fennel.vim'
+
 "Fireplace
 Plug 'tpope/vim-fireplace'
 
@@ -61,6 +64,9 @@ Plug 'vim-scripts/paredit.vim'
 
 "Powershell
 Plug 'PProvost/vim-ps1'
+
+"Sexp
+Plug 'guns/vim-sexp'
 
 "Sudo Edit
 Plug 'chrisbra/SudoEdit.vim'
@@ -308,3 +314,10 @@ nmap <leader>rs <Plug>(iron-send-line)
 nmap <leader>rm <Plug>(iron-send-motion)
 nmap <leader>rl <Plug>(iron-clear)
 vmap <leader>rs <Plug>(iron-visual-send)
+nmap <leader>ri mm<leader>(<Plug>(iron-send-motion)%`m
+
+"""""""
+" S-EXP
+let g:sexp_enable_insert_mode_mappings = 0
+nmap <leader>( <Plug>(sexp_move_to_prev_top_element)
+nmap <leader>) <Plug>(sexp_move_to_next_top_element)

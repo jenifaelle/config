@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+ruby-2.7 /opt/drivesync/drivesync.rb $1
