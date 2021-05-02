@@ -1,0 +1,4 @@
+---
+- name: memo-drivesync
+  debug:
+    msg: "Drivesync needs a first manual run to authenticate: `/usr/local/bin/drivesync sync`"
