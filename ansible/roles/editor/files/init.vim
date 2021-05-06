@@ -3,7 +3,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'aca/completion-tabnine', { 'do': './install.sh' }
 
 "Auto pair
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 
 "Surround
 Plug 'tpope/vim-surround'
@@ -57,7 +57,6 @@ Plug 'elzr/vim-json'
 
 "Neovim Lsp
 Plug 'neovim/nvim-lspconfig'
-" Plug 'anott03/nvim-lspinstall'
 
 "Paredit
 Plug 'vim-scripts/paredit.vim'
@@ -87,6 +86,9 @@ Plug 'gcmt/taboo.vim'
 
 "Toml
 Plug 'cespare/vim-toml'
+
+"Tree-sitter
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 "Vimspector (DAP)
 Plug 'puremourning/vimspector'
@@ -198,7 +200,6 @@ let g:AutoPairsCenterLine = 0
 """"""""""
 "Neovim LSP
 
-
 "Utilities
 nnoremap <leader>lss <cmd>lua print(vim.inspect(vim.lsp.buf_get_clients()))<CR>
 nnoremap <leader>lsa <cmd>lua print(vim.inspect(vim.lsp.get_active_clients()))<CR>
@@ -240,25 +241,6 @@ augroup lspomni
     autocmd Filetype lua setlocal omnifunc=v:lua.vim.lsp.omnifunc
     autocmd Filetype yaml setlocal omnifunc=v:lua.vim.lsp.omnifunc
 augroup end
-
-"Completion configuration
-" lua << EOF
-" local on_attach_vim = function(client)
-"   require'completion'.on_attach(client)
-"   require'diagnostic'.on_attach(client)
-" end
-" require'lspconfig'.pyls.setup{on_attach=on_attach_vim}
-" EOF
-" set shortmess+=c
-" let g:completion_sorting = "none"
-" let g:completion_matching_strategy_list = ['fuzzy', 'all']
-" let g:completion_chain_complete_list = [
-"             \{'complete_items': ['tabnine', 'lsp', 'snippet']},
-"             \{'mode': '<c-p>'},
-"             \{'mode': '<c-n>'}
-" \]
-" let g:completion_tabnine_priority = 1
-" let g:completion_tabnine_sort_by_details = 1
 
 """"""""""
 "Vimspector
@@ -315,6 +297,8 @@ nmap <leader>rm <Plug>(iron-send-motion)
 nmap <leader>rl <Plug>(iron-clear)
 vmap <leader>rs <Plug>(iron-visual-send)
 nmap <leader>ri mm<leader>(<Plug>(iron-send-motion)%`m
+nmap <leader>rd mm[[<Plug>(iron-send-motion)]]`m
+nmap <leader>rcc <Plug>(iron-interrupt)
 
 """""""
 " S-EXP
