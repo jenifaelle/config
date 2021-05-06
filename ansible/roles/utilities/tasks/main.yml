@@ -133,3 +133,14 @@
     src: "{{ role_path }}/files/ptpython.py"
     dest: "~/.config/ptpython/config.py"
     state: link
+
+- name: Ensure htop config folder exists
+  ansible.builtin.file:
+    path: "~/.config/htop"
+    state: directory
+
+- name: Symlink htop config
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/htop.config"
+    dest: "~/.config/htop/htoprc"
+    state: link
