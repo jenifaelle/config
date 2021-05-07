@@ -38,6 +38,7 @@ deps:
   - xdg-desktop-portal
   - xdg-desktop-portal-wlr
   - cronie
+  - dmenu
 
 aur_deps:
   - yay
@@ -46,3 +47,5 @@ aur_deps:
   - libldac
   # - fedora-firefox-wayland-bin
   # - noisetorch-bin
+  - rbenv
+  - ruby-build
