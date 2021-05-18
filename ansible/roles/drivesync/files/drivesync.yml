@@ -41,7 +41,7 @@ inclusion: whitelist
 #Examples: blacklist: ["foo.bar","secret_*.txt","hidden/docs/*"] / whitelist: ["sync/*", "logs.tar.gz"]
 
 blacklist: []
-whitelist: ["master.kdbx", "ulaval/*"]
+whitelist: ["master.kdbx", "ulaval/*", "optel.kdbx", "main.kdbx"]
 
 #If true, files that have been shared with you will be synced as well, 
 #as long as you added them to your Drive
