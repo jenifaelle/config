@@ -14,9 +14,8 @@ set -x OPTELBRIDGE_HOME "/opt/optelbridge"
 set -x BRIDGE_LOGS_PATH "/var/log/optelbridge"
 set -x BRIDGE_SERIAL_BACKUP_LOCATION "/opt/optelbridge"
 
-
-status --is-interactive; and source (pyenv init -|psub)
-status --is-interactive; and source (pyenv virtualenv-init -|psub)
-
 set -x SSH_AUTH_SOCK /run/user/1000/ssh-agent.socket
 status --is-interactive; and source (rbenv init -|psub)
+
+pyenv init --path | source
+pyenv init - | source

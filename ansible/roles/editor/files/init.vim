@@ -90,9 +90,6 @@ Plug 'cespare/vim-toml'
 "Tree-sitter
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-"Vimspector (DAP)
-Plug 'puremourning/vimspector'
-
 "UUID
 Plug 'kburdett/vim-nuuid'
 
