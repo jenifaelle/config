@@ -39,6 +39,10 @@ deps:
   - xdg-desktop-portal-wlr
   - cronie
   - dmenu
+  - fcitx5
+  - fcitx5-configtool
+  - fcitx5-hangul
+  - fcitx5-qt
 
 aur_deps:
   - yay
