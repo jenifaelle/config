@@ -43,6 +43,7 @@ deps:
   - fcitx5-configtool
   - fcitx5-hangul
   - fcitx5-qt
+  - nextcloud-client
 
 aur_deps:
   - yay
