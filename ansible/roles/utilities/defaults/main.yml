@@ -44,6 +44,8 @@ deps:
   - fcitx5-hangul
   - fcitx5-qt
   - nextcloud-client
+  - libsecret
+  - gnome-keyring
 
 aur_deps:
   - yay
