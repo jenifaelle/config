@@ -139,8 +139,8 @@ bindsym Control+KP_6 exec "playerctl -a next"
 bindsym Control+KP_7 exec "connect-sennheiser"
 
 # brightness binding (asus e403s)
-bindsym XF86MonBrightnessUp exec "sudo light -A 10"
-bindsym XF86MonBrightnessDown exec "sudo light -U 10"
+bindsym XF86MonBrightnessUp exec "brightnessctl s +5%"
+bindsym XF86MonBrightnessDown exec "brightnessctl s 5%-"
 
 # lock screen
 bindsym $mod+Control+l exec "swaylock -c 000000"
@@ -181,8 +181,9 @@ default_border none
 hide_edge_borders none
 
 # output and wallpaper
-output DP-2 mode 2560x1440@89.909Hz pos 0 0
-output DP-3 mode 1920x1080@60Hz pos 2560 0
+output eDP-1 scale 1.5
+# output DP-2 mode 2560x1440@89.909Hz pos 0 0
+# output DP-3 mode 1920x1080@60Hz pos 2560 0
 # output DP-3 transform 270
 # output "*" bg /home/jenifael/Pictures/wallpaper/wallpaper.png fill
 output "*" bg /home/jenifael/Pictures/wallpaper/wallpaper.png center
