@@ -9,4 +9,3 @@
   aur:
     use: makepkg
     name: "{{aur_deps}}"
-    skip_installed: yes
