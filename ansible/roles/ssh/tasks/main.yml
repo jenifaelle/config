@@ -2,6 +2,7 @@
 - name: Install openssh
   community.general.pacman:
     name: openssh
+  become: yes
 
 - name: Ensure user systemd directory exists
   ansible.builtin.file:
