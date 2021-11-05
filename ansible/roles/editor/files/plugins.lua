@@ -23,7 +23,7 @@ iron.core.set_config {
 --LSP client configs
 --pyls
 local nvim_lsp = require'lspconfig'
-nvim_lsp.pyls.setup{}
+nvim_lsp.pylsp.setup{}
 
 --rust analyzer
 nvim_lsp.rust_analyzer.setup{}
