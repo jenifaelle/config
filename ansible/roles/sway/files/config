@@ -192,6 +192,17 @@ input * xkb_layout "us,ca"
 input * xkb_variant ",multi"
 input * xkb_options "grp:ctrl_shift_toggle"
 
+input type:touchpad {
+    accel_profile adaptive
+    dwt enabled
+    natural_scroll enabled
+    pointer_accel 0.3
+    scroll_factor 0.5
+    scroll_method two_finger
+    tap enabled
+    tap_button_map lrm
+}
+
 bar {
     position top
     status_command py3status --wm sway
