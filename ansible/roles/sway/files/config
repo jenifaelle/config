@@ -1,7 +1,7 @@
 # Example config: https://github.com/rbnis/dotfiles/blob/master/.config/sway/config
 
 # General
-font pango:noto 14
+font pango:noto 12
 
 set $up k
 set $down j
