@@ -125,7 +125,7 @@ hide_edge_borders none
 
 
 # Wallpaper
-output "*" bg /home/jenifael/Nextcloud/Images/wallpaper/wallpaper.png center
+output "*" bg /home/jenifael/Nextcloud/Images/wallpaper/wallpaper.png fill
 
 
 # Keyboard configuration
