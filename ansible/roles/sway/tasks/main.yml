@@ -57,27 +57,27 @@
     path: "~/.config/i3status"
     state: directory
 
-- name: installing bemenu
-  pacman:
-    name: bemenu
-    state: present
-  become: true
-
-- name: copy i3 config
+- name: Copy sway config
   file:
-    src: "{{role_path}}/files/config"
+    src: "{{ role_path }}/files/config"
     dest: "~/.config/sway/config"
     state: link
 
-- name: copy i3status config
+- name: Symlink host specific config "~/.config/sway/{{ ansible_hostname }}"
   file:
-    src: "{{role_path}}/files/i3status-config"
+    src: "{{ role_path }}/files/{{ ansible_hostname }}"
+    path: "~/.config/sway/{{ ansible_hostname }}"
+    state: link
+
+- name: Copy i3status config
+  file:
+    src: "{{ role_path }}/files/i3status-config"
     dest: "~/.config/i3status/config"
     state: link
 
 - name: copy Xdefaults
   file:
-    src: "{{role_path}}/files/Xdefaults"
+    src: "{{ role_path }}/files/Xdefaults"
     dest: "~/.Xdefaults"
     state: link
 

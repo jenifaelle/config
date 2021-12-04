@@ -5,9 +5,6 @@ deps:
   - ripgrep
   - htop
   - pavucontrol
-  - pulseaudio
-  - pulseaudio-alsa
-  - pulseaudio-equalizer
   - feh
   - gtk3
   - tree
@@ -29,11 +26,11 @@ deps:
   - gnome-tweaks
   - keepassxc
   - firefox
-  - pulseaudio-bluetooth
   - mako
   - libpipewire02
   - pipewire
   - pipewire-alsa
+  - pipewire-pulse
   - pipewire-media-session
   - xdg-desktop-portal
   - xdg-desktop-portal-wlr
@@ -50,9 +47,5 @@ deps:
 aur_deps:
   - yay
   - wdisplays-git
-  # - pulseaudio-modules-bt
   - libldac
-  # - fedora-firefox-wayland-bin
-  # - noisetorch-bin
-  - rbenv
-  - ruby-build
+  - noisetorch-bin
