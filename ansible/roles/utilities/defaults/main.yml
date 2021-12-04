@@ -43,6 +43,7 @@ deps:
   - nextcloud-client
   - libsecret
   - gnome-keyring
+  - mako
 
 aur_deps:
   - yay
