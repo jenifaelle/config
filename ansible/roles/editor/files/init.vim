@@ -15,6 +15,10 @@ Plug 'stephpy/vim-yaml'
 " Plug 'nvim-lua/completion-nvim'
 Plug 'Shougo/ddc.vim'
 Plug 'vim-denops/denops.vim'
+Plug 'LumaKernel/ddc-file'
+Plug 'Shougo/ddc-around'
+Plug 'tani/ddc-fuzzy'
+Plug 'Shougo/ddc-nvim-lsp'
 
 "Commentary
 Plug 'tpope/vim-commentary'
@@ -27,13 +31,6 @@ Plug 'guns/vim-clojure-static'
 
 "Darcula theme
 Plug 'blueshirts/darcula'
-
-"Deoplete
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
-
-"Diagnostic
-" Plug 'nvim-lua/diagnostic-nvim'
 
 "Fennel
 Plug 'bakpakin/fennel.vim'
@@ -66,11 +63,19 @@ Plug 'vim-scripts/paredit.vim'
 "Powershell
 Plug 'PProvost/vim-ps1'
 
+"Pum
+Plug 'Shougo/pum.vim'
+
 "Sexp
 Plug 'guns/vim-sexp'
 
 "Sudo Edit
 Plug 'chrisbra/SudoEdit.vim'
+
+"Snippet
+" Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' }
 
 "Rainbow parentheses
 Plug 'luochen1990/rainbow'
@@ -304,3 +309,38 @@ nmap <leader>rcc <Plug>(iron-interrupt)
 let g:sexp_enable_insert_mode_mappings = 0
 nmap <leader>( <Plug>(sexp_move_to_prev_top_element)
 nmap <leader>) <Plug>(sexp_move_to_next_top_element)
+
+"""""
+" DDC
+call ddc#custom#patch_global('sources', ['nvim-lsp', 'file', 'around', 'deoppet'])
+call ddc#custom#patch_global('completionMenu', 'pum.vim')
+call ddc#custom#patch_global('sourceOptions', {
+  \   '_': {
+  \     'matchers': ['matcher_fuzzy'],
+  \     'sorters': ['sorter_fuzzy'],
+  \     'converters': ['converter_fuzzy']
+  \   },
+  \   'nvim-lsp': {
+  \     'mark': 'lsp',
+  \     'forceCompletionPattern': '\.\w*|:\w*|->\w*'
+  \   },
+  \  'deoppet': {'dup': v:true, 'mark': 'dp'},
+  \ })
+call ddc#enable()
+
+""""
+"Pum
+inoremap <c-n> <cmd>call pum#map#insert_relative(+1)<cr>
+inoremap <c-p> <cmd>call pum#map#insert_relative(-1)<cr>
+inoremap <c-e> <cmd>call pum#map#confirm()<cr>
+inoremap <c-y> <cmd>call pum#map#cancel()<cr>
+
+"""""""""""
+"Deoppet
+call deoppet#initialize()
+call deoppet#custom#option('snippets', map(globpath(&runtimepath, 'neosnippets', 1, 1), { _, val -> { 'path': val } }))
+imap <c-k> <Plug>(deoppet_expand)
+imap <c-f> <Plug>(deoppet_jump_forward)
+imap <c-b> <Plug>(deoppet_jump_backward)
+smap <c-f> <Plug>(deoppet_jump_forward)
+smap <c-b> <Plug>(deoppet_jump_backward)
