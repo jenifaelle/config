@@ -1,6 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
 "Tabnine
-Plug 'aca/completion-tabnine', { 'do': './install.sh' }
+" Plug 'aca/completion-tabnine', { 'do': './install.sh' }
 
 "Auto pair
 " Plug 'jiangmiao/auto-pairs'
@@ -12,7 +12,9 @@ Plug 'tpope/vim-surround'
 Plug 'stephpy/vim-yaml'
 
 "Completion
-Plug 'nvim-lua/completion-nvim'
+" Plug 'nvim-lua/completion-nvim'
+Plug 'Shougo/ddc.vim'
+Plug 'vim-denops/denops.vim'
 
 "Commentary
 Plug 'tpope/vim-commentary'
