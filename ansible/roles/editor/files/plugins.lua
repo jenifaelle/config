@@ -42,7 +42,7 @@ nvim_lsp.jsonls.setup{}
 
 --lua
 nvim_lsp.sumneko_lua.setup{
-    cmd = {"/usr/bin/lua-language-server"};
+    cmd = {"/usr/local/bin/lua-language-server"};
 }
 
 --yamlls
