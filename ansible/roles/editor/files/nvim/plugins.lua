@@ -58,3 +58,6 @@ require'lspconfig'.yamlls.setup{
         }
     }
 }
+
+--vimls
+require'lspconfig'.vimls.setup{}
