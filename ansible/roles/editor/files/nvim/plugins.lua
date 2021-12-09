@@ -61,3 +61,6 @@ require'lspconfig'.yamlls.setup{
 
 --vimls
 require'lspconfig'.vimls.setup{}
+
+--tsserver
+require'lspconfig'.tsserver.setup{}

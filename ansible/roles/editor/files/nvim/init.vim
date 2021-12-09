@@ -1,18 +1,14 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin configurations (plug.vim)
+
 call plug#begin('~/.config/nvim/plugged')
-"Tabnine
-" Plug 'aca/completion-tabnine', { 'do': './install.sh' }
-
-"Auto pair
-" Plug 'jiangmiao/auto-pairs'
-
-"Surround
+" Surround
 Plug 'tpope/vim-surround'
 
-"Yaml
+" Yaml
 Plug 'stephpy/vim-yaml'
 
-"Completion
-" Plug 'nvim-lua/completion-nvim'
+" Completion
 Plug 'Shougo/ddc.vim'
 Plug 'vim-denops/denops.vim'
 Plug 'LumaKernel/ddc-file'
@@ -20,100 +16,100 @@ Plug 'Shougo/ddc-around'
 Plug 'tani/ddc-fuzzy'
 Plug 'Shougo/ddc-nvim-lsp'
 
-"Commentary
+" Commentary
 Plug 'tpope/vim-commentary'
 
-"Common Lisp
+" Common Lisp
 Plug 'l04m33/vlime', {'rtp': 'vim'}
 
-"Clojure
+" Clojure
 Plug 'guns/vim-clojure-static'
 
-"Darcula theme
+" Darcula theme
 Plug 'blueshirts/darcula'
 
-"Fennel
+" Fennel
 Plug 'bakpakin/fennel.vim'
 
-"Fireplace
+" Fireplace
 Plug 'tpope/vim-fireplace'
 
-"Fugitive
+" Fugitive
 Plug 'tpope/vim-fugitive'
 
-"Fzf
+" Fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'https://gitlab.com/jenifael.gingras/fzf.vim'
 
-"Gitgutter
+" Gitgutter
 Plug 'airblade/vim-gitgutter'
 
-"Jinja
+" Jinja
 Plug 'lepture/vim-jinja'
 
-"Json
+" Json
 Plug 'elzr/vim-json'
 
-"Neovim Lsp
+" Neovim Lsp Config
 Plug 'neovim/nvim-lspconfig'
 
-"Paredit
+" Paredit
 Plug 'vim-scripts/paredit.vim'
 
-"Powershell
+" Powershell
 Plug 'PProvost/vim-ps1'
 
-"Pum
+" Pum
 Plug 'Shougo/pum.vim'
 
-"Sexp
+" Sexp
 Plug 'guns/vim-sexp'
 
-"Sudo Edit
+" Sudo Edit
 Plug 'chrisbra/SudoEdit.vim'
 
-"Snippet
-" Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
+" Snippet
 Plug 'Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neosnippet-snippets'
 
-"Rainbow parentheses
+" Rainbow parentheses
 Plug 'luochen1990/rainbow'
 
-"Repl integration
+" Repl integration
 Plug 'hkupty/iron.nvim'
-"rust
+
+" Rust
 Plug 'rust-lang/rust.vim'
 
-"scratch
+" Scratch
 Plug 'mtth/scratch.vim'
 
-"Taboo
+" Taboo
 Plug 'gcmt/taboo.vim'
 
-"Toml
+" Toml
 Plug 'cespare/vim-toml'
 
-"Tree-sitter
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-"UUID
+" UUID
 Plug 'kburdett/vim-nuuid'
 
-"Unimpaired
+" Unimpaired
 Plug 'tpope/vim-unimpaired'
 
-"Plug
+" Plug
 Plug 'junegunn/vim-plug'
 
-"Better status line
+" Better status line
 Plug 'vim-airline/vim-airline'
+
 call plug#end()
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General settings
 syntax on
 filetype plugin indent on
 
-"general settings
 luafile $HOME/.config/nvim/plugins.lua
 set formatoptions-=cro
 set sessionoptions-=options
@@ -130,12 +126,16 @@ set nowrap
 nnoremap <silent> <c-s> <cmd>let @/ = ""<cr>
 set splitright
 
-"get rid of backup file
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Get rid of backup file
 set nobackup
 set nowb
 set noswapfile
 
-"indentation management
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Indentation management
 set expandtab
 set smarttab
 set autoindent
@@ -143,75 +143,102 @@ set smartindent
 set shiftwidth=4
 set tabstop=4
 
-"search options
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Search options
 set ignorecase
 set smartcase
 set hlsearch
 set showmatch
 
-"make utf8 and unix the default
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Make utf8 and unix the default
 set encoding=utf8
 set ffs=unix,dos,mac
 
-"mapping
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mapping
 let mapleader = ","
 noremap <leader>ev :e $HOME/.config/nvim/init.vim<cr>
 noremap <leader>el :e $HOME/.config/nvim/plugins.lua<cr>
 noremap <leader>rv :source $MYVIMRC<cr>
 nnoremap <leader><leader>s :%s/\s+$//ge \| noh <cr>
 
-"autocommand
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Autocommand
 augroup vimrc
     au!
     au BufRead *.yml :setf ansible
     au BufRead Jenkinsfile :setf groovy
 augroup end
 
-"theme
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Theme
 set background=dark
 colorscheme darcula
 
-"airline
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Airline
 let g:airline_powerline_fonts = 1
 
-"Commentary
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Commentary
 nnoremap <c-m> :Commentary<cr>
 vnoremap <c-m> :Commentary<cr>
 
-"Fzf
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Fzf
 nnoremap <C-p> :Files<cr>
 nnoremap <C-e> :History<cr>
 
-"Taboo
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Taboo
 set sessionoptions+=tabpages,globals
 
-"Netrw
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Netrw
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 2
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
 
-"Rainbow
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Rainbow
 let g:rainbow_active = 1
 
-"Something try desperately to make vim file auto comment new line...
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Something try desperately to make vim file auto comment new line...
 autocmd FileType vim setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-"Autopairs
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Autopairs
 let g:AutoPairsCenterLine = 0
 
-""""""""""
-"Neovim LSP
 
-"Utilities
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Neovim LSP
+
+" Utilities
 nnoremap <leader>lss <cmd>lua print(vim.inspect(vim.lsp.buf_get_clients()))<CR>
 nnoremap <leader>lsa <cmd>lua print(vim.inspect(vim.lsp.get_active_clients()))<CR>
 nnoremap <leader>lsr <cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>
 nnoremap <leader>lsc <cmd>verbose set omnifunc?<CR>
 nnoremap <leader>lsd <cmd>lua vim.lsp.diagnostic.clear(vim.api.nvim_eval("bufnr('%')"))<CR>
 
-"Declaration, definition, implementation, references
+" Declaration, definition, implementation, references
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <leader>lsp <cmd>lua vim.lsp.buf.peek_definition()<CR>
@@ -219,21 +246,20 @@ nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR><cmd>cwindow 5<CR>
 nnoremap <silent> gR    <cmd>lua vim.lsp.util.buf_clear_references()<CR>
 
-"Hover, signature, formatting
+" Hover, signature, formatting
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 inoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-" nnoremap <silent> <s-l> <cmd>lua vim.lsp.buf.formatting()<CR>
 nnoremap <silent> <s-l> <cmd>lua vim.lsp.buf.formatting()<CR>
 
-"Previous|Next Error (quickfix)
+" Previous|Next Error (quickfix)
 nnoremap <silent> ]g <cmd>vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> [g <cmd>vim.lsp.diagnostic.goto_next()<CR>
 
-"Trigger completions
+" Trigger completions
 inoremap <c-space> <c-x><c-o>
 
-"Load the omnifunc for completions
+" Load the omnifunc for completions
 augroup lspomni
     autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
     autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
@@ -246,8 +272,9 @@ augroup lspomni
     autocmd Filetype yaml setlocal omnifunc=v:lua.vim.lsp.omnifunc
 augroup end
 
-""""""""""
-"Vimspector
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vimspector
 nmap <F9> <Plug>VimspectorContinue
 nmap <F5> <Plug>VimspectorContinue
 command! DebugRun :execute "normal \<Plug>VimspectorContinue"
@@ -278,19 +305,7 @@ nmap <leader>do <cmd>DebugStepOut<cr>
 " nmap <leader>dd <cmd>DebugReset<cr>
 
 
-""""""""""
-"Deoplete
-" let g:deoplete#enable_at_startup = 1
-" set completeopt=noinsert,menuone,noselect
-" call deoplete#custom#option('omni_patterns', {
-"             \ 'python': ['[^. *\t]\.\w*']
-"             \})
-" call deoplete#custom#var('tabnine', {
-"             \ 'line_limit': 500,
-"             \ 'max_num_results': 20,
-"             \})
-
-""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " REPL
 let g:iron_map_defaults = 0
 let g:iron_map_extended = 0
@@ -304,13 +319,15 @@ nmap <leader>ri mm<leader>(<Plug>(iron-send-motion)%`m
 nmap <leader>rd mm[[<Plug>(iron-send-motion)]]`m
 nmap <leader>rcc <Plug>(iron-interrupt)
 
-"""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " S-EXP
 let g:sexp_enable_insert_mode_mappings = 0
 nmap <leader>( <Plug>(sexp_move_to_prev_top_element)
 nmap <leader>) <Plug>(sexp_move_to_next_top_element)
 
-"""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " DDC
 call ddc#custom#patch_global('sources', ['nvim-lsp', 'file', 'around', 'deoppet'])
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
@@ -328,15 +345,16 @@ call ddc#custom#patch_global('sourceOptions', {
   \ })
 call ddc#enable()
 
-""""
-"Pum
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Pum
 inoremap <c-n> <cmd>call pum#map#insert_relative(+1)<cr>
 inoremap <c-p> <cmd>call pum#map#insert_relative(-1)<cr>
 inoremap <c-e> <cmd>call pum#map#confirm()<cr>
 inoremap <c-y> <cmd>call pum#map#cancel()<cr>
 
-"""""""""""
-"Deoppet
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Deoppet
 call deoppet#initialize()
 call deoppet#custom#option('snippets', map(globpath(&runtimepath, 'neosnippets', 1, 1), { _, val -> { 'path': val } }))
 imap <c-k> <Plug>(deoppet_expand)
@@ -344,3 +362,8 @@ imap <c-f> <Plug>(deoppet_jump_forward)
 imap <c-b> <Plug>(deoppet_jump_backward)
 smap <c-f> <Plug>(deoppet_jump_forward)
 smap <c-b> <Plug>(deoppet_jump_backward)
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Denops
+let g:denops#debug = 1
