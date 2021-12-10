@@ -15,6 +15,7 @@ Plug 'LumaKernel/ddc-file'
 Plug 'Shougo/ddc-around'
 Plug 'tani/ddc-fuzzy'
 Plug 'Shougo/ddc-nvim-lsp'
+Plug 'https://gitlab.com/jenifael.gingras/ddc-zettelkasten.git'
 
 " Commentary
 Plug 'tpope/vim-commentary'
@@ -329,7 +330,7 @@ nmap <leader>) <Plug>(sexp_move_to_next_top_element)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " DDC
-call ddc#custom#patch_global('sources', ['nvim-lsp', 'file', 'around', 'deoppet'])
+call ddc#custom#patch_global('sources', ['nvim-lsp', 'file', 'around', 'deoppet', 'zettelkasten'])
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
 call ddc#custom#patch_global('sourceOptions', {
   \   '_': {
@@ -342,6 +343,10 @@ call ddc#custom#patch_global('sourceOptions', {
   \     'forceCompletionPattern': '\.\w*|:\w*|->\w*'
   \   },
   \  'deoppet': {'dup': v:true, 'mark': 'dp'},
+  \  'zettelkasten': {'mark': 'ZK'},
+  \ })
+call ddc#custom#patch_global('sourceParams', {
+  \  'zettelkasten': {'zettelpath': $HOME . '/Nextcloud/Documents/Zettelkasten'},
   \ })
 call ddc#enable()
 
@@ -366,4 +371,4 @@ smap <c-b> <Plug>(deoppet_jump_backward)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Denops
-let g:denops#debug = 1
+" let g:denops#debug = 1
