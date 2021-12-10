@@ -72,6 +72,7 @@ Plug 'chrisbra/SudoEdit.vim'
 " Snippet
 Plug 'Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet-snippets'
+Plug 'https://gitlab.com/jenifael.gingras/nvim-snippets.git'
 
 " Rainbow parentheses
 Plug 'luochen1990/rainbow'
@@ -249,8 +250,8 @@ nnoremap <silent> gR    <cmd>lua vim.lsp.util.buf_clear_references()<CR>
 
 " Hover, signature, formatting
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-inoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <c-h> <cmd>lua vim.lsp.buf.signature_help()<CR>
+inoremap <silent> <c-h> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <s-l> <cmd>lua vim.lsp.buf.formatting()<CR>
 
 " Previous|Next Error (quickfix)
@@ -339,11 +340,11 @@ call ddc#custom#patch_global('sourceOptions', {
   \     'converters': ['converter_fuzzy']
   \   },
   \   'nvim-lsp': {
-  \     'mark': 'lsp',
+  \     'mark': 'LSP',
   \     'forceCompletionPattern': '\.\w*|:\w*|->\w*'
   \   },
-  \  'deoppet': {'dup': v:true, 'mark': 'dp'},
-  \  'zettelkasten': {'mark': 'ZK'},
+  \  'deoppet': {'dup': v:true, 'mark': 'DP'},
+  \  'zettelkasten': {'mark': 'ZK', 'forceCompletionPattern': '\[\[w*'},
   \ })
 call ddc#custom#patch_global('sourceParams', {
   \  'zettelkasten': {'zettelpath': $HOME . '/Nextcloud/Documents/Zettelkasten'},
