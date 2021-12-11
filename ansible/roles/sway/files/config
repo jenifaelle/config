@@ -152,5 +152,6 @@ exec --no-startup-id mako
 exec screencast
 exec gnome-keyring-daemon --start
 exec --no-startup-id nextcloud
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 include ~/.config/sway/$(hostname)/*
