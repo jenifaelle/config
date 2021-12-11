@@ -1,48 +1,19 @@
 ---
-# - include: dependencies.yml
-
-- name: create nvim config
+- name: Symlink nvim config
   file:
+    src: "{{ role_path }}/files/nvim"
     dest: ~/.config/nvim
-    state: directory
-
-- name: create vim/autoload
-  file:
-    dest: "~/.config/nvim/autoload"
-    state: directory
-
-- name: symlink init.vim
-  file:
-    src: "{{role_path}}/files/init.vim"
-    dest: "~/.config/nvim/init.vim"
     state: link
 
-- name: symlink vimrc
+
+- name: Symlink vimrc
   file:
-    src: "{{role_path}}/files/init.vim"
+    src: "{{ role_path }}/files/vimrc"
     dest: "~/.vimrc"
     state: link
 
-- name: symlink ginit.vim
-  file:
-    src: "{{role_path}}/files/ginit.vim"
-    dest: "~/.config/nvim/ginit.vim"
-    state: link
-
-- name: symlink plug
-  file:
-    src: "{{role_path}}/files/plug.vim"
-    dest: "~/.config/nvim/autoload/plug.vim"
-    state: link
-
-- name: global gitignore
+- name: Global gitignore
   file:
     src: "~/git/config/.gitignore"
     dest: "~/.gitignore_global"
-    state: link
-
-- name: Symlink nvim lua config
-  ansible.builtin.file:
-    src: "{{ role_path }}/files/plugins.lua"
-    dest: "~/.config/nvim/plugins.lua"
     state: link

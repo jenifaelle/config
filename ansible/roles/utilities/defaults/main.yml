@@ -44,6 +44,7 @@ deps:
   - libsecret
   - gnome-keyring
   - mako
+  - deno
 
 aur_deps:
   - yay
