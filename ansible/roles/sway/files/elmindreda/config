@@ -12,3 +12,5 @@ input type:touchpad {
     tap enabled
     tap_button_map lrm
 }
+
+input type:tablet_tool map_to_output "Unknown GT-133 "
