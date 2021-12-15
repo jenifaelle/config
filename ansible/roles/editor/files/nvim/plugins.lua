@@ -64,3 +64,6 @@ require'lspconfig'.vimls.setup{}
 
 --tsserver
 require'lspconfig'.tsserver.setup{}
+
+--ansiblels
+require'lspconfig'.ansiblels.setup{}

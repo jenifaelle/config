@@ -1,19 +1,19 @@
 ---
 - name: Symlink nvim config
-  file:
+  ansible.builtin.file:
     src: "{{ role_path }}/files/nvim"
     dest: ~/.config/nvim
     state: link
 
 
 - name: Symlink vimrc
-  file:
+  ansible.builtin.file:
     src: "{{ role_path }}/files/vimrc"
     dest: "~/.vimrc"
     state: link
 
 - name: Global gitignore
-  file:
+  ansible.builtin.file:
     src: "~/git/config/.gitignore"
     dest: "~/.gitignore_global"
     state: link
