@@ -1,47 +1,47 @@
 ---
-- name: installing sway
+- name: Installing sway
   pacman:
     name: sway
     state: present
   become: true
 
-- name: installing swaylock
+- name: Installing swaylock
   pacman:
     name: swaylock
     state: present
   become: true
 
-- name: installing grim
+- name: Installing grim
   pacman:
     name: grim
     state: present
   become: true
 
-- name: installing slurp
+- name: Installing slurp
   pacman:
     name: slurp
     state: present
   become: true
 
-- name: installing wl-clipboard
+- name: Installing wl-clipboard
   pacman:
     name: wl-clipboard
     state: present
   become: true
 
-- name: installing brightnessctl
+- name: Installing brightnessctl
   pacman:
     name: brightnessctl
     state: present
   become: true
 
-- name: install i3status
+- name: Install i3status
   pacman:
     name: i3status
     state: present
   become: true
 
-- name: install py3status
+- name: Install py3status
   pacman:
     name: py3status
     state: present
@@ -67,6 +67,12 @@
   file:
     src: "{{ role_path }}/files/{{ ansible_hostname }}"
     path: "~/.config/sway/{{ ansible_hostname }}"
+    state: link
+
+- name: Symlink moniteur scripts
+  file:
+    src: "{{ role_path }}/files/moniteur"
+    path: "~/.config/sway/moniteur"
     state: link
 
 - name: Copy i3status config
