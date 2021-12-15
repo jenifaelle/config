@@ -1,6 +1,15 @@
 ---
 - name: Installing neovim
-  aur:
+  community.general.pacman:
+    name: neovim
+    state: present
+
+- name: Installing language server from pacman
+  community.general.pacman:
+    name: "{{ lsp_pacman }}"
+    state: present
+
+- name: Installing language server from aur
+  kewlfft.aur.aur:
     use: makepkg
-    name: neovim-git
-    skip_installed: yes
+    name: "{{ lsp_aur }}"

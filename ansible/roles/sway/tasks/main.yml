@@ -1,88 +1,46 @@
 ---
-- name: Installing sway
-  pacman:
-    name: sway
+- name: Installing sway and utilities
+  community.general.pacman:
+    name: "{{ sway_deps }}"
     state: present
-  become: true
-
-- name: Installing swaylock
-  pacman:
-    name: swaylock
-    state: present
-  become: true
-
-- name: Installing grim
-  pacman:
-    name: grim
-    state: present
-  become: true
-
-- name: Installing slurp
-  pacman:
-    name: slurp
-    state: present
-  become: true
-
-- name: Installing wl-clipboard
-  pacman:
-    name: wl-clipboard
-    state: present
-  become: true
-
-- name: Installing brightnessctl
-  pacman:
-    name: brightnessctl
-    state: present
-  become: true
-
-- name: Install i3status
-  pacman:
-    name: i3status
-    state: present
-  become: true
-
-- name: Install py3status
-  pacman:
-    name: py3status
-    state: present
-  become: true
+  become: yes
 
 - name: Ensure ~/.config/sway exists
-  file:
+  ansible.builtin.file:
     path: "~/.config/sway"
     state: directory
 
 - name: Ensure ~/.config/i3status exists
-  file:
+  ansible.builtin.file:
     path: "~/.config/i3status"
     state: directory
 
 - name: Copy sway config
-  file:
+  ansible.builtin.file:
     src: "{{ role_path }}/files/config"
     dest: "~/.config/sway/config"
     state: link
 
 - name: Symlink host specific config "~/.config/sway/{{ ansible_hostname }}"
-  file:
+  ansible.builtin.file:
     src: "{{ role_path }}/files/{{ ansible_hostname }}"
     path: "~/.config/sway/{{ ansible_hostname }}"
     state: link
 
 - name: Symlink moniteur scripts
-  file:
+  ansible.builtin.file:
     src: "{{ role_path }}/files/moniteur"
     path: "~/.config/sway/moniteur"
     state: link
 
 - name: Copy i3status config
-  file:
+  ansible.builtin.file:
     src: "{{ role_path }}/files/i3status-config"
     dest: "~/.config/i3status/config"
     state: link
 
 - name: copy Xdefaults
-  file:
+  ansible.builtin.file:
     src: "{{ role_path }}/files/Xdefaults"
     dest: "~/.Xdefaults"
     state: link

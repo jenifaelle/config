@@ -1,0 +1,7 @@
+---
+lsp_pacman:
+  - bash-language-server
+  - yaml-language-server
+
+lsp_aur:
+  - ansible-language-server

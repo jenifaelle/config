@@ -1,0 +1,11 @@
+---
+sway_deps:
+  - sway
+  - swaylock
+  - grim
+  - slurp
+  - wl-clipboard
+  - brightnessctl
+  - i3status
+  - py3status
+

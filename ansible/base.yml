@@ -2,7 +2,7 @@
 - name: "Base config"
   hosts: localhost
   pre_tasks:
-    - name: create std config dir
+    - name: Create standard config dir
       file:
         path: "~/.config"
         state: directory
