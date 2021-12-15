@@ -1,0 +1,24 @@
+# Maintainer: Jenifaëlle Gingras <jenifael.gingras@gmail.com>
+pkgname=golang-repl
+pkgver=0.1.2
+pkgrel=1
+pkgdesc="A go language REPL."
+arch=('x86_64')
+url="https://github.com/golobby/repl"
+license=('GPL3')
+makedepends=(
+    'go'
+)
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/golobby/repl/archive/${pkgver}.tar.gz")
+sha256sums=('8bb2914af60d2ba81e09608e417b55f5daefbb9f48be0a7ee399ff1bd52fd3d7')
+
+build() {
+    cd "$srcdir/repl-$pkgver"
+    go build
+}
+
+package() {
+    cd "$srcdir/repl-$pkgver"
+    mkdir -p $pkgdir/usr/bin
+    cp $srcdir/repl-$pkgver/repl $pkgdir/usr/bin/golang-repl
+}
