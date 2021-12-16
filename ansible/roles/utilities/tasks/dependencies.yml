@@ -1,11 +1,17 @@
 ---
-- name: installing utilities dependencies
+- name: Installing utilities dependencies
   community.general.pacman:
-    name: "{{deps}}"
+    name: "{{ deps }}"
     state: present
   become: true
 
-- name: installing aur utilities
+- name: Installing aur utilities
   kewlfft.aur.aur:
     use: makepkg
-    name: "{{aur_deps}}"
+    name: "{{ aur_deps }}"
+
+- name: Installing fonts
+  community.general.pacman:
+    name: "{{ fonts }}"
+    state: present
+  become: true

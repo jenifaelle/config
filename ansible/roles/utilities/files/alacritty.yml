@@ -1,7 +1,7 @@
 font:
   normal:
-    family: Droid Sans Mono for Powerline
-  size: 12
+    family: Noto Sans Mono Medium
+  size: 14
 colors:
   primary:
     background: '#002b36'

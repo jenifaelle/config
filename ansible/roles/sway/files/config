@@ -1,7 +1,8 @@
 # Example config: https://github.com/rbnis/dotfiles/blob/master/.config/sway/config
 
 # General
-font pango:noto 12
+# font pango:noto 12
+font Noto Mono for Powerline:12
 
 set $up k
 set $down j
