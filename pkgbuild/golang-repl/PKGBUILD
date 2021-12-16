@@ -1,11 +1,12 @@
 # Maintainer: Jenifaëlle Gingras <jenifael.gingras@gmail.com>
 pkgname=golang-repl
 pkgver=0.1.2
-pkgrel=1
+pkgrel=2
 pkgdesc="A go language REPL."
 arch=('x86_64')
 url="https://github.com/golobby/repl"
 license=('GPL3')
+depends=('go-tools')
 makedepends=(
     'go'
 )

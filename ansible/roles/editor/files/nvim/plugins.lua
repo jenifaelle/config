@@ -14,7 +14,6 @@ local iron = require('iron')
 iron.core.set_config {
     preferred = {
         python = "ptipython",
-        go = "golang-repl"
     },
     memory_management = "singleton",
     repl_open_cmd = "vsplit"

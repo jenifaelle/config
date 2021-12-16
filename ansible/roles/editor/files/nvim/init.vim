@@ -78,7 +78,8 @@ Plug 'https://gitlab.com/jenifael.gingras/nvim-snippets.git'
 Plug 'luochen1990/rainbow'
 
 " Repl integration
-Plug 'hkupty/iron.nvim'
+" Plug 'hkupty/iron.nvim'
+Plug 'https://gitlab.com/jenifael.gingras/iron.nvim.git'
 
 " Rust
 Plug 'rust-lang/rust.vim'

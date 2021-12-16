@@ -51,3 +51,4 @@ aur_deps:
   - wdisplays-git
   - libldac
   - noisetorch-bin
+  - yaegi
