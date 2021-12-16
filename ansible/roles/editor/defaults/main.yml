@@ -2,6 +2,7 @@
 lsp_pacman:
   - bash-language-server
   - yaml-language-server
+  - gopls
 
 lsp_aur:
   - ansible-language-server

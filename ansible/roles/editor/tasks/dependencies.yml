@@ -3,11 +3,13 @@
   community.general.pacman:
     name: neovim
     state: present
+  become: yes
 
 - name: Installing language server from pacman
   community.general.pacman:
     name: "{{ lsp_pacman }}"
     state: present
+  become: yes
 
 - name: Installing language server from aur
   kewlfft.aur.aur:

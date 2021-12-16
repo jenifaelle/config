@@ -1,4 +1,6 @@
 ---
+- include_tasks: dependencies.yml
+
 - name: Symlink nvim config
   ansible.builtin.file:
     src: "{{ role_path }}/files/nvim"
