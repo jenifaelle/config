@@ -1,5 +1,6 @@
 set -x fish_key_bindings fish_vi_key_bindings
 set -x BROWSER firefox
+set -x EDITOR nvim
 set -gx PATH $PATH /home/jenifael/bin
 set -gx PATH $PATH /home/jenifael/.roswell/bin
 set -gx PATH $PATH /home/jenifael/.cargo/bin
@@ -15,6 +16,8 @@ set -x BRIDGE_LOGS_PATH "/var/log/optelbridge"
 set -x BRIDGE_SERIAL_BACKUP_LOCATION "/opt/optelbridge"
 
 set -x SSH_AUTH_SOCK /run/user/1000/ssh-agent.socket
+
+set -x OPENCV_LOG_LEVEL ERROR
 
 pyenv init --path | source
 pyenv init - | source
