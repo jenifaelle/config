@@ -374,3 +374,7 @@ smap <c-b> <Plug>(deoppet_jump_backward)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Denops
 " let g:denops#debug = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Zettelkasten
+command ZetSearch FZF ~/Nextcloud/Documents/Zettelkasten
