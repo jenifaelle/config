@@ -2,120 +2,70 @@
 " Plugin configurations (plug.vim)
 
 call plug#begin('~/.config/nvim/plugged')
-" Completion
+" Plug (self-managed)
+Plug 'junegunn/vim-plug'
+
+" Deps of other plugins
+Plug 'nvim-lua/plenary.nvim' " via Telescope, Gitsigns
+Plug 'vim-denops/denops.vim' " via ddc
+
+" Airline
+Plug 'vim-airline/vim-airline'
+
+" Commentary
+Plug 'tpope/vim-commentary'
+
+" DAP
+Plug 'mfussenegger/nvim-dap'
+Plug 'leoluz/nvim-dap-go'
+Plug 'mfussenegger/nvim-dap-python'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'theHamsta/nvim-dap-virtual-text'
+
+" Darcula theme
+Plug 'blueshirts/darcula'
+
+" DDC (completion)
 Plug 'Shougo/ddc.vim'
-Plug 'vim-denops/denops.vim'
 Plug 'LumaKernel/ddc-file'
 Plug 'Shougo/ddc-around'
 Plug 'tani/ddc-fuzzy'
 Plug 'Shougo/ddc-nvim-lsp'
 Plug 'https://gitlab.com/jenifael.gingras/ddc-zettelkasten.git'
-
-" Commentary
-Plug 'tpope/vim-commentary'
-
-" Common Lisp
-Plug 'l04m33/vlime', {'rtp': 'vim'}
-
-" Clojure
-Plug 'guns/vim-clojure-static'
-
-" Darcula theme
-Plug 'blueshirts/darcula'
+Plug 'Shougo/pum.vim'
 
 " Devicons
 Plug 'kyazdani42/nvim-web-devicons'
 
-" Fennel
-Plug 'bakpakin/fennel.vim'
-
-" Fireplace
-Plug 'tpope/vim-fireplace'
-
 " Fugitive
 Plug 'tpope/vim-fugitive'
 
-" Fzf
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Plug 'https://gitlab.com/jenifael.gingras/fzf.vim'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-
-" Gitgutter
-Plug 'airblade/vim-gitgutter'
-
-" Jinja
-Plug 'lepture/vim-jinja'
-
-" Json
-Plug 'elzr/vim-json'
+" Gitsigns
+Plug 'lewis6991/gitsigns.nvim'
 
 " Neovim Lsp Config
 Plug 'neovim/nvim-lspconfig'
 
-" Paredit
-Plug 'vim-scripts/paredit.vim'
-
-" Powershell
-Plug 'PProvost/vim-ps1'
-
-" Pum
-Plug 'Shougo/pum.vim'
-
-" Rainbow parentheses
-Plug 'luochen1990/rainbow'
-
-" Repl integration
-" Plug 'hkupty/iron.nvim'
+" Iron (repl)
 Plug 'https://gitlab.com/jenifael.gingras/iron.nvim.git'
-
-" Rust
-Plug 'rust-lang/rust.vim'
-
-" Scratch
-Plug 'mtth/scratch.vim'
-
-" Sexp
-Plug 'guns/vim-sexp'
 
 " Snippet
 Plug 'Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet-snippets'
 Plug 'https://gitlab.com/jenifael.gingras/nvim-snippets.git'
 
-" Sudo Edit
-Plug 'chrisbra/SudoEdit.vim'
-
-" Surround
-Plug 'tpope/vim-surround'
-
 " Taboo
 Plug 'gcmt/taboo.vim'
 
 " Telescope
-Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-
-" Toml
-Plug 'cespare/vim-toml'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " UUID
 Plug 'kburdett/vim-nuuid'
-
-" Unimpaired
-Plug 'tpope/vim-unimpaired'
-
-" Yaml
-Plug 'stephpy/vim-yaml'
-
-
-" Plug
-Plug 'junegunn/vim-plug'
-
-" Better status line
-Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
@@ -357,8 +307,8 @@ smap <c-b> <Plug>(deoppet_jump_backward)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Treesitter
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
+" set foldmethod=expr
+" set foldexpr=nvim_treesitter#foldexpr()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Telescope
@@ -371,3 +321,13 @@ nnoremap <leader>ff <cmd>Telescope file_browser<cr>
 " Zettelkasten
 command ZetSearch :lua require('telescope.builtin').find_files({cwd = "~/Nextcloud/Documents/Zettelkasten"})
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" DAP
+vnoremap <silent> <F3> <cmd>lua require'dapui'.eval()<cr>
+nnoremap <silent> <F4> :lua require'dapui'.open()<cr>
+nnoremap <silent> <F5> :lua require'dap'.continue()<cr>
+nnoremap <silent> <F6> :lua require'dapui'.close()<cr>
+nnoremap <silent> <F8> :lua require'dap'.toggle_breakpoint()<cr>
+nnoremap <silent> <F10> :lua require'dap'.step_over()<cr>
+nnoremap <silent> <F11> :lua require'dap'.step_into()<cr>
+nnoremap <silent> <F12> :lua require'dap'.step_out()<cr>
