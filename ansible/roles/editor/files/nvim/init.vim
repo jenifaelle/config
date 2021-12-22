@@ -2,12 +2,6 @@
 " Plugin configurations (plug.vim)
 
 call plug#begin('~/.config/nvim/plugged')
-" Surround
-Plug 'tpope/vim-surround'
-
-" Yaml
-Plug 'stephpy/vim-yaml'
-
 " Completion
 Plug 'Shougo/ddc.vim'
 Plug 'vim-denops/denops.vim'
@@ -29,6 +23,9 @@ Plug 'guns/vim-clojure-static'
 " Darcula theme
 Plug 'blueshirts/darcula'
 
+" Devicons
+Plug 'kyazdani42/nvim-web-devicons'
+
 " Fennel
 Plug 'bakpakin/fennel.vim'
 
@@ -39,8 +36,9 @@ Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-fugitive'
 
 " Fzf
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'https://gitlab.com/jenifael.gingras/fzf.vim'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'https://gitlab.com/jenifael.gingras/fzf.vim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " Gitgutter
 Plug 'airblade/vim-gitgutter'
@@ -63,17 +61,6 @@ Plug 'PProvost/vim-ps1'
 " Pum
 Plug 'Shougo/pum.vim'
 
-" Sexp
-Plug 'guns/vim-sexp'
-
-" Sudo Edit
-Plug 'chrisbra/SudoEdit.vim'
-
-" Snippet
-Plug 'Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neosnippet-snippets'
-Plug 'https://gitlab.com/jenifael.gingras/nvim-snippets.git'
-
 " Rainbow parentheses
 Plug 'luochen1990/rainbow'
 
@@ -87,17 +74,42 @@ Plug 'rust-lang/rust.vim'
 " Scratch
 Plug 'mtth/scratch.vim'
 
+" Sexp
+Plug 'guns/vim-sexp'
+
+" Snippet
+Plug 'Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neosnippet-snippets'
+Plug 'https://gitlab.com/jenifael.gingras/nvim-snippets.git'
+
+" Sudo Edit
+Plug 'chrisbra/SudoEdit.vim'
+
+" Surround
+Plug 'tpope/vim-surround'
+
 " Taboo
 Plug 'gcmt/taboo.vim'
 
+" Telescope
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 " Toml
 Plug 'cespare/vim-toml'
+
+" Treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " UUID
 Plug 'kburdett/vim-nuuid'
 
 " Unimpaired
 Plug 'tpope/vim-unimpaired'
+
+" Yaml
+Plug 'stephpy/vim-yaml'
+
 
 " Plug
 Plug 'junegunn/vim-plug'
@@ -198,8 +210,8 @@ vnoremap <c-m> :Commentary<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fzf
-nnoremap <C-p> :Files<cr>
-nnoremap <C-e> :History<cr>
+" nnoremap <C-p> :Files<cr>
+" nnoremap <C-e> :History<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -277,38 +289,6 @@ augroup end
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vimspector
-nmap <F9> <Plug>VimspectorContinue
-nmap <F5> <Plug>VimspectorContinue
-command! DebugRun :execute "normal \<Plug>VimspectorContinue"
-nmap <leader>dr <cmd>DebugRun<cr>
-
-nmap <S-F2> <Plug>VimspectorStop
-command! DebugStop :execute "normal \<Plug>VimspectorStop"
-command! DebugRestart :execute "normal \<Plug>VimspectorRestart"
-command! DebugPause :execute "normal \<Plug>VimspectorPause"
-
-nmap <C-F8> <Plug>VimspectorToggleBreakpoint
-command! DebugBreakpoint :execute "normal \<Plug>VimspectorToggleBreakpoint"
-nmap <leader>db <cmd>DebugBreakpoint<cr>
-
-nmap <F8> <Plug>VimspectorStepOver
-command! DebugStepOver :execute "normal \<Plug>VimspectorStepOver"
-nmap <leader>ds <cmd>DebugStepOver<cr>
-
-nmap <F7> <Plug>VimspectorStepInto
-command! DebugStepInto :execute "normal \<Plug>VimspectorStepInto"
-nmap <leader>do <cmd>DebugStepInto<cr>
-
-nmap <S-F8> <Plug>VimspectorStepOut
-command! DebugStepOut :execute "normal \<Plug>VimspectorStepOut"
-nmap <leader>do <cmd>DebugStepOut<cr>
-
-" command! DebugReset <cmd>VimspectorReset<cr>
-" nmap <leader>dd <cmd>DebugReset<cr>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " REPL
 let g:iron_map_defaults = 0
 let g:iron_map_extended = 0
@@ -376,5 +356,18 @@ smap <c-b> <Plug>(deoppet_jump_backward)
 " let g:denops#debug = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Zettelkasten
-command ZetSearch FZF ~/Nextcloud/Documents/Zettelkasten
+" Treesitter
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Telescope
+nnoremap <c-p> <cmd>Telescope find_files<cr>
+nnoremap <c-e> <cmd>Telescope buffers<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>ff <cmd>Telescope file_browser<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Zettelkasten
+command ZetSearch :lua require('telescope.builtin').find_files({cwd = "~/Nextcloud/Documents/Zettelkasten"})
+
