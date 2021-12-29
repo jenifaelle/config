@@ -1,0 +1,30 @@
+# Maintainer: Jenifaëlle Gingras <jenifael.gingras@gmail.com>
+# Based on: https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=liberal-crime-squad-svn
+pkgname=lcs-git
+pkgver=4.10.0
+pkgrel=1
+pkgdesc="Liberal Crime Squad v4.10"
+arch=('x86_64')
+url="https://github.com/Kamal-Sadek/Liberal-Crime-Squad"
+license=('GPL2')
+depends=('ncurses' 'sdl2' 'sdl2_mixer')
+makedepends=('make' 'autoconf' 'gcc')
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/Kamal-Sadek/Liberal-Crime-Squad/archive/master.tar.gz")
+sha256sums=('7aa4487b44c359fef4fe3b99a86afdf4f9b27b5f0ecd415620d44e123810e9ce')
+
+build() {
+    cd "$srcdir/Liberal-Crime-Squad-master"
+
+    chmod 744 bootstrap
+    ./bootstrap
+    ./configure --prefix=/usr
+    make
+}
+
+package() {
+    cd "$srcdir/Liberal-Crime-Squad-master"
+
+    make DESTDIR="$pkgdir/" install
+
+    # Correct for music?
+}
