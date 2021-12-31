@@ -1,0 +1,27 @@
+# Maintainer: Jenifaëlle Gingras <jenifael.gingras@gmail.com>
+pkgname=lnp-forge
+pkgver=0.47.05.r3
+pkgrel=1
+pkgdesc="LNP Forge (Dwarf Fortress)"
+arch=('x86_64')
+url="https://github.com/McArcady/lnp-forge.git"
+license=('GPL2')
+depends=('tk' 'sdl_image' 'sdl_ttf' 'openal' 'ncurses' 'gtk2')
+makedepends=('make' 'autoconf' 'gcc' 'gperf' 'mercurial' 'perl-xml-libxml' 'perl-xml-libxslt')
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/McArcady/lnp-forge/archive/refs/tags/0.47.05-r3.tar.gz")
+sha256sums=('d481c43d9aea2431a05170ca2c26877b05b5e221ac32a30ae297f9a598bd8f00')
+
+build() {
+    cd "$srcdir/${pkgname}-0.47.05-r3"
+    ./configure --prefix=$PWD && make install
+    echo "!!! SED HERE !!!"
+    sed -i s/.*\{CFLAGS\}.*/#NOP/g scripts/lnp-forge.sh.in
+    sed -i s/.*\{CXXFLAGS\}.*/#NOP/g scripts/lnp-forge.sh.in
+    ./bin/lnp-forge build
+}
+
+package() {
+    cd "$srcdir/${pkgname}-0.47.05-r3"
+    mv .build/src/ "/opt/lnp-${pkgver}"
+    ln -s /opt/lnp-${pkgver}/lnp-0.14a/launch.py /usr/bin/lnp
+}
