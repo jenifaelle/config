@@ -141,10 +141,12 @@ bindsym Control+Shift+Space exec makoctl dismiss --all
 
 
 # Status Bar
-# bindsym $mod+b bar mode toggle # broken
 bar {
     position top
+    mode hide
+    hidden_state hide
     status_command py3status --wm sway
+    output *
 }
 
 
